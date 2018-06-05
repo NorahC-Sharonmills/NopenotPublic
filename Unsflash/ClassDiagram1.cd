@@ -1,0 +1,157 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Unsflash.Model.Collection">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <NestedTypes>
+      <Class Name="Unsflash.Model.Collection.User2" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Model\Collection.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="Unsflash.Model.Collection.CoverPhoto" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Model\Collection.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="Unsflash.Model.Collection.ProfileImage" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Model\Collection.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="Unsflash.Model.Collection.Links2" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Model\Collection.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="Unsflash.Model.Collection.Links3" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Model\Collection.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="Unsflash.Model.Collection.Links4" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Model\Collection.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="Unsflash.Model.Collection.Links" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Model\Collection.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="Unsflash.Model.Collection.User" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Model\Collection.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="Unsflash.Model.Collection.Tag" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Model\Collection.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="Unsflash.Model.Collection.Urls2" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Model\Collection.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="Unsflash.Model.Collection.ProfileImage2" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Model\Collection.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="Unsflash.Model.Collection.PreviewPhoto" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Model\Collection.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="Unsflash.Model.Collection.Urls" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Model\Collection.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Collection.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Unsflash.Model.CollectionRootObject" Collapsed="true">
+    <Position X="2.75" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAABABIAYAAAAAAAIAAAAAAEAACIAgAAAADAAgAAAwA=</HashCode>
+      <FileName>Model\CollectionRootObject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Unsflash.Model.DetailPhotoModel" Collapsed="true">
+    <Position X="8.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\DetailPhotoModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Unsflash.Model.MainPagePhotos" Collapsed="true">
+    <Position X="9.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\MainPagePhotos.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Unsflash.Model.MyGridView" Collapsed="true">
+    <Position X="10" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\MyGridView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Unsflash.Model.NavLink" Collapsed="true">
+    <Position X="4.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAA=</HashCode>
+      <FileName>Model\NavLink.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Unsflash.Model.RootObject" Collapsed="true">
+    <Position X="5.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAwASAYIJAAAAQCCIIAACAAACAAAAAAwA=</HashCode>
+      <FileName>Model\RootObject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Unsflash.ViewModel.CollectionsViewModel" Collapsed="true">
+    <Position X="2.75" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAAAAAAAAAAAIAAAAAABgAAAAAAAAAAAACAAAAA=</HashCode>
+      <FileName>ViewModel\CollectionsViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Unsflash.ViewModel.GetChildControl" Collapsed="true">
+    <Position X="7" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModel\GetChildControl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Unsflash.ViewModel.MainPanePhotoViewModel" Collapsed="true">
+    <Position X="3.25" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAAAAAAAAAAAIAAAAAAAgAAAAAAAAAAAAQAAAAA=</HashCode>
+      <FileName>ViewModel\MainPanePhotoViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Unsflash.ViewModel.UserAuthorization" Collapsed="true">
+    <Position X="0.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModel\UserAuthorization.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Unsflash.ViewModel.RequestParameters" Collapsed="true">
+    <Position X="6.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAAAAIAAhAAAAAAACAtAAAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>ViewModel\RequestParameters.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

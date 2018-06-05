@@ -1,0 +1,163 @@
+﻿<Page
+    x:Class="Unsflash.View.CollectionsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Unsflash.View"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    xmlns:model="using:Unsflash.Model"
+    xmlns:control="using:Microsoft.Toolkit.Uwp.UI.Controls">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+          Loaded="Grid_Loaded">
+        <Pivot Name="pvCollections"
+               SelectionChanged="pvCollections_SelectionChanged">
+            <PivotItem Header="Featured">
+                <Grid>
+                    <Grid Name="griFeaturedLoading"
+                          HorizontalAlignment="Center"
+                          VerticalAlignment="Center">
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Text="Loading"
+                                       FontSize="20"></TextBlock>
+                            <ProgressBar IsIndeterminate="True"
+                                         ShowPaused="False"
+                                         ShowError="False"></ProgressBar>
+                        </StackPanel>
+                    </Grid>
+                    <control:AdaptiveGridView Name="grvFeatured" OneRowModeEnabled="False"
+                                          ItemHeight="300"
+                                          DesiredWidth="480"
+                                          SelectionMode="Single"
+                                          ItemsSource="{x:Bind ViewModel.FeaturedCollections}">
+                        <control:AdaptiveGridView.ItemTemplate>
+                            <DataTemplate x:DataType="model:CollectionRootObject">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition></RowDefinition>
+                                        <RowDefinition Height="0.3*"></RowDefinition>
+                                    </Grid.RowDefinitions>
+                                    <Grid Grid.Row="0"
+                                      VerticalAlignment="Top">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition></ColumnDefinition>
+                                            <ColumnDefinition Width="0.5*"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <Image Grid.Column="0" 
+                                           Source="{x:Bind preview_photos_link_0}"
+                                           Stretch="UniformToFill"
+                                           Margin="4"></Image>
+                                        <Grid Grid.Column="1">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition></RowDefinition>
+                                                <RowDefinition></RowDefinition>
+                                            </Grid.RowDefinitions>
+                                            <Image Grid.Row="0"
+                                               Source="{x:Bind preview_photos_link_1}"
+                                               Stretch="UniformToFill"></Image>
+                                            <Image Grid.Row="1"
+                                               Source="{x:Bind preview_photos_link_2}"
+                                               Stretch="UniformToFill"></Image>
+                                        </Grid>
+                                    </Grid>
+                                    <Grid Grid.Row="1" 
+                                      VerticalAlignment="Center">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition></RowDefinition>
+                                            <RowDefinition></RowDefinition>
+                                        </Grid.RowDefinitions>
+                                        <TextBlock Grid.Row="0"
+                                               Text="{x:Bind title}"
+                                               FontWeight="Bold"
+                                               FontSize="20"
+                                               TextWrapping="WrapWholeWords"></TextBlock>
+                                        <TextBlock Grid.Row="1"
+                                               FontSize="14">
+                                        <Run Text="{x:Bind total_photos}"></Run>
+                                        <Run Text=" photos"></Run>
+                                        </TextBlock>
+                                    </Grid>
+                                </Grid>
+                            </DataTemplate>
+                        </control:AdaptiveGridView.ItemTemplate>
+                    </control:AdaptiveGridView>
+                </Grid>
+            </PivotItem>
+            <PivotItem Header="Curated">
+                <Grid>
+                    <Grid Name="griCuratedLoading"
+                          HorizontalAlignment="Center"
+                          VerticalAlignment="Center">
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Text="Loading"
+                                       FontSize="20"></TextBlock>
+                            <ProgressBar IsIndeterminate="True"
+                                         ShowPaused="False"
+                                         ShowError="False"></ProgressBar>
+                        </StackPanel>
+                    </Grid>
+                    <control:AdaptiveGridView Name="grvCurated" OneRowModeEnabled="False"
+                                          ItemHeight="300"
+                                          DesiredWidth="480"
+                                          SelectionMode="Single"
+                                          ItemsSource="{x:Bind ViewModel.FeaturedCollections}">
+                        <control:AdaptiveGridView.ItemTemplate>
+                            <DataTemplate x:DataType="model:CollectionRootObject">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition></RowDefinition>
+                                        <RowDefinition Height="0.3*"></RowDefinition>
+                                    </Grid.RowDefinitions>
+                                    <Grid Grid.Row="0"
+                                      VerticalAlignment="Top">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition></ColumnDefinition>
+                                            <ColumnDefinition Width="0.5*"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <Image Grid.Column="0" 
+                                           Source="{x:Bind preview_photos_link_0}"
+                                           Stretch="UniformToFill"
+                                           Margin="4"></Image>
+                                        <Grid Grid.Column="1">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition></RowDefinition>
+                                                <RowDefinition></RowDefinition>
+                                            </Grid.RowDefinitions>
+                                            <Image Grid.Row="0"
+                                               Source="{x:Bind preview_photos_link_1}"
+                                               Stretch="UniformToFill"></Image>
+                                            <Image Grid.Row="1"
+                                               Source="{x:Bind preview_photos_link_2}"
+                                               Stretch="UniformToFill"></Image>
+                                        </Grid>
+                                    </Grid>
+                                    <Grid Grid.Row="1" 
+                                      VerticalAlignment="Center">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition></RowDefinition>
+                                            <RowDefinition></RowDefinition>
+                                        </Grid.RowDefinitions>
+                                        <TextBlock Grid.Row="0"
+                                               FontWeight="Bold"
+                                               FontSize="20"
+                                               TextWrapping="WrapWholeWords">
+                                        <Run Text="{x:Bind title}"></Run>
+                                        <Run Text=" - "></Run>
+                                        <Run Text="{x:Bind user.name}"></Run>
+                                        </TextBlock>
+                                        <TextBlock Grid.Row="1"
+                                               FontSize="14">
+                                        <Run Text="{x:Bind total_photos}"></Run>
+                                        <Run Text=" photos"></Run>
+                                        </TextBlock>
+                                    </Grid>
+                                </Grid>
+                            </DataTemplate>
+                        </control:AdaptiveGridView.ItemTemplate>
+                    </control:AdaptiveGridView>
+                </Grid>
+            </PivotItem>
+        </Pivot>
+    </Grid>
+</Page>
