@@ -19,11 +19,7 @@ namespace Unsflash.View
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Windows.UI.Xaml.Build.Tasks"," 10.0.17.0")]
         private global::Windows.UI.Xaml.Controls.Grid griCuratedLoading; 
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Windows.UI.Xaml.Build.Tasks"," 10.0.17.0")]
-        private global::Microsoft.Toolkit.Uwp.UI.Controls.AdaptiveGridView grvCurated; 
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Windows.UI.Xaml.Build.Tasks"," 10.0.17.0")]
         private global::Windows.UI.Xaml.Controls.Grid griFeaturedLoading; 
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Windows.UI.Xaml.Build.Tasks"," 10.0.17.0")]
-        private global::Microsoft.Toolkit.Uwp.UI.Controls.AdaptiveGridView grvFeatured; 
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Windows.UI.Xaml.Build.Tasks"," 10.0.17.0")]
         private bool _contentLoaded;
 
