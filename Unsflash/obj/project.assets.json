@@ -8617,11 +8617,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\God\\Desktop\\Unsflash\\Unsflash\\Unsflash.csproj",
+      "projectUniqueName": "C:\\Users\\God\\Documents\\GitHub\\NopenotPublic\\Unsflash\\Unsflash.csproj",
       "projectName": "Unsflash",
-      "projectPath": "C:\\Users\\God\\Desktop\\Unsflash\\Unsflash\\Unsflash.csproj",
+      "projectPath": "C:\\Users\\God\\Documents\\GitHub\\NopenotPublic\\Unsflash\\Unsflash.csproj",
       "packagesPath": "C:\\Users\\God\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\God\\Desktop\\Unsflash\\Unsflash\\obj\\",
+      "outputPath": "C:\\Users\\God\\Documents\\GitHub\\NopenotPublic\\Unsflash\\obj\\",
       "projectStyle": "PackageReference",
       "skipContentFileWrite": true,
       "fallbackFolders": [

@@ -10,22 +10,22 @@
     <PackageArchitecture>x86</PackageArchitecture>
     <PackageIdentityName>f782aa33-7852-4d65-8244-aed9d737b2be</PackageIdentityName>
     <PackageIdentityPublisher>CN=DVD_NASA</PackageIdentityPublisher>
-    <IntermediateOutputPath>C:\Users\God\Desktop\Unsflash\Unsflash\obj\x86\Debug\</IntermediateOutputPath>
+    <IntermediateOutputPath>C:\Users\God\Documents\GitHub\NopenotPublic\Unsflash\obj\x86\Debug\</IntermediateOutputPath>
     <RemoteDeploymentType></RemoteDeploymentType>
     <PackageRegistrationPath></PackageRegistrationPath>
     <RemoveNonLayoutFiles>true</RemoveNonLayoutFiles>
     <DeployOptionalPackages>false</DeployOptionalPackages>
     <WindowsSdkPath>C:\Program Files %28x86%29\Windows Kits\10\</WindowsSdkPath>
-    <LayoutDir>C:\Users\God\Desktop\Unsflash\Unsflash\bin\x86\Debug\AppX</LayoutDir>
+    <LayoutDir>C:\Users\God\Documents\GitHub\NopenotPublic\Unsflash\bin\x86\Debug\AppX</LayoutDir>
   </PropertyGroup>
   <ItemGroup>
-    <AppXManifest Include="C:\Users\God\Desktop\Unsflash\Unsflash\bin\x86\Debug\Core\AppxManifest.xml">
+    <AppXManifest Include="C:\Users\God\Documents\GitHub\NopenotPublic\Unsflash\bin\x86\Debug\Core\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
-    <AppxPackagedFile Include="C:\Users\God\Desktop\Unsflash\Unsflash\bin\x86\Debug\Unsflash.exe">
+    <AppxPackagedFile Include="C:\Users\God\Documents\GitHub\NopenotPublic\Unsflash\bin\x86\Debug\Unsflash.exe">
       <PackagePath>entrypoint\Unsflash.exe</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\God\.nuget\packages\colorcode.core\2.0.3\lib\netstandard1.4\ColorCode.Core.dll">
@@ -568,67 +568,67 @@
     <AppxPackagedFile Include="C:\Users\God\.nuget\packages\win2d.uwp\1.21.0\lib\uap10.0\Microsoft.Graphics.Canvas.winmd">
       <PackagePath>Microsoft.Graphics.Canvas.winmd</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\God\Desktop\Unsflash\Unsflash\Properties\Default.rd.xml">
+    <AppxPackagedFile Include="C:\Users\God\Documents\GitHub\NopenotPublic\Unsflash\Properties\Default.rd.xml">
       <PackagePath>Properties\Default.rd.xml</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\God\Desktop\Unsflash\Unsflash\Assets\LockScreenLogo.scale-200.png">
+    <AppxPackagedFile Include="C:\Users\God\Documents\GitHub\NopenotPublic\Unsflash\Assets\LockScreenLogo.scale-200.png">
       <PackagePath>Assets\LockScreenLogo.scale-200.png</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\God\Desktop\Unsflash\Unsflash\Assets\SplashScreen.scale-200.png">
+    <AppxPackagedFile Include="C:\Users\God\Documents\GitHub\NopenotPublic\Unsflash\Assets\SplashScreen.scale-200.png">
       <PackagePath>Assets\SplashScreen.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\God\Desktop\Unsflash\Unsflash\Assets\Square150x150Logo.scale-200.png">
+    <AppxPackagedFile Include="C:\Users\God\Documents\GitHub\NopenotPublic\Unsflash\Assets\Square150x150Logo.scale-200.png">
       <PackagePath>Assets\Square150x150Logo.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\God\Desktop\Unsflash\Unsflash\Assets\Square44x44Logo.scale-200.png">
+    <AppxPackagedFile Include="C:\Users\God\Documents\GitHub\NopenotPublic\Unsflash\Assets\Square44x44Logo.scale-200.png">
       <PackagePath>Assets\Square44x44Logo.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\God\Desktop\Unsflash\Unsflash\Assets\Square44x44Logo.targetsize-24_altform-unplated.png">
+    <AppxPackagedFile Include="C:\Users\God\Documents\GitHub\NopenotPublic\Unsflash\Assets\Square44x44Logo.targetsize-24_altform-unplated.png">
       <PackagePath>Assets\Square44x44Logo.targetsize-24_altform-unplated.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\God\Desktop\Unsflash\Unsflash\Assets\StoreLogo.png">
+    <AppxPackagedFile Include="C:\Users\God\Documents\GitHub\NopenotPublic\Unsflash\Assets\StoreLogo.png">
       <PackagePath>Assets\StoreLogo.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\God\Desktop\Unsflash\Unsflash\Assets\Wide310x150Logo.scale-200.png">
+    <AppxPackagedFile Include="C:\Users\God\Documents\GitHub\NopenotPublic\Unsflash\Assets\Wide310x150Logo.scale-200.png">
       <PackagePath>Assets\Wide310x150Logo.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\God\Desktop\Unsflash\Unsflash\bin\x86\Debug\Unsflash.xr.xml">
+    <AppxPackagedFile Include="C:\Users\God\Documents\GitHub\NopenotPublic\Unsflash\bin\x86\Debug\Unsflash.xr.xml">
       <PackagePath>Unsflash.xr.xml</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\God\Desktop\Unsflash\Unsflash\bin\x86\Debug\App.xbf">
+    <AppxPackagedFile Include="C:\Users\God\Documents\GitHub\NopenotPublic\Unsflash\bin\x86\Debug\App.xbf">
       <PackagePath>App.xbf</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\God\Desktop\Unsflash\Unsflash\bin\x86\Debug\MainPage.xbf">
+    <AppxPackagedFile Include="C:\Users\God\Documents\GitHub\NopenotPublic\Unsflash\bin\x86\Debug\MainPage.xbf">
       <PackagePath>MainPage.xbf</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\God\Desktop\Unsflash\Unsflash\bin\x86\Debug\Theme\ViewStyles.xbf">
+    <AppxPackagedFile Include="C:\Users\God\Documents\GitHub\NopenotPublic\Unsflash\bin\x86\Debug\Theme\ViewStyles.xbf">
       <PackagePath>Theme\ViewStyles.xbf</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\God\Desktop\Unsflash\Unsflash\bin\x86\Debug\View\CollectionsPage.xbf">
+    <AppxPackagedFile Include="C:\Users\God\Documents\GitHub\NopenotPublic\Unsflash\bin\x86\Debug\View\CollectionsPage.xbf">
       <PackagePath>View\CollectionsPage.xbf</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\God\Desktop\Unsflash\Unsflash\bin\x86\Debug\View\ExplorePage.xbf">
+    <AppxPackagedFile Include="C:\Users\God\Documents\GitHub\NopenotPublic\Unsflash\bin\x86\Debug\View\ExplorePage.xbf">
       <PackagePath>View\ExplorePage.xbf</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\God\Desktop\Unsflash\Unsflash\bin\x86\Debug\View\HomePage.xbf">
+    <AppxPackagedFile Include="C:\Users\God\Documents\GitHub\NopenotPublic\Unsflash\bin\x86\Debug\View\HomePage.xbf">
       <PackagePath>View\HomePage.xbf</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\God\Desktop\Unsflash\Unsflash\bin\x86\Debug\View\SearchPage.xbf">
+    <AppxPackagedFile Include="C:\Users\God\Documents\GitHub\NopenotPublic\Unsflash\bin\x86\Debug\View\SearchPage.xbf">
       <PackagePath>View\SearchPage.xbf</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\God\Desktop\Unsflash\Unsflash\bin\x86\Debug\View\TestControl.xbf">
+    <AppxPackagedFile Include="C:\Users\God\Documents\GitHub\NopenotPublic\Unsflash\bin\x86\Debug\View\TestControl.xbf">
       <PackagePath>View\TestControl.xbf</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\God\Desktop\Unsflash\Unsflash\bin\x86\Debug\View\ViewCollectionsPage.xbf">
+    <AppxPackagedFile Include="C:\Users\God\Documents\GitHub\NopenotPublic\Unsflash\bin\x86\Debug\View\ViewCollectionsPage.xbf">
       <PackagePath>View\ViewCollectionsPage.xbf</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\God\Desktop\Unsflash\Unsflash\bin\x86\Debug\View\ViewPhotoPage.xbf">
+    <AppxPackagedFile Include="C:\Users\God\Documents\GitHub\NopenotPublic\Unsflash\bin\x86\Debug\View\ViewPhotoPage.xbf">
       <PackagePath>View\ViewPhotoPage.xbf</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Windows Kits\10\UnionMetadata\10.0.17134.0\Windows.winmd">
@@ -754,11 +754,11 @@
     <AppxPackagedFile Include="C:\Users\God\.nuget\packages\microsoft.toolkit.uwp.ui.controls\2.2.0\lib\uap10.0\Microsoft.Toolkit.Uwp.UI.Controls\TileControl\TileControl.xaml">
       <PackagePath>Microsoft.Toolkit.Uwp.UI.Controls\TileControl\TileControl.xaml</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\God\Desktop\Unsflash\Unsflash\bin\x86\Debug\resources.pri">
+    <AppxPackagedFile Include="C:\Users\God\Documents\GitHub\NopenotPublic\Unsflash\bin\x86\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\God\Desktop\Unsflash\Unsflash\bin\x86\Debug\Core\Unsflash.exe">
+    <AppxPackagedFile Include="C:\Users\God\Documents\GitHub\NopenotPublic\Unsflash\bin\x86\Debug\Core\Unsflash.exe">
       <PackagePath>Unsflash.exe</PackagePath>
     </AppxPackagedFile>
   </ItemGroup>
