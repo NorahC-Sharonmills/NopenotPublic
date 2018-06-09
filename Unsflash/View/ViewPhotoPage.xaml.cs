@@ -196,7 +196,7 @@ namespace Unsflash.View
             {
                 downloadOperation = null;
                 Statustext.Text = "Download Complete";
-                //Task.Delay(TimeSpan.FromSeconds(5));
+                Task.Delay(TimeSpan.FromSeconds(2));
                 Statustext.Visibility = Visibility.Collapsed;
             }
         }

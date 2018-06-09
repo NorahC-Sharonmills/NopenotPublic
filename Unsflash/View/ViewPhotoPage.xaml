@@ -135,7 +135,7 @@
             <Image Name="imgShow"
                    VerticalAlignment="Center"
                    HorizontalAlignment="Center"></Image>
-            <ListView Name="listInfo" Visibility="Collapsed" Opacity="0.3" Width="350" Background="Black" VerticalAlignment="Stretch" HorizontalAlignment="Right">
+            <ListView Name="listInfo" Visibility="Collapsed" Opacity="0.4" Width="350" Background="Gray" VerticalAlignment="Stretch" HorizontalAlignment="Right">
                 <TextBlock Opacity="1.5" Text="User" FontSize="25"></TextBlock>
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Opacity="1.5" Text="User: " FontSize="13"></TextBlock>
@@ -143,7 +143,7 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Opacity="1.5" Text="Bio: " FontSize="13"></TextBlock>
-                    <TextBlock Opacity="1.5" Name="biouser" TextWrapping="WrapWholeWords" FontSize="13"></TextBlock>
+                    <TextBlock Opacity="1.5" Name="biouser" TextWrapping="Wrap" FontSize="13"></TextBlock>
                 </StackPanel>
                 <TextBlock Opacity="1.5" Text="Location"  FontSize="25"></TextBlock>
                 <StackPanel Orientation="Horizontal">

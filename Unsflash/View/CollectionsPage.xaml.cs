@@ -78,5 +78,10 @@ namespace Unsflash.View
                 griCuratedLoading.Visibility = Visibility.Collapsed;
             }
         }
+
+        private void grvFeatured_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            
+        }
     }
 }

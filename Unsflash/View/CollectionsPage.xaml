@@ -30,7 +30,9 @@
                                           ItemHeight="300"
                                           DesiredWidth="480"
                                           SelectionMode="Single"
-                                          ItemsSource="{x:Bind ViewModel.FeaturedCollections}">
+                                          ItemsSource="{x:Bind ViewModel.FeaturedCollections}"
+                                          IsItemClickEnabled="True"
+                                          ItemClick="grvFeatured_ItemClick">
                         <control:AdaptiveGridView.ItemTemplate>
                             <DataTemplate x:DataType="model:CollectionRootObject">
                                 <Grid>
