@@ -10,9 +10,12 @@ namespace Unsflash.Model
 {
     public class SearchPhotoObjects
     {
-        [JsonProperty("total", Required = Required.Default, NullValueHandling = NullValueHandling.Ignore)]
+        //[JsonProperty("total", Required = Required.Default, NullValueHandling = NullValueHandling.Ignore)]
+        //public int total { get; set; }
+        //[JsonProperty("total_pages", Required = Required.Default, NullValueHandling = NullValueHandling.Ignore)]
+        //public int total_pages { get; set; }
+        //public List<Result> results { get; set; }
         public int total { get; set; }
-        [JsonProperty("total_pages", Required = Required.Default, NullValueHandling = NullValueHandling.Ignore)]
         public int total_pages { get; set; }
         public List<Result> results { get; set; }
     }
