@@ -7,7 +7,63 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Background="Blue">
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="2*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="3*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Stretch">
+                        <TextBlock Text="Unplash" FontSize="30"></TextBlock>
+                        <TextBlock Text="" Height="10"></TextBlock>
+                        <TextBlock Text="Beautiful, free photos." FontSize="10"></TextBlock>
+                        <TextBlock Height="3"></TextBlock>
+                        <TextBlock Text="Gifted by the world's most generous community of photographers. 🎁" FontSize="10"></TextBlock>
+                    </StackPanel>
+                </Grid>
+                <Grid Grid.Row="1">
+                    <StackPanel>
+                        <AutoSuggestBox Name="Autosg"
+                                    PlaceholderText="Search free high-resolution photos"
+                                    QueryIcon="Find"
+                                    FontSize="30"
+                                    HorizontalAlignment="Stretch"
+                                    Height="50"
+                                    VerticalAlignment="Top"/>
+                        <TextBlock Text=""></TextBlock>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Trending searches:" VerticalAlignment="Center"></TextBlock>
+                            <Button Name="btbusiness" Click="btbusiness_Click" Background="#0000" HorizontalAlignment="Center" UseLayoutRounding="False" VerticalAlignment="Center" Width="70" d:LayoutRounding="Auto">
+                                <TextBlock VerticalAlignment="Center" Text="business," HorizontalAlignment="Left" Width="60" Margin="-10,0,0,0"/>
+                            </Button>
+                            <Button Name="btcomputer" Click="btcomputer_Click" Background="#0000" HorizontalAlignment="Center" UseLayoutRounding="False" VerticalAlignment="Center" Width="80" d:LayoutRounding="Auto">
+                                <TextBlock VerticalAlignment="Center" Text="computer," HorizontalAlignment="Left" Width="75" Margin="-10,0,0,0"/>
+                            </Button>
+                            <Button Name="btnature" Click="btnature_Click" Background="#0000" HorizontalAlignment="Center" UseLayoutRounding="False" VerticalAlignment="Center" Width="55" d:LayoutRounding="Auto">
+                                <TextBlock VerticalAlignment="Center" Text="nature," HorizontalAlignment="Left" Width="50" Margin="-10,0,0,0"/>
+                            </Button>
+                            <Button Name="btlove" Click="btlove_Click" Background="#0000" HorizontalAlignment="Center" UseLayoutRounding="False" VerticalAlignment="Center" Width="45" d:LayoutRounding="Auto">
+                                <TextBlock VerticalAlignment="Center" Text="love," HorizontalAlignment="Left" Width="40" Margin="-10,0,0,0"/>
+                            </Button>
+                            <Button Name="bthouse" Click="bthouse_Click" Background="#0000" HorizontalAlignment="Center" UseLayoutRounding="False" VerticalAlignment="Center" Width="50" d:LayoutRounding="Auto">
+                                <TextBlock VerticalAlignment="Center" Text="house" HorizontalAlignment="Left" Width="40" Margin="-10,0,0,0"/>
+                            </Button>
+                        </StackPanel>
 
+                    </StackPanel>
+                </Grid>
+            </Grid>
+        </Grid>
     </Grid>
 </Page>

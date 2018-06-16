@@ -4,7 +4,6 @@ C:\Users\God\Documents\GitHub\NopenotPublic\Unsflash\bin\x86\Debug\Theme\ViewSty
 C:\Users\God\Documents\GitHub\NopenotPublic\Unsflash\bin\x86\Debug\View\CollectionsPage.xbf
 C:\Users\God\Documents\GitHub\NopenotPublic\Unsflash\bin\x86\Debug\View\ExplorePage.xbf
 C:\Users\God\Documents\GitHub\NopenotPublic\Unsflash\bin\x86\Debug\View\HomePage.xbf
-C:\Users\God\Documents\GitHub\NopenotPublic\Unsflash\bin\x86\Debug\View\SearchPage.xbf
 C:\Users\God\Documents\GitHub\NopenotPublic\Unsflash\bin\x86\Debug\View\TestControl.xbf
 C:\Users\God\Documents\GitHub\NopenotPublic\Unsflash\bin\x86\Debug\View\ViewCollectionsPage.xbf
 C:\Users\God\Documents\GitHub\NopenotPublic\Unsflash\bin\x86\Debug\View\ViewPhotoPage.xbf
@@ -200,7 +199,6 @@ C:\Users\God\Documents\GitHub\NopenotPublic\Unsflash\bin\x86\Debug\mscorlib.dll
 C:\Users\God\Documents\GitHub\NopenotPublic\Unsflash\bin\x86\Debug\netstandard.dll
 C:\Users\God\Documents\GitHub\NopenotPublic\Unsflash\bin\x86\Debug\Microsoft.Graphics.Canvas.dll
 C:\Users\God\Documents\GitHub\NopenotPublic\Unsflash\bin\x86\Debug\Microsoft.Graphics.Canvas.winmd
-C:\Users\God\Documents\GitHub\NopenotPublic\Unsflash\obj\x86\Debug\Unsflash.csprojAssemblyReference.cache
 C:\Users\God\Documents\GitHub\NopenotPublic\Unsflash\obj\x86\Debug\App.g.i.cs
 C:\Users\God\Documents\GitHub\NopenotPublic\Unsflash\obj\x86\Debug\App.g.cs
 C:\Users\God\Documents\GitHub\NopenotPublic\Unsflash\obj\x86\Debug\MainPage.g.i.cs
@@ -211,8 +209,6 @@ C:\Users\God\Documents\GitHub\NopenotPublic\Unsflash\obj\x86\Debug\View\ExploreP
 C:\Users\God\Documents\GitHub\NopenotPublic\Unsflash\obj\x86\Debug\View\ExplorePage.g.cs
 C:\Users\God\Documents\GitHub\NopenotPublic\Unsflash\obj\x86\Debug\View\HomePage.g.i.cs
 C:\Users\God\Documents\GitHub\NopenotPublic\Unsflash\obj\x86\Debug\View\HomePage.g.cs
-C:\Users\God\Documents\GitHub\NopenotPublic\Unsflash\obj\x86\Debug\View\SearchPage.g.i.cs
-C:\Users\God\Documents\GitHub\NopenotPublic\Unsflash\obj\x86\Debug\View\SearchPage.g.cs
 C:\Users\God\Documents\GitHub\NopenotPublic\Unsflash\obj\x86\Debug\View\TestControl.g.i.cs
 C:\Users\God\Documents\GitHub\NopenotPublic\Unsflash\obj\x86\Debug\View\TestControl.g.cs
 C:\Users\God\Documents\GitHub\NopenotPublic\Unsflash\obj\x86\Debug\View\ViewCollectionsPage.g.i.cs
@@ -226,7 +222,6 @@ C:\Users\God\Documents\GitHub\NopenotPublic\Unsflash\obj\x86\Debug\Theme\ViewSty
 C:\Users\God\Documents\GitHub\NopenotPublic\Unsflash\obj\x86\Debug\View\CollectionsPage.xaml
 C:\Users\God\Documents\GitHub\NopenotPublic\Unsflash\obj\x86\Debug\View\ExplorePage.xaml
 C:\Users\God\Documents\GitHub\NopenotPublic\Unsflash\obj\x86\Debug\View\HomePage.xaml
-C:\Users\God\Documents\GitHub\NopenotPublic\Unsflash\obj\x86\Debug\View\SearchPage.xaml
 C:\Users\God\Documents\GitHub\NopenotPublic\Unsflash\obj\x86\Debug\View\TestControl.xaml
 C:\Users\God\Documents\GitHub\NopenotPublic\Unsflash\obj\x86\Debug\View\ViewCollectionsPage.xaml
 C:\Users\God\Documents\GitHub\NopenotPublic\Unsflash\obj\x86\Debug\View\ViewPhotoPage.xaml
@@ -236,7 +231,6 @@ C:\Users\God\Documents\GitHub\NopenotPublic\Unsflash\obj\x86\Debug\Theme\ViewSty
 C:\Users\God\Documents\GitHub\NopenotPublic\Unsflash\obj\x86\Debug\View\CollectionsPage.xbf
 C:\Users\God\Documents\GitHub\NopenotPublic\Unsflash\obj\x86\Debug\View\ExplorePage.xbf
 C:\Users\God\Documents\GitHub\NopenotPublic\Unsflash\obj\x86\Debug\View\HomePage.xbf
-C:\Users\God\Documents\GitHub\NopenotPublic\Unsflash\obj\x86\Debug\View\SearchPage.xbf
 C:\Users\God\Documents\GitHub\NopenotPublic\Unsflash\obj\x86\Debug\View\TestControl.xbf
 C:\Users\God\Documents\GitHub\NopenotPublic\Unsflash\obj\x86\Debug\View\ViewCollectionsPage.xbf
 C:\Users\God\Documents\GitHub\NopenotPublic\Unsflash\obj\x86\Debug\View\ViewPhotoPage.xbf
@@ -353,3 +347,4 @@ C:\Users\God\Documents\GitHub\NopenotPublic\Unsflash\obj\x86\Debug\Microsoft.Too
 C:\Users\God\Documents\GitHub\NopenotPublic\Unsflash\obj\x86\Debug\Microsoft.Xaml.Interactions.pri.xml
 C:\Users\God\Documents\GitHub\NopenotPublic\Unsflash\obj\x86\Debug\Microsoft.Xaml.Interactivity.pri.xml
 C:\Users\God\Documents\GitHub\NopenotPublic\Unsflash\obj\x86\Debug\ProjectArchitectures.txt
+C:\Users\God\Documents\GitHub\NopenotPublic\Unsflash\obj\x86\Debug\Unsflash.csprojAssemblyReference.cache

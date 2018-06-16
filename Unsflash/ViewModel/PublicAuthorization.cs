@@ -61,10 +61,35 @@ namespace Unsflash.ViewModel
 
             string responseJson = await httpClient.GetStringAsync(featuredCollectionUri);
 
-            ObservableCollection<CollectionRootObject> listCuratedCollection = 
-                JsonConvert.DeserializeObject<ObservableCollection<CollectionRootObject>>(responseJson);
+            ObservableCollection<CollectionRootObject> listCuratedCollection = JsonConvert.DeserializeObject<ObservableCollection<CollectionRootObject>>(responseJson);
 
             return listCuratedCollection;
+        }
+
+        public async Task<ObservableCollection<SearchPhotoObjects>> SearchPhotoaaa()
+        {
+            Uri searchPhotoaaaUri = new Uri(RequestParameters.photoSearchUri);
+
+            HttpClient httpClient = new HttpClient();
+
+            string responseJson = await httpClient.GetStringAsync(searchPhotoaaaUri);
+            int a = 3;
+            ObservableCollection<SearchPhotoObjects> listPhotoSearch = JsonConvert.DeserializeObject<ObservableCollection<SearchPhotoObjects>>(responseJson);
+
+            return listPhotoSearch;
+        }
+
+        public async Task<ObservableCollection<GetaCollectionRootObject>> GetaCollectionaaa()
+        {
+            Uri Dataacollection = new Uri(RequestParameters.feCollectionIDUri);
+
+            HttpClient httpClient = new HttpClient();
+
+            string responseJson = await httpClient.GetStringAsync(Dataacollection);
+
+            ObservableCollection<GetaCollectionRootObject> aCollection = JsonConvert.DeserializeObject<ObservableCollection<GetaCollectionRootObject>>(responseJson);
+
+            return aCollection;
         }
     }
 }

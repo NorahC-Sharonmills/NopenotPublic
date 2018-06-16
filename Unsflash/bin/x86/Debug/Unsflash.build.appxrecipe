@@ -619,9 +619,6 @@
     <AppxPackagedFile Include="C:\Users\God\Documents\GitHub\NopenotPublic\Unsflash\bin\x86\Debug\View\HomePage.xbf">
       <PackagePath>View\HomePage.xbf</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\God\Documents\GitHub\NopenotPublic\Unsflash\bin\x86\Debug\View\SearchPage.xbf">
-      <PackagePath>View\SearchPage.xbf</PackagePath>
-    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\God\Documents\GitHub\NopenotPublic\Unsflash\bin\x86\Debug\View\TestControl.xbf">
       <PackagePath>View\TestControl.xbf</PackagePath>
     </AppxPackagedFile>

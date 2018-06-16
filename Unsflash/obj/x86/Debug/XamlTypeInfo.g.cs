@@ -238,9 +238,9 @@ namespace Unsflash.Unsflash_XamlTypeInfo
             _typeNameTable[21] = "Unsflash.Model.MyGridView";
             _typeNameTable[22] = "Unsflash.View.HomePage";
             _typeNameTable[23] = "Unsflash.ViewModel.MainPanePhotoViewModel";
-            _typeNameTable[24] = "Unsflash.SearchPage";
-            _typeNameTable[25] = "Unsflash.View.TestControl";
-            _typeNameTable[26] = "Unsflash.View.ViewCollectionsPage";
+            _typeNameTable[24] = "Unsflash.View.TestControl";
+            _typeNameTable[25] = "Unsflash.View.ViewCollectionsPage";
+            _typeNameTable[26] = "Unsflash.ViewModel.aCollectionViewModel";
             _typeNameTable[27] = "Unsflash.View.ViewPhotoPage";
             _typeNameTable[28] = "Microsoft.Toolkit.Uwp.UI.Extensions.NavigationViewExtensions";
             _typeNameTable[29] = "Int32";
@@ -271,9 +271,9 @@ namespace Unsflash.Unsflash_XamlTypeInfo
             _typeTable[21] = typeof(global::Unsflash.Model.MyGridView);
             _typeTable[22] = typeof(global::Unsflash.View.HomePage);
             _typeTable[23] = typeof(global::Unsflash.ViewModel.MainPanePhotoViewModel);
-            _typeTable[24] = typeof(global::Unsflash.SearchPage);
-            _typeTable[25] = typeof(global::Unsflash.View.TestControl);
-            _typeTable[26] = typeof(global::Unsflash.View.ViewCollectionsPage);
+            _typeTable[24] = typeof(global::Unsflash.View.TestControl);
+            _typeTable[25] = typeof(global::Unsflash.View.ViewCollectionsPage);
+            _typeTable[26] = typeof(global::Unsflash.ViewModel.aCollectionViewModel);
             _typeTable[27] = typeof(global::Unsflash.View.ViewPhotoPage);
             _typeTable[28] = typeof(global::Microsoft.Toolkit.Uwp.UI.Extensions.NavigationViewExtensions);
             _typeTable[29] = typeof(global::System.Int32);
@@ -323,9 +323,9 @@ namespace Unsflash.Unsflash_XamlTypeInfo
         private object Activate_21_MyGridView() { return new global::Unsflash.Model.MyGridView(); }
         private object Activate_22_HomePage() { return new global::Unsflash.View.HomePage(); }
         private object Activate_23_MainPanePhotoViewModel() { return new global::Unsflash.ViewModel.MainPanePhotoViewModel(); }
-        private object Activate_24_SearchPage() { return new global::Unsflash.SearchPage(); }
-        private object Activate_25_TestControl() { return new global::Unsflash.View.TestControl(); }
-        private object Activate_26_ViewCollectionsPage() { return new global::Unsflash.View.ViewCollectionsPage(); }
+        private object Activate_24_TestControl() { return new global::Unsflash.View.TestControl(); }
+        private object Activate_25_ViewCollectionsPage() { return new global::Unsflash.View.ViewCollectionsPage(); }
+        private object Activate_26_aCollectionViewModel() { return new global::Unsflash.ViewModel.aCollectionViewModel(); }
         private object Activate_27_ViewPhotoPage() { return new global::Unsflash.View.ViewPhotoPage(); }
         private object Activate_28_NavigationViewExtensions() { return new global::Microsoft.Toolkit.Uwp.UI.Extensions.NavigationViewExtensions(); }
         private void VectorAdd_3_ObservableCollection(object instance, object item)
@@ -496,23 +496,24 @@ namespace Unsflash.Unsflash_XamlTypeInfo
                 xamlType = userType;
                 break;
 
-            case 24:   //  Unsflash.SearchPage
+            case 24:   //  Unsflash.View.TestControl
                 userType = new global::Unsflash.Unsflash_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
-                userType.Activator = Activate_24_SearchPage;
+                userType.Activator = Activate_24_TestControl;
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
 
-            case 25:   //  Unsflash.View.TestControl
+            case 25:   //  Unsflash.View.ViewCollectionsPage
                 userType = new global::Unsflash.Unsflash_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
-                userType.Activator = Activate_25_TestControl;
+                userType.Activator = Activate_25_ViewCollectionsPage;
+                userType.AddMemberName("CollectionView");
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
 
-            case 26:   //  Unsflash.View.ViewCollectionsPage
-                userType = new global::Unsflash.Unsflash_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
-                userType.Activator = Activate_26_ViewCollectionsPage;
+            case 26:   //  Unsflash.ViewModel.aCollectionViewModel
+                userType = new global::Unsflash.Unsflash_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
+                userType.SetIsReturnTypeStub();
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
@@ -711,19 +712,29 @@ namespace Unsflash.Unsflash_XamlTypeInfo
             var that = (global::Unsflash.View.HomePage)instance;
             that.ViewModel = (global::Unsflash.ViewModel.MainPanePhotoViewModel)Value;
         }
-        private object get_12_NavigationViewExtensions_SelectedIndex(object instance)
+        private object get_12_ViewCollectionsPage_CollectionView(object instance)
+        {
+            var that = (global::Unsflash.View.ViewCollectionsPage)instance;
+            return that.CollectionView;
+        }
+        private void set_12_ViewCollectionsPage_CollectionView(object instance, object Value)
+        {
+            var that = (global::Unsflash.View.ViewCollectionsPage)instance;
+            that.CollectionView = (global::Unsflash.ViewModel.aCollectionViewModel)Value;
+        }
+        private object get_13_NavigationViewExtensions_SelectedIndex(object instance)
         {
             return global::Microsoft.Toolkit.Uwp.UI.Extensions.NavigationViewExtensions.GetSelectedIndex((global::Windows.UI.Xaml.Controls.NavigationView)instance);
         }
-        private void set_12_NavigationViewExtensions_SelectedIndex(object instance, object Value)
+        private void set_13_NavigationViewExtensions_SelectedIndex(object instance, object Value)
         {
             global::Microsoft.Toolkit.Uwp.UI.Extensions.NavigationViewExtensions.SetSelectedIndex((global::Windows.UI.Xaml.Controls.NavigationView)instance, (global::System.Int32)Value);
         }
-        private object get_13_NavigationViewExtensions_CollapseOnClick(object instance)
+        private object get_14_NavigationViewExtensions_CollapseOnClick(object instance)
         {
             return global::Microsoft.Toolkit.Uwp.UI.Extensions.NavigationViewExtensions.GetCollapseOnClick((global::Windows.UI.Xaml.Controls.NavigationView)instance);
         }
-        private void set_13_NavigationViewExtensions_CollapseOnClick(object instance, object Value)
+        private void set_14_NavigationViewExtensions_CollapseOnClick(object instance, object Value)
         {
             global::Microsoft.Toolkit.Uwp.UI.Extensions.NavigationViewExtensions.SetCollapseOnClick((global::Windows.UI.Xaml.Controls.NavigationView)instance, (global::System.Boolean)Value);
         }
@@ -812,21 +823,27 @@ namespace Unsflash.Unsflash_XamlTypeInfo
                 xamlMember.Getter = get_11_HomePage_ViewModel;
                 xamlMember.Setter = set_11_HomePage_ViewModel;
                 break;
+            case "Unsflash.View.ViewCollectionsPage.CollectionView":
+                userType = (global::Unsflash.Unsflash_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Unsflash.View.ViewCollectionsPage");
+                xamlMember = new global::Unsflash.Unsflash_XamlTypeInfo.XamlMember(this, "CollectionView", "Unsflash.ViewModel.aCollectionViewModel");
+                xamlMember.Getter = get_12_ViewCollectionsPage_CollectionView;
+                xamlMember.Setter = set_12_ViewCollectionsPage_CollectionView;
+                break;
             case "Microsoft.Toolkit.Uwp.UI.Extensions.NavigationViewExtensions.SelectedIndex":
                 userType = (global::Unsflash.Unsflash_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.Toolkit.Uwp.UI.Extensions.NavigationViewExtensions");
                 xamlMember = new global::Unsflash.Unsflash_XamlTypeInfo.XamlMember(this, "SelectedIndex", "Int32");
                 xamlMember.SetTargetTypeName("Windows.UI.Xaml.Controls.NavigationView");
                 xamlMember.SetIsAttachable();
-                xamlMember.Getter = get_12_NavigationViewExtensions_SelectedIndex;
-                xamlMember.Setter = set_12_NavigationViewExtensions_SelectedIndex;
+                xamlMember.Getter = get_13_NavigationViewExtensions_SelectedIndex;
+                xamlMember.Setter = set_13_NavigationViewExtensions_SelectedIndex;
                 break;
             case "Microsoft.Toolkit.Uwp.UI.Extensions.NavigationViewExtensions.CollapseOnClick":
                 userType = (global::Unsflash.Unsflash_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.Toolkit.Uwp.UI.Extensions.NavigationViewExtensions");
                 xamlMember = new global::Unsflash.Unsflash_XamlTypeInfo.XamlMember(this, "CollapseOnClick", "Boolean");
                 xamlMember.SetTargetTypeName("Windows.UI.Xaml.Controls.NavigationView");
                 xamlMember.SetIsAttachable();
-                xamlMember.Getter = get_13_NavigationViewExtensions_CollapseOnClick;
-                xamlMember.Setter = set_13_NavigationViewExtensions_CollapseOnClick;
+                xamlMember.Getter = get_14_NavigationViewExtensions_CollapseOnClick;
+                xamlMember.Setter = set_14_NavigationViewExtensions_CollapseOnClick;
                 break;
             }
             return xamlMember;

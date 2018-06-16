@@ -15,6 +15,7 @@ using Windows.Foundation.Collections;
 using Windows.Networking.BackgroundTransfer;
 using Windows.Storage;
 using Windows.Storage.Pickers;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -148,7 +149,7 @@ namespace Unsflash.View
 
                 try
                 {
-                    Statustext.Text = "Initializing...";
+                    //Statustext.Text = "Initial vizing...";
                     await downloadOperation.StartAsync().AsTask(cancellationToken.Token, progress);
                 }
                 catch (TaskCanceledException)
@@ -162,8 +163,8 @@ namespace Unsflash.View
         private void progressChanged(DownloadOperation downloadOperation)
         {
             int progress = (int)(100 * ((double)downloadOperation.Progress.BytesReceived / (double)downloadOperation.Progress.TotalBytesToReceive));
-            Statustext.Text = String.Format("{0} of {1} kb. downloaded - %{2} complete.", downloadOperation.Progress.BytesReceived / 1024, downloadOperation.Progress.TotalBytesToReceive / 1024, progress);
-            
+            //Statustext.Text = String.Format("{0} of {1} kb. downloaded - %{2} complete.", downloadOperation.Progress.BytesReceived / 1024, downloadOperation.Progress.TotalBytesToReceive / 1024, progress);
+            Statustext.Value = progress;
 
             switch (downloadOperation.Progress.Status)
             {
@@ -186,17 +187,23 @@ namespace Unsflash.View
 
                         break;
                     }
+                case BackgroundTransferStatus.Completed:
+                    {
+                        MessageDialog msg = new MessageDialog("Download Completed");
+                        msg.ShowAsync();
+                        break;
+                    }
                 case BackgroundTransferStatus.Error:
                     {
-                        Statustext.Text = "An error occured while downloading.";
+                        //Statustext.Text = "An error occured while downloading.";
+                        MessageDialog msg = new MessageDialog("No internet connection has been found.");
+                        msg.ShowAsync();
                         break;
                     }
             }
             if (progress >= 100)
             {
                 downloadOperation = null;
-                Statustext.Text = "Download Complete";
-                Task.Delay(TimeSpan.FromSeconds(2));
                 Statustext.Visibility = Visibility.Collapsed;
             }
         }

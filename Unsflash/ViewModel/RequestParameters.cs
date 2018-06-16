@@ -34,6 +34,15 @@ namespace Unsflash.ViewModel
         public static string featuredCollectionUri = "https://api.unsplash.com/collections/featured?client_id=" + client_id + "&page=1&per_page=30";
         public static string curatedCollectionUri = "https://api.unsplash.com/collections/curated?client_id=" + client_id + "&page=1&per_page=30";
 
-        //public static string photoInfoUri = defaulUri + ;
+        //Search
+        public static string photoSearchUri = "https://api.unsplash.com/search/photos/?client_id=" + client_id + "&per_page=30&query=computer";
+        public static string collectionSearchUri = "https://api.unsplash.com/search/collections/?client_id=" + client_id + "&per_page=30&query=";
+
+        //Get a collection
+        public static string feCollectionIDUri = "https://api.unsplash.com/collections/?client_id=" + client_id + "&id=";
+        public static string curCollectionIDUri = "https://api.unsplash.com/collections/curated/?client_id=" + client_id + "&id=";
+
+
+
     }
 }

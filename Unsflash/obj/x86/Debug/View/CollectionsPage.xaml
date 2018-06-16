@@ -103,6 +103,8 @@
                                           ItemHeight="300"
                                           DesiredWidth="480"
                                           SelectionMode="Single"
+                                                                          
+                                          IsItemClickEnabled="True"
                                                                                               >
                         <control:AdaptiveGridView.ItemTemplate>
                             <DataTemplate                                        >

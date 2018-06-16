@@ -31,10 +31,10 @@ namespace Unsflash
     {
         private ObservableCollection<NavLink> _navLinks = new ObservableCollection<NavLink>()
         {
-            new NavLink() { Label = "Search", Symbol = Symbol.Find, PageName = typeof(SearchPage)},
+            new NavLink() { Label = "Search", Symbol = Symbol.Find, PageName = typeof(ExplorePage)},
             new NavLink() { Label = "Home", Symbol = Symbol.Home, PageName = typeof(HomePage)},
             new NavLink() { Label = "Collections", Symbol = Symbol.Library, PageName = typeof(CollectionsPage) },
-            new NavLink() { Label = "Explore", Symbol = Symbol.View, PageName = typeof(ExplorePage) },
+            //new NavLink() { Label = "Explore", Symbol = Symbol.View, PageName = typeof(ExplorePage) },
          
         };
 

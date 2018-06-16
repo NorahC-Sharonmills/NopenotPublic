@@ -81,7 +81,16 @@ namespace Unsflash.View
 
         private void grvFeatured_ItemClick(object sender, ItemClickEventArgs e)
         {
-            
+            CollectionRootObject itemaaa = (CollectionRootObject)e.ClickedItem;
+
+            Frame.Navigate(typeof(ViewCollectionsPage), itemaaa);
+        }
+
+        private void grvCurated_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            CollectionRootObject itemaaa = (CollectionRootObject)e.ClickedItem;
+
+            Frame.Navigate(typeof(ViewCollectionsPage), itemaaa);
         }
     }
 }
