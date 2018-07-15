@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 
 namespace Unsflash.Model
 {
@@ -55,6 +56,7 @@ namespace Unsflash.Model
             public Links2 links { get; set; }
             public ProfileImage profile_image { get; set; }
             public int total_likes { get; set; }
+            [JsonProperty("total_photos", Required = Required.Default, NullValueHandling = NullValueHandling.Ignore)]
             public int total_photos { get; set; }
             public int total_collections { get; set; }
         }

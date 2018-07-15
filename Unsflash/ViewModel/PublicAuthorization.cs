@@ -22,7 +22,7 @@ namespace Unsflash.ViewModel
 
             string responseJson = await httpClient.GetStringAsync(auUri);
 
-            ObservableCollection<RootObject> listNewImage = JsonConvert.DeserializeObject<ObservableCollection<RootObject>>(responseJson);
+            ObservableCollection<RootObject> listNewImage = JsonConvert.DeserializeObject<ObservableCollection<RootObject>>(responseJson, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
 
             return listNewImage;
         }
@@ -35,7 +35,7 @@ namespace Unsflash.ViewModel
 
             string responseJson = await httpClient.GetStringAsync(auUri);
 
-            ObservableCollection<RootObject> listPopularImage = JsonConvert.DeserializeObject<ObservableCollection<RootObject>>(responseJson);
+            ObservableCollection<RootObject> listPopularImage = JsonConvert.DeserializeObject<ObservableCollection<RootObject>>(responseJson, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
 
             return listPopularImage;
         }
@@ -48,7 +48,7 @@ namespace Unsflash.ViewModel
 
             string responseJson = await httpClient.GetStringAsync(featuredCollectionUri);
 
-            ObservableCollection<CollectionRootObject> listFeaturedCollection = JsonConvert.DeserializeObject<ObservableCollection<CollectionRootObject>>(responseJson);
+            ObservableCollection<CollectionRootObject> listFeaturedCollection = JsonConvert.DeserializeObject<ObservableCollection<CollectionRootObject>>(responseJson, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
 
             return listFeaturedCollection;
         }
@@ -61,35 +61,87 @@ namespace Unsflash.ViewModel
 
             string responseJson = await httpClient.GetStringAsync(featuredCollectionUri);
 
-            ObservableCollection<CollectionRootObject> listCuratedCollection = JsonConvert.DeserializeObject<ObservableCollection<CollectionRootObject>>(responseJson);
+            ObservableCollection<CollectionRootObject> listCuratedCollection = JsonConvert.DeserializeObject<ObservableCollection<CollectionRootObject>>(responseJson, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
 
             return listCuratedCollection;
         }
 
-        public async Task<ObservableCollection<SearchPhotoObjects>> SearchPhotoaaa()
+        public async Task<SearchPhotoObjects> SearchPhotoaaa()
         {
             Uri searchPhotoaaaUri = new Uri(RequestParameters.photoSearchUri);
 
             HttpClient httpClient = new HttpClient();
 
             string responseJson = await httpClient.GetStringAsync(searchPhotoaaaUri);
-            int a = 3;
-            ObservableCollection<SearchPhotoObjects> listPhotoSearch = JsonConvert.DeserializeObject<ObservableCollection<SearchPhotoObjects>>(responseJson);
-
-            return listPhotoSearch;
+            
+            SearchPhotoObjects searchPhotoObjects = JsonConvert.DeserializeObject<SearchPhotoObjects>(responseJson, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+            
+            return searchPhotoObjects;
         }
 
         public async Task<ObservableCollection<GetaCollectionRootObject>> GetaCollectionaaa()
         {
-            Uri Dataacollection = new Uri(RequestParameters.feCollectionIDUri);
+            Uri Dataaaaacollection = new Uri(RequestParameters.feCollectionIDUri);
 
             HttpClient httpClient = new HttpClient();
 
-            string responseJson = await httpClient.GetStringAsync(Dataacollection);
+            string responseJson = await httpClient.GetStringAsync(Dataaaaacollection);
 
-            ObservableCollection<GetaCollectionRootObject> aCollection = JsonConvert.DeserializeObject<ObservableCollection<GetaCollectionRootObject>>(responseJson);
+            ObservableCollection<GetaCollectionRootObject> aCollection = JsonConvert.DeserializeObject<ObservableCollection<GetaCollectionRootObject>>(responseJson, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
 
             return aCollection;
+        }
+
+        public async Task<ObservableCollection<GetaCollectionRootObject>> GetaCollectionaaaa()
+        {
+            Uri Dataacollectionaaa = new Uri(RequestParameters.curCollectionIDUri);
+
+            HttpClient httpClient = new HttpClient();
+
+            string responseJson = await httpClient.GetStringAsync(Dataacollectionaaa);
+
+            ObservableCollection<GetaCollectionRootObject> aaCollection = JsonConvert.DeserializeObject<ObservableCollection<GetaCollectionRootObject>>(responseJson, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+
+            return aaCollection;
+        }
+
+        public async Task<MeRootObjects> GetInfoUserMe()
+        {
+            Uri uriData = new Uri(RequestParameters.AuthorizationUri);
+
+            HttpClient httpClient = new HttpClient();
+
+            string responseJson = await httpClient.GetStringAsync(uriData);
+
+            MeRootObjects data = JsonConvert.DeserializeObject<MeRootObjects>(responseJson, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+
+            return data;
+        }
+
+        public async Task<ObservableCollection<LikedModelRootObjects>> GetLiked()
+        {
+            Uri uriData = new Uri(RequestParameters.LikedUser);
+
+            HttpClient httpClient = new HttpClient();
+
+            string responseJson = await httpClient.GetStringAsync(uriData);
+
+            ObservableCollection<LikedModelRootObjects> data = JsonConvert.DeserializeObject<ObservableCollection<LikedModelRootObjects>>(responseJson, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+
+            return data;
+        }
+
+        public async Task<ObservableCollection<CollectionRootObject>> GetMeCollection()
+        {
+            Uri uriData = new Uri(RequestParameters.MeCollection);
+
+            HttpClient httpClient = new HttpClient();
+
+            string responseJson = await httpClient.GetStringAsync(uriData);
+
+            ObservableCollection<CollectionRootObject> data = JsonConvert.DeserializeObject<ObservableCollection<CollectionRootObject>>(responseJson, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+
+            return data;
         }
     }
 }

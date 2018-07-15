@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -45,7 +46,9 @@ namespace Unsflash.Model
             public string bio { get; set; }
             public string location { get; set; }
             public int total_likes { get; set; }
+            [JsonProperty("total_photos", Required = Required.Default, NullValueHandling = NullValueHandling.Ignore)]
             public int total_photos { get; set; }
+            [JsonProperty("total_collections", Required = Required.Default, NullValueHandling = NullValueHandling.Ignore)]
             public int total_collections { get; set; }
             public ProfileImage profile_image { get; set; }
             public Links links { get; set; }

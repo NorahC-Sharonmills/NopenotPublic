@@ -34,7 +34,8 @@ namespace Unsflash
             new NavLink() { Label = "Search", Symbol = Symbol.Find, PageName = typeof(ExplorePage)},
             new NavLink() { Label = "Home", Symbol = Symbol.Home, PageName = typeof(HomePage)},
             new NavLink() { Label = "Collections", Symbol = Symbol.Library, PageName = typeof(CollectionsPage) },
-            //new NavLink() { Label = "Explore", Symbol = Symbol.View, PageName = typeof(ExplorePage) },
+            new NavLink() { Label = "Setting", Symbol = Symbol.Setting, PageName = typeof(MoreSeting) },
+            new NavLink() { Label = "Me", Symbol = Symbol.Contact, PageName = typeof(Unsflash.View.Me)},
          
         };
 
@@ -46,6 +47,8 @@ namespace Unsflash
         public MainPage()
         {
             this.InitializeComponent();
+
+            tblTitle.Text = "Home";
 
             var currentView = SystemNavigationManager.GetForCurrentView();
             currentView.AppViewBackButtonVisibility = AppViewBackButtonVisibility.Visible;
@@ -84,6 +87,11 @@ namespace Unsflash
             MainFrame.Navigate(item.PageName);
             tblTitle.Text = item.Label;
             NavigationPane.IsPaneOpen = false;
+        }
+        public void freshMe()
+        {
+            MainFrame.Navigate(typeof(Unsflash.View.Me));
+            tblTitle.Text = "Me";
         }
     }
 }

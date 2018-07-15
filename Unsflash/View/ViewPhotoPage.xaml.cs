@@ -1,20 +1,26 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading;
 using System.Threading.Tasks;
+using Unsflash.Controls;
 using Unsflash.Model;
 using Unsflash.ViewModel;
+using Windows.ApplicationModel;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Networking.BackgroundTransfer;
 using Windows.Storage;
 using Windows.Storage.Pickers;
+using Windows.Storage.Streams;
+using Windows.System.UserProfile;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -41,10 +47,10 @@ namespace Unsflash.View
         CancellationTokenSource cancellationToken;
         Windows.Networking.BackgroundTransfer.BackgroundDownloader backgroundDownloader = new Windows.Networking.BackgroundTransfer.BackgroundDownloader();
 
-        DataTransferManager dataTransferManager = DataTransferManager.GetForCurrentView();
         public ViewPhotoPage()
         {
             this.InitializeComponent();
+            RegisterForShare();
         }
 
         protected async override void OnNavigatedTo(NavigationEventArgs e)
@@ -52,7 +58,7 @@ namespace Unsflash.View
             item = (RootObject)e.Parameter;
 
             BitmapImage bitmapImage = new BitmapImage();
-            bitmapImage.UriSource = new Uri(item.user.profile_image.medium);
+            bitmapImage.UriSource = new Uri(item.user.profile_image.large);
             imbAuthor.ImageSource = bitmapImage;
 
             tblAuthorName.Text = item.user.name;
@@ -67,36 +73,15 @@ namespace Unsflash.View
             string requestUri = RequestParameters.defaulUri + item.id + "/?client_id=" + RequestParameters.client_id;
             string reponseData = await httpClient.GetStringAsync(requestUri);
 
-            rootObject = JsonConvert.DeserializeObject<DetailPhotoModel.RootObject>(reponseData);
+            rootObject = JsonConvert.DeserializeObject<DetailPhotoModel.RootObject>(reponseData, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
             int a = 3;
-        }
-
-        protected override void OnNavigatedFrom(NavigationEventArgs e)
-        {
-            dataTransferManager = DataTransferManager.GetForCurrentView();
-            dataTransferManager.DataRequested += DataTransferManager_DataRequested;
-        }
-
-        private void DataTransferManager_DataRequested(DataTransferManager sender, DataRequestedEventArgs args)
-        {
-
-            DataRequest request = args.Request;
-            request.Data.Properties.Title = "Share Contract Lesson by Duy Hihi";
-            //request.Data.SetBitmap();
-            request.Data.SetText("Unplash-" + rootObject.user.name);
-            request.Data.SetWebLink(new Uri("www.google.com"));
-        }
-
-        protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
-        {
-            dataTransferManager.DataRequested -= DataTransferManager_DataRequested;
         }
 
         private void btInfo_Click(object sender, RoutedEventArgs e)
         {
-            if(listInfo.Visibility == Visibility.Visible) listInfo.Visibility = Visibility.Collapsed;
-            else listInfo.Visibility = Visibility.Visible;
-            if(rootObject.user.name == null) nameuser.Text = " ";
+            if (showinfo.Visibility == Visibility.Visible) showinfo.Visibility = Visibility.Collapsed;
+            else showinfo.Visibility = Visibility.Visible;
+            if (rootObject.user.name == null) nameuser.Text = " ";
             else nameuser.Text = " " + rootObject.user.name;
             if (rootObject.user.bio == null) biouser.Text = " ";
             else biouser.Text = " " + rootObject.user.bio;
@@ -117,18 +102,20 @@ namespace Unsflash.View
             if (rootObject.exif.focal_length == null) camerafocalleght.Text = " ";
             else camerafocalleght.Text = " " + rootObject.exif.focal_length;
 
+            Infotext.Text = rootObject.views.ToString();
+
         }
 
         private void btShare_Click(object sender, RoutedEventArgs e)
         {
-            if (listInfo.Visibility == Visibility.Visible) listInfo.Visibility = Visibility.Collapsed;
+            if (showinfo.Visibility == Visibility.Visible) showinfo.Visibility = Visibility.Collapsed;
             DataTransferManager.ShowShareUI();
         }
 
         private async void btDownload_Click(object sender, RoutedEventArgs e)
         {
-            if (listInfo.Visibility == Visibility.Visible) listInfo.Visibility = Visibility.Collapsed;
-            Download();
+            if (showinfo.Visibility == Visibility.Visible) showinfo.Visibility = Visibility.Collapsed;
+            Download();             
         }
         public async void Download()
         {
@@ -150,6 +137,7 @@ namespace Unsflash.View
                 try
                 {
                     //Statustext.Text = "Initial vizing...";
+                    Statusring.IsActive = true;
                     await downloadOperation.StartAsync().AsTask(cancellationToken.Token, progress);
                 }
                 catch (TaskCanceledException)
@@ -162,6 +150,8 @@ namespace Unsflash.View
         }
         private void progressChanged(DownloadOperation downloadOperation)
         {
+            Statustext.Visibility = Visibility.Visible;
+            Statusring.IsActive = false;
             int progress = (int)(100 * ((double)downloadOperation.Progress.BytesReceived / (double)downloadOperation.Progress.TotalBytesToReceive));
             //Statustext.Text = String.Format("{0} of {1} kb. downloaded - %{2} complete.", downloadOperation.Progress.BytesReceived / 1024, downloadOperation.Progress.TotalBytesToReceive / 1024, progress);
             Statustext.Value = progress;
@@ -208,5 +198,158 @@ namespace Unsflash.View
             }
         }
 
+        private async void btsetDeskTop_Click(object sender, RoutedEventArgs e)
+        {
+            if (showinfo.Visibility == Visibility.Visible) showinfo.Visibility = Visibility.Collapsed;
+            Statusring.IsActive = true;
+            await ChangeBackground();
+            Statusring.IsActive = false;
+        }
+
+        private async Task ChangeBackground()
+        {
+            if (UserProfilePersonalizationSettings.IsSupported())
+            {
+                Uri uri = new Uri(item.urls.full);
+                using (Windows.Web.Http.HttpClient client = new Windows.Web.Http.HttpClient())
+                {
+                    try
+                    {
+                        Windows.Web.Http.HttpResponseMessage response = await client.GetAsync(uri);
+                        if (response != null && response.StatusCode == Windows.Web.Http.HttpStatusCode.Ok)
+                        {
+
+
+                            string filename = "background.jpg";
+                            var imageFile = await ApplicationData.Current.LocalFolder.CreateFileAsync(filename, CreationCollisionOption.ReplaceExisting);
+                            using (IRandomAccessStream stream = await imageFile.OpenAsync(FileAccessMode.ReadWrite))
+                            {
+                                await response.Content.WriteToStreamAsync(stream);
+                            }
+                            StorageFile file = await ApplicationData.Current.LocalFolder.GetFileAsync(filename);
+                            UserProfilePersonalizationSettings settings = UserProfilePersonalizationSettings.Current;
+                            if (!await settings.TrySetWallpaperImageAsync(file))
+                            {
+                                System.Diagnostics.Debug.WriteLine("Failed");
+                            }
+                            else
+                            {
+                                System.Diagnostics.Debug.WriteLine("Success");
+                            }
+                        }
+                    }
+                    catch
+                    {
+                    }
+                }
+            }
+        }
+
+        private void RegisterForShare()
+        {
+            DataTransferManager dataTransferManager = DataTransferManager.GetForCurrentView();
+            dataTransferManager.DataRequested += new TypedEventHandler<DataTransferManager, DataRequestedEventArgs>(this.ShareImageHandler);
+        }
+
+        private async void ShareImageHandler(DataTransferManager sender, DataRequestedEventArgs e)
+        {
+            DataRequest request = e.Request;
+            request.Data.Properties.Title = "Share Picture";
+            request.Data.Properties.Description = "Share picture more friend.";
+
+            // Plain text
+            request.Data.SetText("Unplash-" + rootObject.user.name);
+
+            // Link
+            request.Data.SetWebLink(new Uri(item.urls.full));
+
+            // HTML
+            request.Data.SetHtmlFormat("<b>Bold Text</b>");
+
+            IRandomAccessStream stream;
+            string filename = "shareimg.jpg";
+            Uri uri = new Uri(item.urls.full);
+            using (Windows.Web.Http.HttpClient client = new Windows.Web.Http.HttpClient())
+            {
+                try
+                {
+                    Windows.Web.Http.HttpResponseMessage response = await client.GetAsync(uri);
+                    if (response != null && response.StatusCode == Windows.Web.Http.HttpStatusCode.Ok)
+                    {
+                        var imageFile = await ApplicationData.Current.LocalFolder.CreateFileAsync(filename, CreationCollisionOption.ReplaceExisting);
+                        using (stream = await imageFile.OpenAsync(FileAccessMode.ReadWrite))
+                        {
+                            await response.Content.WriteToStreamAsync(stream);
+                        }
+                    }
+                }
+                catch
+                {
+
+                }
+
+                RandomAccessStreamReference imageStreamRef = RandomAccessStreamReference.CreateFromFile(await ApplicationData.Current.LocalFolder.GetFileAsync(filename));
+                request.Data.SetBitmap(imageStreamRef);
+
+                DataRequestDeferral deferral = request.GetDeferral();
+
+                // Make sure we always call Complete on the deferral.
+                try
+                {
+                    StorageFile thumbnail = await ApplicationData.Current.LocalFolder.GetFileAsync(filename);
+                    request.Data.Properties.Thumbnail = RandomAccessStreamReference.CreateFromFile(thumbnail);
+                    StorageFile imageshare = await ApplicationData.Current.LocalFolder.GetFileAsync(filename);
+
+                    // Bitmaps
+                    request.Data.SetBitmap(RandomAccessStreamReference.CreateFromFile(imageshare));
+                }
+                finally
+                {
+                    deferral.Complete();
+                }
+            }
+        }
+
+        private async void imgShow_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            if (showinfo.Visibility == Visibility.Visible) showinfo.Visibility = Visibility.Collapsed;
+        }
+
+        private async void btCollection_Click(object sender, RoutedEventArgs e)
+        {
+            if (showinfo.Visibility == Visibility.Visible) showinfo.Visibility = Visibility.Collapsed;
+            SaveCol.saveCollection.Add(new SaveColModel
+            {
+                id = item.id,
+                width = item.width,
+                height = item.height,
+                urlsMedium = item.urls.small,
+                urlsFull = item.urls.full
+            });
+            // serialize JSON to a string
+            string json = JsonConvert.SerializeObject(SaveCol.saveCollection);
+
+            var file = await ApplicationData.Current.LocalFolder.GetFileAsync("myconfig.json");
+
+            // read string to a file
+            string aaz = await FileIO.ReadTextAsync(file);
+            ObservableCollection<SaveColModel> GetJsonaaaz = JsonConvert.DeserializeObject<ObservableCollection<SaveColModel>>(aaz, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+            if (aaz != null)
+            {
+                for (int i = 0; i < GetJsonaaaz.Count; i++)
+                {
+                    if(item.id == GetJsonaaaz[i].id)
+                    {
+
+                    }
+                    else
+                    {
+                        // write string to a file
+                        await FileIO.WriteTextAsync(file, json);
+                    }
+                }
+            }
+
+        }
     }
 }

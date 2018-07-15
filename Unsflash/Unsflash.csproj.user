@@ -4,4 +4,18 @@
     <DeviceId>30F105C9-681E-420b-A277-7C086EAD8A4E</DeviceId>
     <UseEmulator>true</UseEmulator>
   </PropertyGroup>
+  <PropertyGroup>
+    <ProjectView>ShowAllFiles</ProjectView>
+    <Source>C:\Users\God\Documents\GitHub\NopenotPublic\Unsflash\Assets\icons8-screenshot-500.png</Source>
+    <SmallTileSource>C:\Users\God\Documents\GitHub\NopenotPublic\Unsflash\Assets\icons8-screenshot-500.png</SmallTileSource>
+    <MediumTileSource>C:\Users\God\Documents\GitHub\NopenotPublic\Unsflash\Assets\icons8-screenshot-500.png</MediumTileSource>
+    <WideTileSource>C:\Users\God\Documents\GitHub\NopenotPublic\Unsflash\Assets\icons8-screenshot-500.png</WideTileSource>
+    <LargeTileSource>C:\Users\God\Documents\GitHub\NopenotPublic\Unsflash\Assets\icons8-screenshot-500.png</LargeTileSource>
+    <AppIconSource>C:\Users\God\Documents\GitHub\NopenotPublic\Unsflash\Assets\icons8-screenshot-500.png</AppIconSource>
+    <SplashScreenSource>C:\Users\God\Documents\GitHub\NopenotPublic\Unsflash\Assets\icons8-screenshot-500.png</SplashScreenSource>
+    <PackageLogoSource>C:\Users\God\Documents\GitHub\NopenotPublic\Unsflash\Assets\icons8-screenshot-500.png</PackageLogoSource>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <RemoteDebugEnabled>false</RemoteDebugEnabled>
+  </PropertyGroup>
 </Project>

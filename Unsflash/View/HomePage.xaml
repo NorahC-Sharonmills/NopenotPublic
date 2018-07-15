@@ -9,8 +9,7 @@
     xmlns:model="using:Unsflash.Model"
     xmlns:viewModel="using:Unsflash.ViewModel">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
-          Loaded="Grid_Loaded">
+    <Grid Loaded="Grid_Loaded" Background="#7f000000">
         <Pivot Name="pvHome"
                SelectionChanged="pvHome_SelectionChanged">
             <PivotItem Header="New" 
@@ -148,7 +147,8 @@
                                     Opacity="0.8"
                                     Height="30"
                                     Width="40">
-                                            <Path Data="M13.281003,0L18.465999,0 18.465999,24.891006 31.652,15.460007 31.652,20.709 15.874004,32 12.203,29.372009 0,20.637009 0,15.526001 0.094009396,15.460007 13.281003,24.891006z" 
+                                            <Button Name="btdownHome" Click="btdownHome_Click">
+                                                <Path Data="M13.281003,0L18.465999,0 18.465999,24.891006 31.652,15.460007 31.652,20.709 15.874004,32 12.203,29.372009 0,20.637009 0,15.526001 0.094009396,15.460007 13.281003,24.891006z" 
                                       Stretch="Uniform" 
                                       Fill="#FF262626" 
                                       Width="16" 
@@ -156,15 +156,16 @@
                                       RenderTransformOrigin="0.5,0.5"
                                       VerticalAlignment="Center"
                                       HorizontalAlignment="Center">
-                                                <Path.RenderTransform>
-                                                    <TransformGroup>
-                                                        <TransformGroup.Children>
-                                                            <RotateTransform Angle="0" />
-                                                            <ScaleTransform ScaleX="1" ScaleY="1" />
-                                                        </TransformGroup.Children>
-                                                    </TransformGroup>
-                                                </Path.RenderTransform>
-                                            </Path>
+                                                    <Path.RenderTransform>
+                                                        <TransformGroup>
+                                                            <TransformGroup.Children>
+                                                                <RotateTransform Angle="0" />
+                                                                <ScaleTransform ScaleX="1" ScaleY="1" />
+                                                            </TransformGroup.Children>
+                                                        </TransformGroup>
+                                                    </Path.RenderTransform>
+                                                </Path>
+                                            </Button>
                                         </Border>
                                     </Grid>
                                 </Grid>

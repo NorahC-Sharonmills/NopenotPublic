@@ -12,7 +12,6 @@ namespace Unsflash.ViewModel
 {
     public class aCollectionViewModel : INotifyPropertyChanged
     {
-        //public static ObservableCollection<GetaCollectionRootObject> listPhotoaCollection = new ObservableCollection<GetaCollectionRootObject>();
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -28,6 +27,19 @@ namespace Unsflash.ViewModel
                     OnPropertyChanged("aCollectionPhoto");
                 }
 
+            }
+        }
+        
+        public ObservableCollection<GetaCollectionRootObject> aaCollectionPhoto
+        {
+            get { return ViewCollectionsPage.aaCollection; }
+            set
+            {
+                ViewCollectionsPage.aaCollection = value;
+                if(ViewCollectionsPage.aaCollection != null)
+                {
+                    OnPropertyChanged("aaCollectionPhoto");
+                }
             }
         }
 

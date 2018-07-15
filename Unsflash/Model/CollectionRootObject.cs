@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,6 +17,7 @@ namespace Unsflash.Model
         public DateTime updated_at { get; set; }
         public bool curated { get; set; }
         public bool featured { get; set; }
+        [JsonProperty("total_photos", Required = Required.Default, NullValueHandling = NullValueHandling.Ignore)]
         public int total_photos { get; set; }
         public bool @private { get; set; }
         public string share_key { get; set; }

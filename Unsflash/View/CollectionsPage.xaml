@@ -9,8 +9,7 @@
     xmlns:model="using:Unsflash.Model"
     xmlns:control="using:Microsoft.Toolkit.Uwp.UI.Controls">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
-          Loaded="Grid_Loaded">
+    <Grid Loaded="Grid_Loaded">
         <Pivot Name="pvCollections"
                SelectionChanged="pvCollections_SelectionChanged">
             <PivotItem Header="Featured">

@@ -4,6 +4,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:interactivity="using:Microsoft.Xaml.Interactivity"  
+    xmlns:behaviors="using:Microsoft.Toolkit.Uwp.UI.Animations.Behaviors"
     mc:Ignorable="d"
     xmlns:model="using:Unsflash.Model">
 
@@ -16,44 +18,57 @@
         </DataTemplate>
     </Page.Resources>
     
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="48"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
-        </Grid.RowDefinitions>
-        <Grid Grid.Row="0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"></ColumnDefinition>
-                <ColumnDefinition Width="*"></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-            <ToggleButton Name="tgbtnMenu"
+    <Grid>
+        <Grid.Background>
+            <ImageBrush Stretch="UniformToFill" ImageSource="https://source.unsplash.com/random/1920×1080"></ImageBrush>
+        </Grid.Background>
+        <Grid Name="PaneBackgroundGrid" Visibility="Visible">
+            <interactivity:Interaction.Behaviors>
+                <behaviors:Blur x:Name="blur" Value="25" Duration="0" Delay="0" AutomaticallyStart="true"/>
+            </interactivity:Interaction.Behaviors>
+            <Grid.Background>
+                <SolidColorBrush x:Name="blurOpacity" Color="#7f000000" Opacity="0.2"/>
+            </Grid.Background>
+        </Grid>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="48"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <ToggleButton Name="tgbtnMenu"
                           Grid.Column="0"
                           AutomationProperties.Name="Menu"
                           ToolTipService.ToolTip="Menu"
                           Style="{StaticResource ToggleButtonStyle}"
-                          IsChecked="{Binding IsPaneOpen, ElementName=NavigationPane, Mode=TwoWay}">
-
-            </ToggleButton>
-            <TextBlock Name="tblTitle"
+                          IsChecked="{Binding IsPaneOpen, ElementName=NavigationPane, Mode=TwoWay}"
+                          Background="#bf000000">
+                </ToggleButton>
+                <TextBlock Name="tblTitle"
                        Grid.Column="1"
                        FontSize="32"
                        VerticalAlignment="Center"
                        HorizontalAlignment="Left"
                        Margin="10,0,0,0"></TextBlock>
-        </Grid>
-        <SplitView Grid.Row="1"
-                   PaneBackground="{ThemeResource SystemControlBackgroundChromeMediumLowBrush}"
+            </Grid>
+            <SplitView Grid.Row="1"
+                   PaneBackground="#bf000000"
                    Name="NavigationPane" 
                    DisplayMode="CompactOverlay">
-            <SplitView.Pane>
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
+                <!--PaneBackground="{ThemeResource SystemControlBackgroundChromeMediumLowBrush}"-->
+                <SplitView.Pane>
+                    <Grid Name="griTest">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
 
-                    <ListView x:Name="NavLinksList" 
+                        <ListView x:Name="NavLinksList" 
                               Margin="0,12,0,0" 
                               SelectionMode="None" 
                               Grid.Row="1"
@@ -62,12 +77,14 @@
                               IsItemClickEnabled="True" 
                               ItemsSource="{x:Bind NavLinks}"
                               ItemTemplate="{StaticResource NavLinkItemTemplate}">
-                    </ListView>
-                </Grid>
-            </SplitView.Pane>
-            <SplitView.Content>
-                <Frame Name="MainFrame"></Frame>
-            </SplitView.Content>
-        </SplitView>
+                        </ListView>
+                    </Grid>
+                    
+                </SplitView.Pane>
+                <SplitView.Content>
+                    <Frame Name="MainFrame"></Frame>
+                </SplitView.Content>
+            </SplitView>
+        </Grid>
     </Grid>
 </Page>

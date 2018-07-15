@@ -13,6 +13,7 @@ namespace Unsflash.View
 
     public sealed partial class HomePage : Page
     {
+        RootObject itemNew;
         public static double grvWidth;
         public static ObservableCollection<RootObject> listNewImage = new ObservableCollection<RootObject>();
         public static ObservableCollection<RootObject> listPopularImage = new ObservableCollection<RootObject>();
@@ -28,6 +29,7 @@ namespace Unsflash.View
         private async void Grid_Loaded(object sender, RoutedEventArgs e)
         {           
             PublicAuthorization publicAuthorization = new PublicAuthorization();
+
             listNewImage = await publicAuthorization.Authorization();
 
             while (listNewImage.Count == 0)
@@ -152,16 +154,21 @@ namespace Unsflash.View
 
         private void grvStart_ItemClick(object sender, ItemClickEventArgs e)
         {
-            RootObject itemNew = (RootObject)e.ClickedItem;
+            itemNew = (RootObject)e.ClickedItem;
 
             Frame.Navigate(typeof(ViewPhotoPage), itemNew);
         }
 
         private void grvPopular_ItemClick(object sender, ItemClickEventArgs e)
         {
-            RootObject itemNew = (RootObject)e.ClickedItem;
+            itemNew = (RootObject)e.ClickedItem;
 
             Frame.Navigate(typeof(ViewPhotoPage), itemNew);
+        }
+
+        private void btdownHome_Click(object sender, RoutedEventArgs e)
+        {
+            int a = 3;
         }
     }
 }

@@ -9,12 +9,14 @@ using Unsflash.Model;
 using Unsflash.ViewModel;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
@@ -27,27 +29,20 @@ namespace Unsflash.View
     public sealed partial class ExplorePage : Page
     {
         PublicAuthorization publicAuthorization;
-        public static ObservableCollection<SearchPhotoObjects> listPhotoSearch = new ObservableCollection<SearchPhotoObjects>();
+        public static SearchPhotoObjects listPhotoSearch = new SearchPhotoObjects();
         public ExplorePage()
         {
             this.InitializeComponent();
+
+            trendz = TrendSourchManager.GetTrends();
+            showSearchPage.MySearchRes.Clear();
         }
+
+        private List<TrendSourch> trendz;
 
         protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
-            publicAuthorization = new PublicAuthorization();
-
-            //ViewModel.RequestParameters.photoSearchUri += Autosg.Text;
-            int a = 3;
-            //RequestParameters.collectionSearchUri += "computer";
-            a = 3;
-            listPhotoSearch = await publicAuthorization.SearchPhotoaaa();
-
-            //while (listPhotoSearch.Count == 0)
-            //{
-            //    await Task.Delay(10);
-            //    listPhotoSearch = await publicAuthorization.SearchPhotoaaa();
-            //}
+            showSearchPage.MySearchRes.Clear();
         }
 
         private async void btbusiness_Click(object sender, RoutedEventArgs e)
@@ -78,6 +73,29 @@ namespace Unsflash.View
         {
             ViewModel.RequestParameters.photoSearchUri += "house";
             listPhotoSearch = await publicAuthorization.SearchPhotoaaa();
+        }
+
+        private void Grid_Loaded(object sender, RoutedEventArgs e)
+        {
+            Uri uri = new Uri("https://source.unsplash.com/random/1920×1080", UriKind.RelativeOrAbsolute);
+            BitmapImage bmg = new BitmapImage(uri);
+            //bgImg.ImageSource = bmg;
+            griNewLoading.Visibility = Visibility.Collapsed;
+            griSearch.Visibility = Visibility.Visible;
+        }
+
+        private void grvTrend_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            TrendSourch item = (TrendSourch)e.ClickedItem;
+            Frame.Navigate(typeof(showSearchPage), item);
+        }
+
+        private async void Autosg_QuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)
+        {
+            if (Autosg.Text != "")
+            {
+                Frame.Navigate(typeof(showSearchPage), Autosg);
+            }
         }
     }
 }

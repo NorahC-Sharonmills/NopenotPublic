@@ -13,6 +13,7 @@ namespace Unsflash.ViewModel
     {
         public static ObservableCollection<CollectionRootObject> listFeaturedCollection = new ObservableCollection<CollectionRootObject>();
         public static ObservableCollection<CollectionRootObject> listCuratedCollection = new ObservableCollection<CollectionRootObject>();
+        public static ObservableCollection<CollectionRootObject> listMeCollection = new ObservableCollection<CollectionRootObject>();
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -43,6 +44,20 @@ namespace Unsflash.ViewModel
                     OnPropertyChanged("CuratedCollections");
                 }
 
+            }
+        }
+
+        public ObservableCollection<CollectionRootObject> MeCollectionss
+        {
+            get { return listMeCollection; }
+            set
+            {
+                listMeCollection = value;
+                if(listMeCollection != null)
+                {
+
+                    OnPropertyChanged("MeCollectionss");
+                }
             }
         }
 

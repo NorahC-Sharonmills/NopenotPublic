@@ -1,15 +1,26 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using Unsflash.Model;
 using Windows.Security.Authentication.Web;
 
 namespace Unsflash.ViewModel
 {
     class UserAuthorization
     {
+        public string responeData;
+        public bool rep = false;
+        public static string token_uri = "https://unsplash.com/oauth/token?"
+                + "client_id=" + RequestParameters.client_id
+                + "&client_secret=" + RequestParameters.client_secret
+                + "&redirect_uri=" + RequestParameters.redirect_uri
+                + "&" + RequestParameters.code
+                + "&grant_type=authorization_code";
+
         public async void Authorization()
         {
             Uri StartUri = new Uri(RequestParameters.api_url);
@@ -34,12 +45,12 @@ namespace Unsflash.ViewModel
             }
 
             HttpClient httpClient = new HttpClient();
-            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, RequestParameters.token_uri);
+            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, token_uri);
             HttpResponseMessage response = await httpClient.SendAsync(request);
 
-            string responeData = await response.Content.ReadAsStringAsync();
+            responeData = await response.Content.ReadAsStringAsync();
 
-            
+            Unsflash.View.Me.meRoot = JsonConvert.DeserializeObject<AuthRootObjects>(responeData, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
         }
     }
 }
