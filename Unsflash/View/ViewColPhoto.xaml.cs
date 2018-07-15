@@ -7,6 +7,7 @@ using System.Net.Http;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading;
 using System.Threading.Tasks;
+using Unsflash.Controls;
 using Unsflash.Model;
 using Unsflash.ViewModel;
 using Windows.ApplicationModel.DataTransfer;
@@ -39,7 +40,6 @@ namespace Unsflash.View
     {
         public DetailColPhotoModel.RootObject rootObject;
         GetaCollectionRootObject item;
-        ResultModel itemRes;
 
         DownloadOperation downloadOperation;
         CancellationTokenSource cancellationToken;
@@ -53,10 +53,20 @@ namespace Unsflash.View
 
         protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
+            if (UsingGlobal.meRoot.access_token == null)
+            {
+                bdLikes.Visibility = Visibility.Collapsed;
+                bdCollect.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                bdLikes.Visibility = Visibility.Visible;
+                bdCollect.Visibility = Visibility.Visible;
+            }
+
             HttpClient httpClient;
             string requestUri;
-            try
-            {
+
                 item = (GetaCollectionRootObject)e.Parameter;
 
                 BitmapImage bitmapImage = new BitmapImage();
@@ -73,29 +83,17 @@ namespace Unsflash.View
 
                 httpClient = new HttpClient();
                 requestUri = RequestParameters.defaulUri + item.id + "/?client_id=" + RequestParameters.client_id;
+
+            try
+            {
+                string reponseData = await httpClient.GetStringAsync(requestUri);
+                rootObject = JsonConvert.DeserializeObject<DetailColPhotoModel.RootObject>(reponseData, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
             }
             catch (Exception)
             {
-                itemRes = (ResultModel)e.Parameter;
-
-                BitmapImage bitmapImage = new BitmapImage();
-                bitmapImage.UriSource = new Uri(itemRes.ImgmediumPro5);
-                imbAuthor.ImageSource = bitmapImage;
-
-                tblAuthorName.Text = itemRes.name;
-                tblUserName.Text = itemRes.username;
-
-
-                BitmapImage bitmapImageShow = new BitmapImage();
-                bitmapImageShow.UriSource = new Uri(itemRes.urlsfull);
-                imgShow.Source = bitmapImageShow;
-
-                httpClient = new HttpClient();
-                requestUri = RequestParameters.defaulUri + itemRes.id + "/?client_id=" + RequestParameters.client_id;
+                Noreult.Visibility = Visibility.Visible;
+                Truereult.Visibility = Visibility.Collapsed;
             }
-            string reponseData = await httpClient.GetStringAsync(requestUri);
-
-            rootObject = JsonConvert.DeserializeObject<DetailColPhotoModel.RootObject>(reponseData, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
         }
 
         //Hiện thông tin ảnh
@@ -107,8 +105,6 @@ namespace Unsflash.View
             else nameuser.Text = " " + rootObject.user.name;
             if (rootObject.user.bio == null) biouser.Text = " ";
             else biouser.Text = " " + rootObject.user.bio;
-            //if (rootObject.location == null) locationpic.Text = " ";
-            //else locationpic.Text = " " + rootObject.location.title;
             if (rootObject.created_at.Date.ToString() == null) createTime.Text = " ";
             else createTime.Text = rootObject.created_at.Date.ToString();
             if (rootObject.updated_at.Date.ToString() == null) updateTime.Text = " ";
@@ -228,15 +224,7 @@ namespace Unsflash.View
         {
             if (UserProfilePersonalizationSettings.IsSupported())
             {
-                Uri uri;
-                try
-                {
-                    uri = new Uri(item.urls.full);
-                }
-                catch (Exception)
-                {
-                    uri = new Uri(itemRes.urlsfull);
-                }
+                Uri uri = new Uri(item.urls.full);
                 using (Windows.Web.Http.HttpClient client = new Windows.Web.Http.HttpClient())
                 {
                     try
@@ -290,15 +278,7 @@ namespace Unsflash.View
             request.Data.Properties.Title = "Share Picture";
             request.Data.Properties.Description = "Share picture more friend.";
 
-            Uri uri;
-            try
-            {
-                uri = new Uri(item.urls.full);
-            }
-            catch (Exception)
-            {
-                uri = new Uri(itemRes.urlsfull);
-            }
+            Uri uri = new Uri(item.urls.full);
 
             // Plain text
             request.Data.SetText("Unplash-" + rootObject.user.name);

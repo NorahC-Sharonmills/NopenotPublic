@@ -6,10 +6,12 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading;
 using System.Threading.Tasks;
+using Unsflash.Controls;
 using Unsflash.Model;
 using Unsflash.ViewModel;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -30,15 +32,15 @@ namespace Unsflash.View
     {
         UserAuthorization UserAuth;
         PublicAuthorization publicAuthorization;
-        public static AuthRootObjects meRoot = new AuthRootObjects();
         public static MeRootObjects meRootObjects = new MeRootObjects();
         public static ObservableCollection<LikedModelRootObjects> likedRootObjects = new ObservableCollection<LikedModelRootObjects>();
         public static ObservableCollection<CollectionRootObject> meCollectionRootObjects = new ObservableCollection<CollectionRootObject>();
-        public string access_token = meRoot.access_token;
-        public string token_type = meRoot.token_type;
-        public string refresh_token = meRoot.refresh_token;
-        public string scope = meRoot.scope;
-        public int created_at = meRoot.created_at;
+        public static ObservableCollection<GetaCollectionRootObject> CollectionMe = new ObservableCollection<GetaCollectionRootObject>();
+        public string access_token = UsingGlobal.meRoot.access_token;
+        public string token_type = UsingGlobal.meRoot.token_type;
+        public string refresh_token = UsingGlobal.meRoot.refresh_token;
+        public string scope = UsingGlobal.meRoot.scope;
+        public int created_at = UsingGlobal.meRoot.created_at;
 
         public Me()
         {
@@ -47,6 +49,7 @@ namespace Unsflash.View
 
         public LikedViewModel LikedPhotoModel { get; set; }
         public CollectionsViewModel ViewModel { get; set; }
+        public aCollectionViewModel CollectionView { get; set; }
 
         protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
@@ -72,8 +75,10 @@ namespace Unsflash.View
 
                     tblMe.Text = meRootObjects.name;
                     tblCenter.Text = "Download free, beautiful high-quality photos curated by " + meRootObjects.first_name + " .";
-                    tblBio.Text = meRootObjects.bio;
-                    tblLocation.Text = meRootObjects.location;
+                    if (meRootObjects.bio == null) tblBio.Text = "";
+                    else tblBio.Text = meRootObjects.bio;
+                    if (meRootObjects.location == null) tblLocation.Text = "";
+                    else tblLocation.Text = meRootObjects.location;
                     tblUser.Text = meRootObjects.username;
                 }
                 else
@@ -84,8 +89,10 @@ namespace Unsflash.View
 
                     tblMe.Text = meRootObjects.name;
                     tblCenter.Text = "Download free, beautiful high-quality photos curated by " + meRootObjects.first_name + " .";
-                    tblBio.Text = meRootObjects.bio;
-                    tblLocation.Text = meRootObjects.location;
+                    if (meRootObjects.bio == null) tblBio.Text = "";
+                    else tblBio.Text = meRootObjects.bio;
+                    if (meRootObjects.location == null) tblLocation.Text = "";
+                    else tblLocation.Text = meRootObjects.location;
                     tblUser.Text = meRootObjects.username;
                 }
 
@@ -100,9 +107,15 @@ namespace Unsflash.View
             UserAuth.Authorization();
             await Task.Delay(2000);
             griNewLoading.Visibility = Visibility.Visible;
-            await Task.Delay(35000);
+            await Task.Delay(30000);
             this.Frame.Navigate(typeof(View.Me));
             griNewLoading.Visibility = Visibility.Collapsed;
+        }
+
+        public void LoadFail()
+        {
+            Logining.Visibility = Visibility.Collapsed;
+            Noreult.Visibility = Visibility.Visible;
         }
 
         private async void pvMePage_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -112,7 +125,15 @@ namespace Unsflash.View
                 if(access_token != null)
                 {
                     RequestParameters.LikedUser = RequestParameters.LikedUser + meRootObjects.username + "/likes?access_token=" + access_token;
-                    likedRootObjects = await publicAuthorization.GetLiked();
+                    try
+                    {
+                        likedRootObjects = await publicAuthorization.GetLiked();
+                    }
+                    catch (Exception ex)
+                    {
+                        LoadFail();
+                    }
+
                     RequestParameters.LikedUser = "https://api.unsplash.com/users/";
 
                     while (likedRootObjects.Count == 0)
@@ -182,7 +203,8 @@ namespace Unsflash.View
                     {
                         grvCollectionMe.ItemsSource = CollectionsViewModel.listMeCollection;
                     }
-
+                    grvCol.Visibility = Visibility.Collapsed;
+                    grvCollectionMe.Visibility = Visibility.Visible;
                 }
                 else
                 {
@@ -223,6 +245,60 @@ namespace Unsflash.View
             //this.Frame.Navigate(typeof(View.Me));
             //pvMePage.SelectedIndex = 1;
             //griNewLoadingLike.Visibility = Visibility.Collapsed;
+        }
+
+        private async void grvCollectionMe_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            grvCol.Visibility = Visibility.Visible;
+            grvCollectionMe.Visibility = Visibility.Collapsed;
+
+            CollectionRootObject item = (CollectionRootObject)e.ClickedItem;
+
+            double totalWidth = 0;
+            int start = 0;
+            await Task.Delay(300);
+
+            RequestParameters.feCollectionIDUri = RequestParameters.feCollectionIDUri + item.id + "/photos?client_id=" + RequestParameters.client_id + "&page=1&per_page=30";
+            this.CollectionView = new aCollectionViewModel();
+
+            try
+            {
+                CollectionMe = await publicAuthorization.GetaCollectionaaa();
+            }
+            catch (Exception ex)
+            {
+                MessageDialog ms = new MessageDialog(ex.ToString());
+                ms.ShowAsync();
+            }
+
+            while (grvCol.ActualWidth == 0)
+            {
+                await Task.Delay(10);
+            }
+
+            for (int i = 0; i < CollectionView.CollectionPhotoMe.Count; i++)
+            {
+                var width = CollectionView.CollectionPhotoMe[i].width * 310 / CollectionView.CollectionPhotoMe[i].height;
+                totalWidth += width;
+
+                if (totalWidth > grvCol.ActualWidth)
+                {
+                    for (int j = start; j < i; j++)
+                    {
+                        CollectionView.CollectionPhotoMe[j].Scale = grvCol.ActualWidth / (totalWidth - width);
+                    }
+                    start = i;
+                    totalWidth = width;
+                }
+            }
+
+            for (int j = start; j < CollectionView.CollectionPhotoMe.Count; j++)
+            {
+                CollectionView.CollectionPhotoMe[j].Scale = grvCol.ActualWidth / (totalWidth);
+            }
+
+            grvCol.ItemsSource = CollectionView.CollectionPhotoMe;
+            RequestParameters.feCollectionIDUri = "https://api.unsplash.com/collections/";
         }
     }
 }

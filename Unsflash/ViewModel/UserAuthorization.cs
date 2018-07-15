@@ -5,8 +5,11 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using Unsflash.Controls;
 using Unsflash.Model;
+using Unsflash.View;
 using Windows.Security.Authentication.Web;
+using Windows.UI.Popups;
 
 namespace Unsflash.ViewModel
 {
@@ -50,7 +53,16 @@ namespace Unsflash.ViewModel
 
             responeData = await response.Content.ReadAsStringAsync();
 
-            Unsflash.View.Me.meRoot = JsonConvert.DeserializeObject<AuthRootObjects>(responeData, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+            try
+            {
+                UsingGlobal.meRoot = JsonConvert.DeserializeObject<AuthRootObjects>(responeData, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+            }
+            catch (Exception ex)
+            {
+                MessageDialog ms = new MessageDialog("LOGIN FAIL!!!");
+                ms.ShowAsync();
+            }
+
         }
     }
 }

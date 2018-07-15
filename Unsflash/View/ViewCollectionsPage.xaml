@@ -12,54 +12,65 @@
     xmlns:viewModel="using:Unsflash.ViewModel">
 
     <Grid Background="#7f000000">
-        <!--{ThemeResource ApplicationPageBackgroundThemeBrush}-->
-        <!--<Grid.Background>
-            <ImageBrush Stretch="UniformToFill" ImageSource="https://source.unsplash.com/random/1920×1080"></ImageBrush>
-        </Grid.Background>-->
-        <Grid.RowDefinitions>
-            <RowDefinition Height="48"></RowDefinition>
-            <RowDefinition></RowDefinition>
-        </Grid.RowDefinitions>
-        <!--Nội dung bị ẩn-->
-        <Grid Grid.Row="0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="10"></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-            <TextBlock Name="tbNameCollection" Grid.Column="1" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Left"></TextBlock>
+        <Grid Name="Noreult" Visibility="Collapsed" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Border Background="White"
+                                        Grid.Column="3"
+                                        CornerRadius="8"
+                                        Margin="4,0,4,0"
+                                        Opacity="0.8">
+                <Button IsEnabled="True" Name="btNoreult">
+                    <StackPanel Orientation="Horizontal">
+                        <SymbolIcon Symbol="Emoji" Foreground="Black" Margin="0,0,10,0"></SymbolIcon>
+                        <TextBlock Foreground="Black" FontSize="16" Text="NO RESULTS WERE FOUND"></TextBlock>
+                    </StackPanel>
+                </Button>
+            </Border>
         </Grid>
-        <Grid Name="isBlur" Grid.Row="1" Visibility="Visible">
-            <Grid>
-                <model:MyGridViewaCol x:Name="grvCol" ItemsSource="{x:Bind CollectionView.aCollectionPhoto}"
+        <Grid Name="Truereult">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="48"></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <!--Nội dung bị ẩn-->
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="10"></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <TextBlock Name="tbNameCollection" Grid.Column="1" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Left"></TextBlock>
+            </Grid>
+            <Grid Name="isBlur" Grid.Row="1" Visibility="Visible">
+                <Grid>
+                    <model:MyGridViewaCol x:Name="grvCol" ItemsSource="{x:Bind CollectionView.aCollectionPhoto}"
                       IsItemClickEnabled="True"
                       IsSwipeEnabled="True"
                       CanDragItems="False"
                       SelectionMode="Extended"
                       ItemClick="grvCol_ItemClick" SelectionChanged="grvCol_SelectionChanged">
-                    <GridView.ItemTemplate>
-                        <DataTemplate x:DataType="model:GetaCollectionRootObject">
-                            <Border BorderThickness="1">
-                                <Grid PointerEntered="griBottom_PointerEntered"
+                        <GridView.ItemTemplate>
+                            <DataTemplate x:DataType="model:GetaCollectionRootObject">
+                                <Border BorderThickness="1">
+                                    <Grid PointerEntered="griBottom_PointerEntered"
                                           PointerExited="griBottom_PointerExited">
-                                    <Image Source="{x:Bind urls.small}"></Image>
-                                    <Grid Name="gridTop"
+                                        <Image Source="{x:Bind urls.small}"></Image>
+                                        <Grid Name="gridTop"
                                           Height="Auto"
                                           HorizontalAlignment="Right"
                                           VerticalAlignment="Top"
                                           Margin="0,20,10,0"
                                           Visibility="Collapsed">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition></ColumnDefinition>
-                                            <ColumnDefinition></ColumnDefinition>
-                                        </Grid.ColumnDefinitions>
-                                        <Border Name="bdLikes"
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition></ColumnDefinition>
+                                                <ColumnDefinition></ColumnDefinition>
+                                            </Grid.ColumnDefinitions>
+                                            <Border Name="bdLikes"
                                                 Grid.Column="0"
                                                 Background="White"
                                                 CornerRadius="8"
                                                 Margin="0,0,4,0"
                                                 Opacity="0.8">
-                                            <StackPanel Orientation="Horizontal">
-                                                <Path Data="M8.5319849,0C11.560988,7.3866431E-08 14.464015,1.6680007 15.99997,4.5209999 18.139016,0.55099538 22.921994,-1.1230173 27.008008,0.7949839 31.297024,2.8069787 33.185032,8.0069957 31.22604,12.411997 29.27303,16.804 15.998994,30.380001 15.998994,30.380001 15.915985,30.327022 2.7269701,16.804 0.77395964,12.411997 -1.1850933,8.0069957 0.70291448,2.8069787 4.9929701,0.7949839 6.1419612,0.25497467 7.3469826,7.3866431E-08 8.5319849,0z" 
+                                                <StackPanel Orientation="Horizontal">
+                                                    <Path Data="M8.5319849,0C11.560988,7.3866431E-08 14.464015,1.6680007 15.99997,4.5209999 18.139016,0.55099538 22.921994,-1.1230173 27.008008,0.7949839 31.297024,2.8069787 33.185032,8.0069957 31.22604,12.411997 29.27303,16.804 15.998994,30.380001 15.998994,30.380001 15.915985,30.327022 2.7269701,16.804 0.77395964,12.411997 -1.1850933,8.0069957 0.70291448,2.8069787 4.9929701,0.7949839 6.1419612,0.25497467 7.3469826,7.3866431E-08 8.5319849,0z" 
                                           Stretch="Uniform" 
                                           Fill="Red" 
                                           Width="16" 
@@ -67,30 +78,30 @@
                                           Margin="4" 
                                           RenderTransformOrigin="0.5,0.5"
                                           VerticalAlignment="Center">
-                                                    <Path.RenderTransform>
-                                                        <TransformGroup>
-                                                            <TransformGroup.Children>
-                                                                <RotateTransform Angle="0" />
-                                                                <ScaleTransform ScaleX="1" ScaleY="1" />
-                                                            </TransformGroup.Children>
-                                                        </TransformGroup>
-                                                    </Path.RenderTransform>
-                                                </Path>
-                                                <TextBlock Text="{x:Bind likes}"
+                                                        <Path.RenderTransform>
+                                                            <TransformGroup>
+                                                                <TransformGroup.Children>
+                                                                    <RotateTransform Angle="0" />
+                                                                    <ScaleTransform ScaleX="1" ScaleY="1" />
+                                                                </TransformGroup.Children>
+                                                            </TransformGroup>
+                                                        </Path.RenderTransform>
+                                                    </Path>
+                                                    <TextBlock Text="{x:Bind likes}"
                                                Foreground="Black"
                                                FontSize="16"
                                                VerticalAlignment="Center"
                                                Margin="4"></TextBlock>
-                                            </StackPanel>
-                                        </Border>
-                                        <Border Name="bdCollect"
+                                                </StackPanel>
+                                            </Border>
+                                            <Border Name="bdCollect"
                                                 Grid.Column="1"
                                                 Background="White"
                                                 CornerRadius="8"
                                                 Margin="4,0,0,0"
                                                 Opacity="0.8">
-                                            <StackPanel Orientation="Horizontal">
-                                                <Path Data="M15.000003,0L17.000002,0 17.000002,15.000029 32,15.000029 32,17.000029 17.000002,17.000029 17.000002,32 15.000003,32 15.000003,17.000029 0,17.000029 0,15.000029 15.000003,15.000029z" 
+                                                <StackPanel Orientation="Horizontal">
+                                                    <Path Data="M15.000003,0L17.000002,0 17.000002,15.000029 32,15.000029 32,17.000029 17.000002,17.000029 17.000002,32 15.000003,32 15.000003,17.000029 0,17.000029 0,15.000029 15.000003,15.000029z" 
                                                       Stretch="Uniform" 
                                                       Fill="#FF262626" 
                                                       Width="16" 
@@ -98,52 +109,52 @@
                                                       Margin="5" 
                                                       RenderTransformOrigin="0.5,0.5"
                                                       VerticalAlignment="Center">
-                                                    <Path.RenderTransform>
-                                                        <TransformGroup>
-                                                            <TransformGroup.Children>
-                                                                <RotateTransform Angle="0" />
-                                                                <ScaleTransform ScaleX="1" ScaleY="1" />
-                                                            </TransformGroup.Children>
-                                                        </TransformGroup>
-                                                    </Path.RenderTransform>
-                                                </Path>
-                                                <TextBlock Text="Collect"
+                                                        <Path.RenderTransform>
+                                                            <TransformGroup>
+                                                                <TransformGroup.Children>
+                                                                    <RotateTransform Angle="0" />
+                                                                    <ScaleTransform ScaleX="1" ScaleY="1" />
+                                                                </TransformGroup.Children>
+                                                            </TransformGroup>
+                                                        </Path.RenderTransform>
+                                                    </Path>
+                                                    <TextBlock Text="Collect"
                                                Foreground="Black"
                                                FontSize="16"
                                                VerticalAlignment="Center"
                                                Margin="5"></TextBlock>
-                                            </StackPanel>
-                                        </Border>
-                                    </Grid>
-                                    <Grid Name="griBottom"
+                                                </StackPanel>
+                                            </Border>
+                                        </Grid>
+                                        <Grid Name="griBottom"
                               Height="Auto"
                               VerticalAlignment="Bottom"
                               Margin="10,0,10,20"
                               Visibility="Collapsed">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition></ColumnDefinition>
-                                            <ColumnDefinition></ColumnDefinition>
-                                        </Grid.ColumnDefinitions>
-                                        <Grid Grid.Column="0"
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition></ColumnDefinition>
+                                                <ColumnDefinition></ColumnDefinition>
+                                            </Grid.ColumnDefinitions>
+                                            <Grid Grid.Column="0"
                                   HorizontalAlignment="Left"
                                   VerticalAlignment="Center">
-                                            <StackPanel Orientation="Horizontal">
-                                                <Ellipse Margin="5" 
+                                                <StackPanel Orientation="Horizontal">
+                                                    <Ellipse Margin="5" 
                                              Height="30"
                                              Width="30">
-                                                    <Ellipse.Fill>
-                                                        <ImageBrush ImageSource="{x:Bind user.profile_image.medium}"></ImageBrush>
-                                                    </Ellipse.Fill>
-                                                </Ellipse>
-                                                <TextBlock FontSize="16"
+                                                        <Ellipse.Fill>
+                                                            <ImageBrush ImageSource="{x:Bind user.profile_image.medium}"></ImageBrush>
+                                                        </Ellipse.Fill>
+                                                    </Ellipse>
+                                                    <TextBlock FontSize="16"
                                                Margin="5"
                                                HorizontalAlignment="Left"
                                                VerticalAlignment="Center"
                                                Text="{x:Bind user.name}"
                                                TextWrapping="WrapWholeWords"></TextBlock>
-                                            </StackPanel>
-                                        </Grid>
-                                        <Border Grid.Column="1"
+                                                </StackPanel>
+                                            </Grid>
+                                            <Border Grid.Column="1"
                                     VerticalAlignment="Center"
                                     HorizontalAlignment="Right"
                                     Background="White"
@@ -152,8 +163,8 @@
                                     Opacity="0.8"
                                     Height="30"
                                     Width="40">
-                                            <Button Name="btDownColPage" Click="btDownColPage_Click">
-                                                <Path Data="M13.281003,0L18.465999,0 18.465999,24.891006 31.652,15.460007 31.652,20.709 15.874004,32 12.203,29.372009 0,20.637009 0,15.526001 0.094009396,15.460007 13.281003,24.891006z" 
+                                                <Button Name="btDownColPage" Click="btDownColPage_Click">
+                                                    <Path Data="M13.281003,0L18.465999,0 18.465999,24.891006 31.652,15.460007 31.652,20.709 15.874004,32 12.203,29.372009 0,20.637009 0,15.526001 0.094009396,15.460007 13.281003,24.891006z" 
                                       Stretch="Uniform" 
                                       Fill="#FF262626" 
                                       Width="16" 
@@ -161,58 +172,63 @@
                                       RenderTransformOrigin="0.5,0.5"
                                       VerticalAlignment="Center"
                                       HorizontalAlignment="Center">
-                                                    <Path.RenderTransform>
-                                                        <TransformGroup>
-                                                            <TransformGroup.Children>
-                                                                <RotateTransform Angle="0" />
-                                                                <ScaleTransform ScaleX="1" ScaleY="1" />
-                                                            </TransformGroup.Children>
-                                                        </TransformGroup>
-                                                    </Path.RenderTransform>
-                                                </Path>
-                                            </Button>
-                                        </Border>
+                                                        <Path.RenderTransform>
+                                                            <TransformGroup>
+                                                                <TransformGroup.Children>
+                                                                    <RotateTransform Angle="0" />
+                                                                    <ScaleTransform ScaleX="1" ScaleY="1" />
+                                                                </TransformGroup.Children>
+                                                            </TransformGroup>
+                                                        </Path.RenderTransform>
+                                                    </Path>
+                                                </Button>
+                                            </Border>
+                                        </Grid>
                                     </Grid>
-                                </Grid>
-                            </Border>
-                        </DataTemplate>
-                    </GridView.ItemTemplate>
-                    <GridView.ItemContainerStyle>
-                        <Style TargetType="GridViewItem">
-                            <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>
-                            <Setter Property="VerticalContentAlignment" Value="Stretch"></Setter>
-                        </Style>
-                    </GridView.ItemContainerStyle>
-                    <GridView.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <VariableSizedWrapGrid Orientation="Horizontal"
+                                </Border>
+                            </DataTemplate>
+                        </GridView.ItemTemplate>
+                        <GridView.ItemContainerStyle>
+                            <Style TargetType="GridViewItem">
+                                <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>
+                                <Setter Property="VerticalContentAlignment" Value="Stretch"></Setter>
+                            </Style>
+                        </GridView.ItemContainerStyle>
+                        <GridView.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <VariableSizedWrapGrid Orientation="Horizontal"
                                            ItemHeight="10"
                                            ItemWidth="10"/>
-                        </ItemsPanelTemplate>
-                    </GridView.ItemsPanel>
-                    <!--<GridView.ItemContainerStyle>
-                        <Style TargetType="GridViewItem">
-                            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-                            <Setter Property="VerticalContentAlignment" Value="Stretch"/>
-                            <Setter Property="Margin" Value="0"/>
-                        </Style>
-                    </GridView.ItemContainerStyle>
-
-                    <GridView.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <ItemsWrapGrid Orientation="Horizontal"/>
-                        </ItemsPanelTemplate>
-                    </GridView.ItemsPanel>-->
-                </model:MyGridViewaCol>
-            </Grid>
-            <Grid>
-                <Grid Name="PaneBackgroundGrid" Visibility="Collapsed">
-                    <interactivity:Interaction.Behaviors>
-                        <behaviors:Blur x:Name="blur" Value="25" Duration="0" Delay="0" AutomaticallyStart="true"/>
-                    </interactivity:Interaction.Behaviors>
-                    <Grid.Background>
-                        <SolidColorBrush x:Name="blurOpacity" Color="Black" Opacity="0.3"/>
-                    </Grid.Background>
+                            </ItemsPanelTemplate>
+                        </GridView.ItemsPanel>
+                    </model:MyGridViewaCol>
+                    <Grid Name="gridnextback" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,40,30">
+                        <Border Background="White"
+                            CornerRadius="8"
+                            Margin="4,0,0,0"
+                            Opacity="0.8">
+                            <Grid>
+                                <StackPanel Orientation="Horizontal">
+                                    <Button Name="btBack" IsEnabled="False" Background="#00000000" Margin="0,0,5,0" Click="btBack_Click">
+                                        <SymbolIcon Symbol="Back" Foreground="Black"></SymbolIcon>
+                                    </Button>
+                                    <Button Name="btNext" IsEnabled="True" Background="#00000000" Click="btNext_Click">
+                                        <SymbolIcon Symbol="Forward" Foreground="Black"></SymbolIcon>
+                                    </Button>
+                                </StackPanel>
+                            </Grid>
+                        </Border>
+                    </Grid>
+                </Grid>
+                <Grid>
+                    <Grid Name="PaneBackgroundGrid" Visibility="Collapsed">
+                        <interactivity:Interaction.Behaviors>
+                            <behaviors:Blur x:Name="blur" Value="25" Duration="0" Delay="0" AutomaticallyStart="true"/>
+                        </interactivity:Interaction.Behaviors>
+                        <Grid.Background>
+                            <SolidColorBrush x:Name="blurOpacity" Color="Black" Opacity="0.3"/>
+                        </Grid.Background>
+                    </Grid>
                 </Grid>
             </Grid>
         </Grid>

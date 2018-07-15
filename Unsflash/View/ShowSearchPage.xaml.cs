@@ -7,10 +7,12 @@ using System.Linq;
 using System.Net.Http;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
+using Unsflash.Controls;
 using Unsflash.Model;
 using Unsflash.ViewModel;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -67,39 +69,62 @@ namespace Unsflash.View
 
             publicAuthorization = new PublicAuthorization();
 
-            listPhotoSearch = await publicAuthorization.SearchPhotoaaa();
-
-            while (listPhotoSearch.total == 0)
+            try
             {
-                await Task.Delay(10);
                 listPhotoSearch = await publicAuthorization.SearchPhotoaaa();
             }
-
-            for (int i = 0; i < 30; i++)
+            catch (Exception ex)
             {
-                MySearchRes.Add(new ResultModel
-                {                  
-                    id = listPhotoSearch.results[i].id,
-                    created_at = listPhotoSearch.results[i].created_at,
-                    updated_at = listPhotoSearch.results[i].updated_at,
-                    width = listPhotoSearch.results[i].width,
-                    height = listPhotoSearch.results[i].height,
-                    color = listPhotoSearch.results[i].color,
-                    description = listPhotoSearch.results[i].description,
-                    urlsfull = listPhotoSearch.results[i].urls.full,
-                    urlsmedium = listPhotoSearch.results[i].urls.small,
-                    links = listPhotoSearch.results[i].links.download,
-                    categories = listPhotoSearch.results[i].categories,
-                    sponsored = listPhotoSearch.results[i].sponsored,
-                    likes = listPhotoSearch.results[i].likes,
-                    liked_by_user = listPhotoSearch.results[i].liked_by_user,
-                    current_user_collections = listPhotoSearch.results[i].current_user_collections,
-                    slug = listPhotoSearch.results[i].slug,
-                    username = listPhotoSearch.results[i].user.username,
-                    name = listPhotoSearch.results[i].user.name,
-                    ImgmediumPro5 = listPhotoSearch.results[i].user.profile_image.medium
-                });
+                Noreult.Visibility = Visibility.Visible;
             }
+
+            if(listPhotoSearch.results != null)
+            {
+                if (listPhotoSearch.results.Count == 0)
+                {
+                    Noreult.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    while (listPhotoSearch.total == 0)
+                    {
+                        await Task.Delay(10);
+                        listPhotoSearch = await publicAuthorization.SearchPhotoaaa();
+                    }
+
+                    for (int i = 0; i < 30; i++)
+                    {
+                        MySearchRes.Add(new ResultModel
+                        {
+                            id = listPhotoSearch.results[i].id,
+                            created_at = listPhotoSearch.results[i].created_at,
+                            updated_at = listPhotoSearch.results[i].updated_at,
+                            width = listPhotoSearch.results[i].width,
+                            height = listPhotoSearch.results[i].height,
+                            color = listPhotoSearch.results[i].color,
+                            description = listPhotoSearch.results[i].description,
+                            urlsfull = listPhotoSearch.results[i].urls.full,
+                            urlsmedium = listPhotoSearch.results[i].urls.small,
+                            links = listPhotoSearch.results[i].links.download,
+                            categories = listPhotoSearch.results[i].categories,
+                            sponsored = listPhotoSearch.results[i].sponsored,
+                            likes = listPhotoSearch.results[i].likes,
+                            liked_by_user = listPhotoSearch.results[i].liked_by_user,
+                            current_user_collections = listPhotoSearch.results[i].current_user_collections,
+                            slug = listPhotoSearch.results[i].slug,
+                            username = listPhotoSearch.results[i].user.username,
+                            name = listPhotoSearch.results[i].user.name,
+                            ImgmediumPro5 = listPhotoSearch.results[i].user.profile_image.medium
+                        });
+                    }
+
+                }
+            }
+            else
+            {
+                Noreult.Visibility = Visibility.Visible;
+            }
+
 
             this.ListPhotoSearchModel = new SearchViewModel();
 
@@ -143,28 +168,51 @@ namespace Unsflash.View
         {
             ResultModel item = (ResultModel)e.ClickedItem;
 
-            Frame.Navigate(typeof(TestControl), item);
+            Frame.Navigate(typeof(ViewPhotoSearch), item);
         }
 
         private void Grid_PointerEntered(object sender, PointerRoutedEventArgs e)
         {
-            Grid testGrid = sender as Grid;
-            Grid gridTop = (Grid)GetChildControl.GetChildren(testGrid).Find(x => x.Name == "gridTop");
-            Grid griBottom = (Grid)GetChildControl.GetChildren(testGrid).Find(x => x.Name == "griBottom");
-            gridTop.Visibility = Visibility.Visible;
-            griBottom.Visibility = Visibility.Visible;
+            if (UsingGlobal.meRoot.access_token == null)
+            {
+                Grid testGrid = sender as Grid;
+                Grid griBottom = (Grid)GetChildControl.GetChildren(testGrid).Find(x => x.Name == "griBottom");
+                griBottom.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                Grid testGrid = sender as Grid;
+                Grid gridTop = (Grid)GetChildControl.GetChildren(testGrid).Find(x => x.Name == "gridTop");
+                Grid griBottom = (Grid)GetChildControl.GetChildren(testGrid).Find(x => x.Name == "griBottom");
+                gridTop.Visibility = Visibility.Visible;
+                griBottom.Visibility = Visibility.Visible;
+            }
         }
 
         private void Grid_PointerExited(object sender, PointerRoutedEventArgs e)
         {
-            Grid testGrid = sender as Grid;
-            Grid gridTop = (Grid)GetChildControl.GetChildren(testGrid).Find(x => x.Name == "gridTop");
-            Grid griBottom = (Grid)GetChildControl.GetChildren(testGrid).Find(x => x.Name == "griBottom");
-            griBottom.Visibility = Visibility.Collapsed;
-            gridTop.Visibility = Visibility.Collapsed;
+            if (UsingGlobal.meRoot.access_token == null)
+            {
+                Grid testGrid = sender as Grid;
+                Grid griBottom = (Grid)GetChildControl.GetChildren(testGrid).Find(x => x.Name == "griBottom");
+                griBottom.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                Grid testGrid = sender as Grid;
+                Grid gridTop = (Grid)GetChildControl.GetChildren(testGrid).Find(x => x.Name == "gridTop");
+                Grid griBottom = (Grid)GetChildControl.GetChildren(testGrid).Find(x => x.Name == "griBottom");
+                gridTop.Visibility = Visibility.Collapsed;
+                griBottom.Visibility = Visibility.Collapsed;
+            }
         }
 
         private void btdownHome_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void grvSearch_Loaded(object sender, RoutedEventArgs e)
         {
 
         }

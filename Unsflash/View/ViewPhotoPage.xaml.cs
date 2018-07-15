@@ -41,6 +41,7 @@ namespace Unsflash.View
     public sealed partial class ViewPhotoPage : Page
     {
         public DetailPhotoModel.RootObject rootObject;
+        
         RootObject item;
 
         DownloadOperation downloadOperation;
@@ -55,6 +56,17 @@ namespace Unsflash.View
 
         protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
+            if (UsingGlobal.meRoot.access_token == null)
+            {
+                bdLikes.Visibility = Visibility.Collapsed;
+                bdCollect.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                bdLikes.Visibility = Visibility.Visible;
+                bdCollect.Visibility = Visibility.Visible;
+            }
+
             item = (RootObject)e.Parameter;
 
             BitmapImage bitmapImage = new BitmapImage();
@@ -71,10 +83,16 @@ namespace Unsflash.View
 
             HttpClient httpClient = new HttpClient();
             string requestUri = RequestParameters.defaulUri + item.id + "/?client_id=" + RequestParameters.client_id;
-            string reponseData = await httpClient.GetStringAsync(requestUri);
-
-            rootObject = JsonConvert.DeserializeObject<DetailPhotoModel.RootObject>(reponseData, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
-            int a = 3;
+            try
+            {
+                string reponseData = await httpClient.GetStringAsync(requestUri);
+                rootObject = JsonConvert.DeserializeObject<DetailPhotoModel.RootObject>(reponseData, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+            }
+            catch (Exception)
+            {
+                Noreult.Visibility = Visibility.Visible;
+                TrueReult.Visibility = Visibility.Collapsed;
+            }
         }
 
         private void btInfo_Click(object sender, RoutedEventArgs e)
@@ -318,37 +336,37 @@ namespace Unsflash.View
         private async void btCollection_Click(object sender, RoutedEventArgs e)
         {
             if (showinfo.Visibility == Visibility.Visible) showinfo.Visibility = Visibility.Collapsed;
-            SaveCol.saveCollection.Add(new SaveColModel
-            {
-                id = item.id,
-                width = item.width,
-                height = item.height,
-                urlsMedium = item.urls.small,
-                urlsFull = item.urls.full
-            });
-            // serialize JSON to a string
-            string json = JsonConvert.SerializeObject(SaveCol.saveCollection);
+            //SaveCol.saveCollection.Add(new SaveColModel
+            //{
+            //    id = item.id,
+            //    width = item.width,
+            //    height = item.height,
+            //    urlsMedium = item.urls.small,
+            //    urlsFull = item.urls.full
+            //});
+            //// serialize JSON to a string
+            //string json = JsonConvert.SerializeObject(SaveCol.saveCollection);
 
-            var file = await ApplicationData.Current.LocalFolder.GetFileAsync("myconfig.json");
+            //var file = await ApplicationData.Current.LocalFolder.GetFileAsync("myconfig.json");
 
-            // read string to a file
-            string aaz = await FileIO.ReadTextAsync(file);
-            ObservableCollection<SaveColModel> GetJsonaaaz = JsonConvert.DeserializeObject<ObservableCollection<SaveColModel>>(aaz, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
-            if (aaz != null)
-            {
-                for (int i = 0; i < GetJsonaaaz.Count; i++)
-                {
-                    if(item.id == GetJsonaaaz[i].id)
-                    {
+            //// read string to a file
+            //string aaz = await FileIO.ReadTextAsync(file);
+            //ObservableCollection<SaveColModel> GetJsonaaaz = JsonConvert.DeserializeObject<ObservableCollection<SaveColModel>>(aaz, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+            //if (aaz != null)
+            //{
+            //    for (int i = 0; i < GetJsonaaaz.Count; i++)
+            //    {
+            //        if(item.id == GetJsonaaaz[i].id)
+            //        {
 
-                    }
-                    else
-                    {
-                        // write string to a file
-                        await FileIO.WriteTextAsync(file, json);
-                    }
-                }
-            }
+            //        }
+            //        else
+            //        {
+            //            // write string to a file
+            //            await FileIO.WriteTextAsync(file, json);
+            //        }
+            //    }
+            //}
 
         }
     }

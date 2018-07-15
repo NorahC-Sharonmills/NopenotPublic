@@ -97,6 +97,7 @@
     </Compile>
     <Compile Include="Controls\SaveCol.cs" />
     <Compile Include="Controls\SaveColModel.cs" />
+    <Compile Include="Controls\UsingGlobal.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -158,6 +159,9 @@
     </Compile>
     <Compile Include="View\ViewPhotoPage.xaml.cs">
       <DependentUpon>ViewPhotoPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ViewPhotoSearch.xaml.cs">
+      <DependentUpon>ViewPhotoSearch.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -264,6 +268,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\ViewPhotoPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ViewPhotoSearch.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

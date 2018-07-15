@@ -185,6 +185,23 @@
                             </ItemsPanelTemplate>
                         </GridView.ItemsPanel>
                     </model:MyGridView>
+                    <Grid Name="gridnextback" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,40,30">
+                        <Border Background="White"
+                            CornerRadius="8"
+                            Margin="4,0,0,0"
+                            Opacity="0.8">
+                            <Grid>
+                                <StackPanel Orientation="Horizontal">
+                                    <Button Name="btBack" IsEnabled="False" Click="btBack_Click" Background="#00000000" Margin="0,0,5,0">
+                                        <SymbolIcon Symbol="Back" Foreground="Black"></SymbolIcon>
+                                    </Button>
+                                    <Button Name="btNext" IsEnabled="True" Click="btNext_Click" Background="#00000000">
+                                        <SymbolIcon Symbol="Forward" Foreground="Black"></SymbolIcon>
+                                    </Button>
+                                </StackPanel>
+                            </Grid>
+                        </Border>
+                    </Grid>
                 </Grid>
             </PivotItem>
             <PivotItem Header="Popular">
@@ -358,6 +375,23 @@
                             </ItemsPanelTemplate>
                         </GridView.ItemsPanel>
                     </model:MyGridView>
+                    <Grid Name="gridnextbackfe" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,40,30">
+                        <Border Background="White"
+                            CornerRadius="8"
+                            Margin="4,0,0,0"
+                            Opacity="0.8">
+                            <Grid>
+                                <StackPanel Orientation="Horizontal">
+                                    <Button Name="btBackfe" IsEnabled="False" Click="btBackfe_Click" Background="#00000000" Margin="0,0,5,0">
+                                        <SymbolIcon Symbol="Back" Foreground="Black"></SymbolIcon>
+                                    </Button>
+                                    <Button Name="btNextfe" IsEnabled="True" Click="btNextfe_Click" Background="#00000000">
+                                        <SymbolIcon Symbol="Forward" Foreground="Black"></SymbolIcon>
+                                    </Button>
+                                </StackPanel>
+                            </Grid>
+                        </Border>
+                    </Grid>
                 </Grid>
             </PivotItem>
         </Pivot>

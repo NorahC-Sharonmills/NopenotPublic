@@ -37,12 +37,27 @@ namespace Unsflash.View
         private async void Grid_Loaded(object sender, RoutedEventArgs e)
         {
             PublicAuthorization publicAuthorization = new PublicAuthorization();
-            CollectionsViewModel.listFeaturedCollection = await publicAuthorization.GetFeatured();
+            try
+            {
+                CollectionsViewModel.listFeaturedCollection = await publicAuthorization.GetFeatured();
+            }
+            catch (Exception)
+            {
+                Noreult.Visibility = Visibility.Visible;
+            }
+
 
             while(CollectionsViewModel.listFeaturedCollection.Count == 0)
             {
                 await Task.Delay(10);
-                CollectionsViewModel.listFeaturedCollection = await publicAuthorization.GetFeatured();
+                try
+                {
+                    CollectionsViewModel.listFeaturedCollection = await publicAuthorization.GetFeatured();
+                }
+                catch (Exception)
+                {
+                    
+                }
             }
 
             this.ViewModel = new CollectionsViewModel();
@@ -58,12 +73,27 @@ namespace Unsflash.View
                 if(CollectionsViewModel.listCuratedCollection.Count == 0)
                 {
                     PublicAuthorization publicAuthorization = new PublicAuthorization();
-                    CollectionsViewModel.listCuratedCollection = await publicAuthorization.GetCurated();
+
+                    try
+                    {
+                        CollectionsViewModel.listCuratedCollection = await publicAuthorization.GetCurated();
+                    }
+                    catch (Exception)
+                    {
+                        Noreult.Visibility = Visibility.Visible;
+                    }
 
                     while (CollectionsViewModel.listCuratedCollection.Count == 0)
                     {
                         await Task.Delay(10);
-                        CollectionsViewModel.listCuratedCollection = await publicAuthorization.GetCurated();
+                        try
+                        {
+                            CollectionsViewModel.listFeaturedCollection = await publicAuthorization.GetFeatured();
+                        }
+                        catch (Exception)
+                        {
+                            Noreult.Visibility = Visibility.Visible;
+                        }
                     }
 
                     this.ViewModel = new CollectionsViewModel();

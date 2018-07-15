@@ -43,6 +43,21 @@ namespace Unsflash.ViewModel
             }
         }
 
+        public ObservableCollection<GetaCollectionRootObject> CollectionPhotoMe
+        {
+            get { return Me.CollectionMe; }
+            set
+            {
+                Me.CollectionMe = value;
+                {
+                    if(Me.CollectionMe != null)
+                    {
+                        OnPropertyChanged("CollectionMe");
+                    }
+                }
+            }
+        }
+
         protected void OnPropertyChanged(string propertyName)
         {
             if (PropertyChanged != null)
