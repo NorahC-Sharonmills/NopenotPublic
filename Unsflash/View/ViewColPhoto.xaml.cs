@@ -53,7 +53,7 @@ namespace Unsflash.View
 
         protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
-            if (UsingGlobal.meRoot.access_token == null)
+            if (UsingGlobal.meRoot.access_token == null && Me.TokenInFileUserDefault == "")
             {
                 bdLikes.Visibility = Visibility.Collapsed;
                 bdCollect.Visibility = Visibility.Collapsed;

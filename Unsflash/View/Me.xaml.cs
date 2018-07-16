@@ -11,6 +11,7 @@ using Unsflash.Model;
 using Unsflash.ViewModel;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Storage;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -42,6 +43,8 @@ namespace Unsflash.View
         public string scope = UsingGlobal.meRoot.scope;
         public int created_at = UsingGlobal.meRoot.created_at;
 
+        public static string TokenInFileUserDefault;
+
         public Me()
         {
             this.InitializeComponent();
@@ -56,14 +59,23 @@ namespace Unsflash.View
             publicAuthorization = new PublicAuthorization();
 
             UserAuth = new UserAuthorization();
-            if (access_token == null)
+
+            var file = await ApplicationData.Current.LocalFolder.GetFileAsync("UserDefault.txt");
+            TokenInFileUserDefault = await FileIO.ReadTextAsync(file);
+
+            if (access_token == null && TokenInFileUserDefault == "")
             {
                 Logining.Visibility = Visibility.Visible;
                 Logined.Visibility = Visibility.Collapsed;
             }
             else
             {
-                if(meRootObjects.id == null)
+                if(TokenInFileUserDefault != "")
+                {
+                    access_token = TokenInFileUserDefault;
+                }
+                await FileIO.WriteTextAsync(file, access_token);
+                if (meRootObjects.id == null)
                 {
                     RequestParameters.AuthorizationUri += access_token;
                     meRootObjects = await publicAuthorization.GetInfoUserMe();

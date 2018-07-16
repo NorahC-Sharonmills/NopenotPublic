@@ -84,7 +84,7 @@ namespace Unsflash.View
 
         private void griItem_PointerEntered(object sender, PointerRoutedEventArgs e)
         {
-            if (UsingGlobal.meRoot.access_token == null)
+            if (UsingGlobal.meRoot.access_token == null && Me.TokenInFileUserDefault == "")
             {
                 Grid testGrid = sender as Grid;
                 Grid griBottom = (Grid)GetChildControl.GetChildren(testGrid).Find(x => x.Name == "griBottom");
@@ -102,7 +102,7 @@ namespace Unsflash.View
 
         private void griItem_PointerExited(object sender, PointerRoutedEventArgs e)
         {
-            if (UsingGlobal.meRoot.access_token == null)
+            if (UsingGlobal.meRoot.access_token == null && Me.TokenInFileUserDefault == "")
             {
                 Grid testGrid = sender as Grid;
                 Grid griBottom = (Grid)GetChildControl.GetChildren(testGrid).Find(x => x.Name == "griBottom");
