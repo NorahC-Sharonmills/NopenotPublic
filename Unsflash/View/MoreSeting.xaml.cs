@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Storage;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -27,9 +28,16 @@ namespace Unsflash.View
             this.InitializeComponent();
         }
 
+        protected async override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            //string getfoldrt = await ApplicationData.Current.LocalFolder.Path.
+
+            int a = 3;
+        }
+
         private void cbboxAutochange_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            int a = 3;
+
         }
 
         private void cbboxquatily_SelectionChanged(object sender, SelectionChangedEventArgs e)

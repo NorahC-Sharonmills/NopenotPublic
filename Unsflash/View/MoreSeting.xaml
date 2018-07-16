@@ -87,7 +87,7 @@
                         </Grid>
                         <Grid Height="30" BorderBrush="Gray" BorderThickness="0,0,0,0.5"></Grid>
                         <Grid Height="30" BorderBrush="Gray" BorderThickness="0,0.5,0,0"></Grid>
-                        <Grid Visibility="Collapsed" VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <Grid Visibility="Visible" VerticalAlignment="Center" HorizontalAlignment="Center">
                             <Border Background="White"
                                         Grid.Column="3"
                                         CornerRadius="8"
@@ -95,8 +95,9 @@
                                         Opacity="0.8">
                                 <Button Name="btLogin">
                                     <StackPanel Orientation="Horizontal">
-                                        <SymbolIcon Symbol="Contact" Foreground="Black" Margin="0,0,10,0"></SymbolIcon>
-                                        <TextBlock Foreground="Black" FontSize="16" Text="LOGIN"></TextBlock>
+                                        <SymbolIcon Symbol="Emoji2" Foreground="Black" Margin="0,0,10,0"></SymbolIcon>
+                                        <TextBlock Foreground="Black" FontSize="16" Text="CLEANER USERDEFAULTS" Margin="0,0,10,0"></TextBlock>
+                                        <TextBlock Foreground="Black" FontSize="12" VerticalAlignment="Center" Name="sizeLocal"></TextBlock>
                                     </StackPanel>
                                 </Button>
                             </Border>

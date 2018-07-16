@@ -18,6 +18,7 @@ using Windows.Storage;
 using Windows.Storage.Pickers;
 using Windows.Storage.Streams;
 using Windows.System.UserProfile;
+using Windows.UI;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -72,6 +73,10 @@ namespace Unsflash.View
             tblAuthorName.Text = itemRes.name;
             tblUserName.Text = itemRes.username;
             tblLike.Text = itemRes.likes.ToString();
+            if (itemRes.liked_by_user == true)
+            {
+                bdLikes.Background = new SolidColorBrush(Colors.Pink);
+            }
 
 
             BitmapImage bitmapImageShow = new BitmapImage();

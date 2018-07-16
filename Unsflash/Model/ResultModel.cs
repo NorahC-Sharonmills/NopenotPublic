@@ -40,5 +40,6 @@ namespace Unsflash.Model
             public string username { get; set; }
             public string name { get; set; }
             public string ImgmediumPro5 { get; set; }
+            public bool likebyuser { get; set; }
     }
 }
