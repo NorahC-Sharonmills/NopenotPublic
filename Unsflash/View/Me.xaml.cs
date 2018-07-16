@@ -278,6 +278,8 @@ namespace Unsflash.View
 
         private async void grvCollectionMe_ItemClick(object sender, ItemClickEventArgs e)
         {
+            await Task.Delay(300);
+
             grvCol.Visibility = Visibility.Visible;
             grvCollectionMe.Visibility = Visibility.Collapsed;
 
@@ -285,9 +287,9 @@ namespace Unsflash.View
 
             double totalWidth = 0;
             int start = 0;
-            await Task.Delay(300);
 
             RequestParameters.feCollectionIDUri = RequestParameters.feCollectionIDUri + item.id + "/photos?client_id=" + RequestParameters.client_id + "&page=1&per_page=30";
+
             this.CollectionView = new aCollectionViewModel();
 
             try
