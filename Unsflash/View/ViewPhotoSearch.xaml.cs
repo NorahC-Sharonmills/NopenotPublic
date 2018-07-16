@@ -40,6 +40,7 @@ namespace Unsflash.View
     {
         ResultModel itemRes;
         public DetailColPhotoModel.RootObject rootObject;
+        public bool IsLiked = false;
 
         DownloadOperation downloadOperation;
         CancellationTokenSource cancellationToken;
@@ -141,8 +142,26 @@ namespace Unsflash.View
             if (folder != null)
             {
                 StorageFile file = await folder.CreateFileAsync("Unplash-" + rootObject.user.name + ".jpg", CreationCollisionOption.GenerateUniqueName);
-                Uri durl = new Uri(rootObject.links.download);
-                downloadOperation = backgroundDownloader.CreateDownload(durl, file);
+                //Uri durl = new Uri(rootObject.links.download);
+                //downloadOperation = backgroundDownloader.CreateDownload(durl, file);
+
+                Uri durl;
+                int getIndex = MainPage.GetLinkwithInt;
+                switch (getIndex)
+                {
+                    case 0:
+                        durl = new Uri(rootObject.urls.small);
+                        downloadOperation = backgroundDownloader.CreateDownload(durl, file);
+                        break;
+                    case 1:
+                        durl = new Uri(rootObject.urls.full);
+                        downloadOperation = backgroundDownloader.CreateDownload(durl, file);
+                        break;
+                    case 2:
+                        durl = new Uri(rootObject.urls.raw);
+                        downloadOperation = backgroundDownloader.CreateDownload(durl, file);
+                        break;
+                }
 
                 Progress<DownloadOperation> progress = new Progress<DownloadOperation>(progressChanged);
                 cancellationToken = new CancellationTokenSource();
@@ -328,6 +347,25 @@ namespace Unsflash.View
                 {
                     deferral.Complete();
                 }
+            }
+        }
+
+        private async void btLikeHeat_Click(object sender, RoutedEventArgs e)
+        {
+            //Fake like :) 
+            if (IsLiked == false)
+            {
+                itemRes.likes++;
+                await Task.Delay(1000);
+                tblLike.Text = itemRes.likes.ToString();
+                IsLiked = true;
+            }
+            else
+            {
+                itemRes.likes--;
+                await Task.Delay(1000);
+                tblLike.Text = itemRes.likes.ToString();
+                IsLiked = false;
             }
         }
     }

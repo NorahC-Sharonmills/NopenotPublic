@@ -45,6 +45,8 @@ namespace Unsflash
             get { return _navLinks; }
         }
 
+        public static int GetLinkwithInt = 1;
+
         public MainPage()
         {
             this.InitializeComponent();

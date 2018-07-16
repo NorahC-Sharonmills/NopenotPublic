@@ -115,7 +115,7 @@ namespace Unsflash.View
                             username = listPhotoSearch.results[i].user.username,
                             name = listPhotoSearch.results[i].user.name,
                             ImgmediumPro5 = listPhotoSearch.results[i].user.profile_image.medium,
-                            likebyuser = listPhotoSearch.results[i].liked_by_user
+                            likebyuser = listPhotoSearch.results[i].urls.raw
                             
                         });
                     }

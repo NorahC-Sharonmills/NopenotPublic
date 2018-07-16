@@ -31,6 +31,8 @@ namespace Unsflash.View
 
         protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
+            cbboxquatily.SelectedIndex = MainPage.GetLinkwithInt;
+
             long SizeFolder = 0;
 
             var localFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
@@ -55,7 +57,19 @@ namespace Unsflash.View
 
         private void cbboxquatily_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            int getIndex = cbboxquatily.SelectedIndex;
+            switch (getIndex)
+            {
+                case 0:
+                    MainPage.GetLinkwithInt = getIndex;
+                    break;
+                case 1:
+                    MainPage.GetLinkwithInt = getIndex;
+                    break;
+                case 2:
+                    MainPage.GetLinkwithInt = getIndex;
+                    break;
+            }
         }
 
         private async void btLogin_Click(object sender, RoutedEventArgs e)

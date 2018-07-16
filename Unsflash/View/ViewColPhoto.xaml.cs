@@ -41,6 +41,7 @@ namespace Unsflash.View
     {
         public DetailColPhotoModel.RootObject rootObject;
         GetaCollectionRootObject item;
+        public bool IsLiked = false;
 
         DownloadOperation downloadOperation;
         CancellationTokenSource cancellationToken;
@@ -101,6 +102,25 @@ namespace Unsflash.View
             }
         }
 
+        private async void btLikeHeat_Click(object sender, RoutedEventArgs e)
+        {
+            //Fake like :) 
+            if(IsLiked == false)
+            {
+                item.likes++;
+                await Task.Delay(1000);
+                tblLike.Text = item.likes.ToString();
+                IsLiked = true;
+            }
+            else
+            {
+                item.likes--;
+                await Task.Delay(1000);
+                tblLike.Text = item.likes.ToString();
+                IsLiked = false;
+            }
+        }
+
         //Hiện thông tin ảnh
         private void btInfo_Click(object sender, RoutedEventArgs e)
         {
@@ -146,8 +166,26 @@ namespace Unsflash.View
             if (folder != null)
             {
                 StorageFile file = await folder.CreateFileAsync("Unplash-" + rootObject.user.name + ".jpg", CreationCollisionOption.GenerateUniqueName);
-                Uri durl = new Uri(rootObject.links.download);
-                downloadOperation = backgroundDownloader.CreateDownload(durl, file);
+                //Uri durl = new Uri(rootObject.links.download);
+                //downloadOperation = backgroundDownloader.CreateDownload(durl, file);
+
+                Uri durl;
+                int getIndex = MainPage.GetLinkwithInt;
+                switch (getIndex)
+                {
+                    case 0:
+                        durl = new Uri(rootObject.urls.small);
+                        downloadOperation = backgroundDownloader.CreateDownload(durl, file);
+                        break;
+                    case 1:
+                        durl = new Uri(rootObject.urls.full);
+                        downloadOperation = backgroundDownloader.CreateDownload(durl, file);
+                        break;
+                    case 2:
+                        durl = new Uri(rootObject.urls.raw);
+                        downloadOperation = backgroundDownloader.CreateDownload(durl, file);
+                        break;
+                }            
 
                 Progress<DownloadOperation> progress = new Progress<DownloadOperation>(progressChanged);
                 cancellationToken = new CancellationTokenSource();
