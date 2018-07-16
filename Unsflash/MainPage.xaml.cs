@@ -13,6 +13,7 @@ using Unsflash.ViewModel;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Security.Authentication.Web;
+using Windows.Storage;
 using Windows.System;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
@@ -76,8 +77,27 @@ namespace Unsflash
             //if (this.Frame.CanGoBack) this.Frame.GoBack();
         }
 
-        protected override void OnNavigatedTo(NavigationEventArgs e)
+        protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
+            try
+            {
+                var file = await ApplicationData.Current.LocalFolder.GetFileAsync("UserDefault.txt");
+            }
+            catch (Exception)
+            {
+                try
+                {
+                    var file = await ApplicationData.Current.LocalFolder.CreateFileAsync("UserDefault.txt");
+                }
+                catch (Exception)
+                {
+
+                }
+            }
+
+            var getfile = await ApplicationData.Current.LocalFolder.GetFileAsync("UserDefault.txt");
+            Me.TokenInFileUserDefault = await FileIO.ReadTextAsync(getfile);
+
             MainFrame.Navigate(typeof(HomePage));
         }
 
