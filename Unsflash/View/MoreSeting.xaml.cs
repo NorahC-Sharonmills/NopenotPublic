@@ -23,6 +23,7 @@ namespace Unsflash.View
     /// </summary>
     public sealed partial class MoreSeting : Page
     {
+        IReadOnlyList<StorageFile> thefiles;
         public MoreSeting()
         {
             this.InitializeComponent();
@@ -30,9 +31,21 @@ namespace Unsflash.View
 
         protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
-            //string getfoldrt = await ApplicationData.Current.LocalFolder.Path.
+            long SizeFolder = 0;
 
-            int a = 3;
+            var localFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
+            DirectoryInfo di = new DirectoryInfo(localFolder.Path);
+            FileInfo[] fiArr = di.GetFiles();
+            foreach (FileInfo f in fiArr)
+            {
+                SizeFolder += f.Length;
+            }
+            SizeFolder = SizeFolder / 1024;
+            SizeFolder = SizeFolder / 1024;
+            SizeFolder = SizeFolder * 8;
+
+            sizeLocal.Text = "( Size: " + SizeFolder.ToString() + " MB)";
+
         }
 
         private void cbboxAutochange_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -43,6 +56,18 @@ namespace Unsflash.View
         private void cbboxquatily_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
+        }
+
+        private async void btLogin_Click(object sender, RoutedEventArgs e)
+        {
+            var localFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
+            thefiles = await localFolder.GetFilesAsync();
+
+            for (int i = 0; i < thefiles.Count; i++)
+            {
+                await thefiles[i].DeleteAsync(StorageDeleteOption.Default);
+            }
+            this.Frame.Navigate(typeof(MoreSeting));
         }
     }
 }

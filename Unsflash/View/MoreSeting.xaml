@@ -93,11 +93,11 @@
                                         CornerRadius="8"
                                         Margin="4,0,4,0"
                                         Opacity="0.8">
-                                <Button Name="btLogin">
+                                <Button Name="btLogin" Click="btLogin_Click">
                                     <StackPanel Orientation="Horizontal">
                                         <SymbolIcon Symbol="Emoji2" Foreground="Black" Margin="0,0,10,0"></SymbolIcon>
                                         <TextBlock Foreground="Black" FontSize="16" Text="CLEANER USERDEFAULTS" Margin="0,0,10,0"></TextBlock>
-                                        <TextBlock Foreground="Black" FontSize="12" VerticalAlignment="Center" Name="sizeLocal"></TextBlock>
+                                        <TextBlock Foreground="Black" FontSize="16" Name="sizeLocal"></TextBlock>
                                     </StackPanel>
                                 </Button>
                             </Border>

@@ -60,8 +60,15 @@ namespace Unsflash.View
 
             UserAuth = new UserAuthorization();
 
-            var file = await ApplicationData.Current.LocalFolder.GetFileAsync("UserDefault.txt");
-            TokenInFileUserDefault = await FileIO.ReadTextAsync(file);
+            try
+            {
+                var file = await ApplicationData.Current.LocalFolder.GetFileAsync("UserDefault.txt");
+                TokenInFileUserDefault = await FileIO.ReadTextAsync(file);
+            }
+            catch (Exception)
+            {
+                var file = await ApplicationData.Current.LocalFolder.CreateFileAsync("UserDefault.txt");
+            }
 
             if (access_token == null && TokenInFileUserDefault == "")
             {
@@ -74,6 +81,7 @@ namespace Unsflash.View
                 {
                     access_token = TokenInFileUserDefault;
                 }
+                var file = await ApplicationData.Current.LocalFolder.GetFileAsync("UserDefault.txt");
                 await FileIO.WriteTextAsync(file, access_token);
                 if (meRootObjects.id == null)
                 {
@@ -199,7 +207,16 @@ namespace Unsflash.View
                     if(CollectionsViewModel.listMeCollection.Count == 0)
                     {
                         RequestParameters.MeCollection = RequestParameters.MeCollection + meRootObjects.username + "/collections?access_token=" + access_token;
-                        CollectionsViewModel.listMeCollection = await publicAuthorization.GetMeCollection();
+                        try
+                        {
+                            CollectionsViewModel.listMeCollection = await publicAuthorization.GetMeCollection();
+                        }
+                        catch (Exception)
+                        {
+                            LoginingCollection.Visibility = Visibility.Visible;
+                            tbloginCollection.Text = "NO RESULTS";
+                        }
+
 
                         while (CollectionsViewModel.listMeCollection.Count == 0)
                         {
