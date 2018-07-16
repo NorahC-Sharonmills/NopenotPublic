@@ -22,6 +22,7 @@ using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
@@ -96,9 +97,55 @@ namespace Unsflash
 
                 }
             }
-
             var getfile = await ApplicationData.Current.LocalFolder.GetFileAsync("UserDefault.txt");
             Me.TokenInFileUserDefault = await FileIO.ReadTextAsync(getfile);
+
+            try
+            {
+                var fileSaveTrendColor = await ApplicationData.Current.LocalFolder.GetFileAsync("UserDefaultTrendColor.txt");
+            }
+            catch (Exception)
+            {
+                try
+                {
+                    var fileSaveTrendColor = await ApplicationData.Current.LocalFolder.CreateFileAsync("UserDefaultTrendColor.txt");
+                }
+                catch (Exception)
+                {
+
+                }
+            }
+            var getfileSaveTrendColor = await ApplicationData.Current.LocalFolder.GetFileAsync("UserDefaultTrendColor.txt");
+            MoreSeting.GetColorTrendSave = await FileIO.ReadTextAsync(getfileSaveTrendColor);
+
+            try
+            {
+                var fileSaveBool = await ApplicationData.Current.LocalFolder.GetFileAsync("UserDefaultBool.txt");
+            }
+            catch (Exception)
+            {
+                try
+                {
+                    var fileSaveBool = await ApplicationData.Current.LocalFolder.CreateFileAsync("UserDefaultBool.txt");
+                }
+                catch (Exception)
+                {
+
+                }
+            }
+            var getfileSaveBool = await ApplicationData.Current.LocalFolder.GetFileAsync("UserDefaultBool.txt");
+            MoreSeting.GetBoolSave = await FileIO.ReadTextAsync(getfileSaveBool);
+
+            BitmapImage bitmapImage = new BitmapImage();
+            if(MoreSeting.GetBoolSave == "1" && MoreSeting.GetColorTrendSave != "")
+            {
+                bitmapImage.UriSource = new Uri("https://source.unsplash.com/1920x1080/?" + MoreSeting.GetColorTrendSave, UriKind.RelativeOrAbsolute);
+            }
+            else
+            {
+                bitmapImage.UriSource = new Uri("https://source.unsplash.com/random/1920×1080", UriKind.RelativeOrAbsolute);
+            }
+            imgBack.ImageSource = bitmapImage;
 
             MainFrame.Navigate(typeof(HomePage));
         }

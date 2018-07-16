@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
+using Unsflash.Model;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Storage;
@@ -24,13 +26,28 @@ namespace Unsflash.View
     public sealed partial class MoreSeting : Page
     {
         IReadOnlyList<StorageFile> thefiles;
+        public static string GetColorTrendSave;
+        public static string GetBoolSave;
+
         public MoreSeting()
         {
             this.InitializeComponent();
+            trendz = TrendColorManage.GetColor();
         }
+
+        private List<TrendColor> trendz;
 
         protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
+            try
+            {
+                
+            }
+            catch (Exception)
+            {
+
+            }
+
             cbboxquatily.SelectedIndex = MainPage.GetLinkwithInt;
 
             long SizeFolder = 0;
@@ -47,6 +64,19 @@ namespace Unsflash.View
             SizeFolder = SizeFolder * 8;
 
             sizeLocal.Text = "( Size: " + SizeFolder.ToString() + " MB)";
+
+            switch (GetBoolSave)
+            {
+                case "0":
+                    SwitchColor.IsOn = false;
+                    break;
+                case "1":
+                    SwitchColor.IsOn = true;
+                    break;
+                default:
+                    SwitchColor.IsOn = false;
+                    break;
+            }
 
         }
 
@@ -82,6 +112,73 @@ namespace Unsflash.View
                 await thefiles[i].DeleteAsync(StorageDeleteOption.Default);
             }
             this.Frame.Navigate(typeof(MoreSeting));
+        }
+
+        private async void SwitchColor_Toggled(object sender, RoutedEventArgs e)
+        {
+            await Task.Delay(500);
+            if(SwitchColor.IsOn == true)
+            {
+                GetBoolSave = "1";
+                try
+                {
+                    var fileSaveBool = await ApplicationData.Current.LocalFolder.GetFileAsync("UserDefaultBool.txt");
+                    await FileIO.WriteTextAsync(fileSaveBool, GetBoolSave.ToString());
+                }
+                catch (Exception)
+                {
+                    var fileSaveBool = await ApplicationData.Current.LocalFolder.CreateFileAsync("UserDefaultBool.txt");
+                    await FileIO.WriteTextAsync(fileSaveBool, GetBoolSave.ToString());
+                }
+                StackCollorDemo.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                GetBoolSave = "0";
+                try
+                {
+                    var fileSaveBool = await ApplicationData.Current.LocalFolder.GetFileAsync("UserDefaultBool.txt");
+                    await FileIO.WriteTextAsync(fileSaveBool, GetBoolSave);
+                }
+                catch (Exception)
+                {
+                    var fileSaveBool = await ApplicationData.Current.LocalFolder.CreateFileAsync("UserDefaultBool.txt");
+                    await FileIO.WriteTextAsync(fileSaveBool, GetBoolSave);
+                }
+                StackCollorDemo.Visibility = Visibility.Collapsed;
+            }
+        }
+
+        private async void StackCollorDemo_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            TrendColor item = (TrendColor)e.ClickedItem;
+            try
+            {
+                var fileSaveTrendColor = await ApplicationData.Current.LocalFolder.GetFileAsync("UserDefaultTrendColor.txt");
+                await FileIO.WriteTextAsync(fileSaveTrendColor, item.LinkColor);
+            }
+            catch (Exception)
+            {
+                var fileSaveTrendColor = await ApplicationData.Current.LocalFolder.CreateFileAsync("UserDefaultTrendColor.txt");
+                await FileIO.WriteTextAsync(fileSaveTrendColor, item.LinkColor);
+            }
+
+            GetBoolSave = "1";
+            try
+            {
+                var fileSaveBool = await ApplicationData.Current.LocalFolder.GetFileAsync("UserDefaultBool.txt");
+                await FileIO.WriteTextAsync(fileSaveBool, GetBoolSave.ToString());
+            }
+            catch (Exception)
+            {
+                var fileSaveBool = await ApplicationData.Current.LocalFolder.CreateFileAsync("UserDefaultBool.txt");
+                await FileIO.WriteTextAsync(fileSaveBool, GetBoolSave.ToString());
+            }
+
+            SetTheme.Text = "Set Theme " + item.NameColor + " Success!!!";
+            showNotifi.Visibility = Visibility.Visible;
+            await Task.Delay(3000);
+            showNotifi.Visibility = Visibility.Collapsed;
         }
     }
 }

@@ -20,7 +20,7 @@
     
     <Grid>
         <Grid.Background>
-            <ImageBrush Stretch="UniformToFill" ImageSource="https://source.unsplash.com/random/1920×1080"></ImageBrush>
+            <ImageBrush x:Name="imgBack" Stretch="UniformToFill"></ImageBrush>
         </Grid.Background>
         <Grid Name="PaneBackgroundGrid" Visibility="Visible">
             <interactivity:Interaction.Behaviors>
