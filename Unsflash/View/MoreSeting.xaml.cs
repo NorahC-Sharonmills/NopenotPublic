@@ -111,6 +111,9 @@ namespace Unsflash.View
             {
                 await thefiles[i].DeleteAsync(StorageDeleteOption.Default);
             }
+            symbolclean.Symbol = Symbol.Emoji;
+            await Task.Delay(2000);
+            symbolclean.Symbol = Symbol.Emoji2;
             this.Frame.Navigate(typeof(MoreSeting));
         }
 

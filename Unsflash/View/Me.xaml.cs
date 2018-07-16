@@ -278,8 +278,6 @@ namespace Unsflash.View
 
         private async void grvCollectionMe_ItemClick(object sender, ItemClickEventArgs e)
         {
-            await Task.Delay(300);
-
             grvCol.Visibility = Visibility.Visible;
             grvCollectionMe.Visibility = Visibility.Collapsed;
 

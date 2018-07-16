@@ -9,7 +9,7 @@
     xmlns:control="using:Microsoft.Toolkit.Uwp.UI.Controls"
     mc:Ignorable="d">
 
-    <Grid>
+    <Grid Background="#3f000000">
         <Pivot Name="pvMePage" SelectionChanged="pvMePage_SelectionChanged">
             <PivotItem Header="Me" Style="{ThemeResource PivotTitleContentControlStyle}">
                 <Grid>
