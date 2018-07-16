@@ -77,7 +77,7 @@ namespace Unsflash
 
         private void CurrentView_BackRequested(object sender, BackRequestedEventArgs e)
         {
-            //if (this.Frame.CanGoBack) this.Frame.GoBack();
+
         }
 
         protected async override void OnNavigatedTo(NavigationEventArgs e)

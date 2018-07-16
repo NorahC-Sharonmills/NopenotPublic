@@ -103,6 +103,8 @@ namespace Unsflash.View
 
         private void btInfo_Click(object sender, RoutedEventArgs e)
         {
+            grtap.Visibility = Visibility.Visible;
+
             if (showinfo.Visibility == Visibility.Visible) showinfo.Visibility = Visibility.Collapsed;
             else showinfo.Visibility = Visibility.Visible;
             if (rootObject.user.name == null) nameuser.Text = " ";
@@ -132,6 +134,8 @@ namespace Unsflash.View
 
         private void btShare_Click(object sender, RoutedEventArgs e)
         {
+            grtap.Visibility = Visibility.Visible;
+
             if (showinfo.Visibility == Visibility.Visible) showinfo.Visibility = Visibility.Collapsed;
             DataTransferManager.ShowShareUI();
         }
@@ -351,7 +355,7 @@ namespace Unsflash.View
 
         private async void imgShow_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            if (showinfo.Visibility == Visibility.Visible) showinfo.Visibility = Visibility.Collapsed;
+            //if (showinfo.Visibility == Visibility.Visible) showinfo.Visibility = Visibility.Collapsed;
         }
 
         private async void btCollection_Click(object sender, RoutedEventArgs e)
@@ -408,6 +412,12 @@ namespace Unsflash.View
                 tblLike.Text = item.likes.ToString();
                 IsLiked = false;
             }
+        }
+
+        private void grtap_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            grtap.Visibility = Visibility.Collapsed;
+            showinfo.Visibility = Visibility.Collapsed;
         }
     }
 }

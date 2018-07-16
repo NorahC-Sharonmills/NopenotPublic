@@ -102,6 +102,8 @@ namespace Unsflash.View
 
         private void btInfo_Click(object sender, RoutedEventArgs e)
         {
+            grtap.Visibility = Visibility.Visible;
+
             if (showinfo.Visibility == Visibility.Visible) showinfo.Visibility = Visibility.Collapsed;
             else showinfo.Visibility = Visibility.Visible;
             if (rootObject.user.name == null) nameuser.Text = " ";
@@ -281,6 +283,7 @@ namespace Unsflash.View
         {
             if (showinfo.Visibility == Visibility.Visible) showinfo.Visibility = Visibility.Collapsed;
             DataTransferManager.ShowShareUI();
+            grtap.Visibility = Visibility.Visible;
         }
 
         private void RegisterForShare()
@@ -367,6 +370,12 @@ namespace Unsflash.View
                 tblLike.Text = itemRes.likes.ToString();
                 IsLiked = false;
             }
+        }
+
+        private void grtap_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            grtap.Visibility = Visibility.Collapsed;
+            showinfo.Visibility = Visibility.Collapsed;
         }
     }
 }

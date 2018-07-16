@@ -183,5 +183,38 @@ namespace Unsflash.View
             await Task.Delay(3000);
             showNotifi.Visibility = Visibility.Collapsed;
         }
+
+        private void qs3_Click(object sender, RoutedEventArgs e)
+        {
+            showqs.Visibility = Visibility.Visible;
+            grtap.Visibility = Visibility.Visible;
+            textgotitqs.Text = "If you do not like the background. You can refer to some of the options, favorite colors in 2017 ♥";
+        }
+
+        private void qs2_Click(object sender, RoutedEventArgs e)
+        {
+            showqs.Visibility = Visibility.Visible;
+            grtap.Visibility = Visibility.Visible;
+            textgotitqs.Text = "You can choose the resolution of the image when downloading from here. We encourage you to default ♥";
+        }
+
+        private void qs1_Click(object sender, RoutedEventArgs e)
+        {
+            showqs.Visibility = Visibility.Visible;
+            grtap.Visibility = Visibility.Visible;
+            textgotitqs.Text = "Change your wallpaper automatically in background every day. All wallpaper are from Unsplash and are well chosen by my seft ♥";
+        }
+
+        private void gotitqs_Click(object sender, RoutedEventArgs e)
+        {
+            showqs.Visibility = Visibility.Collapsed;
+            grtap.Visibility = Visibility.Collapsed;
+        }
+
+        private void grtap_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            showqs.Visibility = Visibility.Collapsed;
+            grtap.Visibility = Visibility.Collapsed;
+        }
     }
 }
