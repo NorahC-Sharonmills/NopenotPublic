@@ -97,8 +97,8 @@
                                 <Button Name="btLogin" Click="btLogin_Click">
                                     <StackPanel Orientation="Horizontal">
                                         <SymbolIcon Name="symbolclean" Symbol="Emoji2" Foreground="Black" Margin="0,0,10,0"></SymbolIcon>
-                                        <TextBlock Foreground="Black" FontSize="16" Text="CLEANER USERDEFAULTS" Margin="0,0,10,0"></TextBlock>
-                                        <TextBlock Foreground="Black" FontSize="16" Name="sizeLocal"></TextBlock>
+                                        <TextBlock Foreground="Black" FontSize="16" Name="tblCleanup" Text="CLEANER USERDEFAULTS" Margin="0,0,10,0"></TextBlock>
+                                        <TextBlock Foreground="Black" FontSize="16" Name="sizeLocal" Visibility="Visible"></TextBlock>
                                     </StackPanel>
                                 </Button>
                             </Border>
@@ -160,6 +160,8 @@
                                 </StackPanel>
                             </Border>
                         </Grid>
+                        <Grid Height="30" BorderBrush="Gray" BorderThickness="0,0,0,0.5"></Grid>
+                        <Grid Height="30" BorderBrush="Gray" BorderThickness="0,0.5,0,0"></Grid>
                     </StackPanel>
                 </Grid>
             </Grid>

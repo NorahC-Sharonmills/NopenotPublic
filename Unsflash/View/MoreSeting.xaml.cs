@@ -127,8 +127,10 @@ namespace Unsflash.View
             StackCollorDemo.Visibility = Visibility.Collapsed;
 
             symbolclean.Symbol = Symbol.Emoji;
+            tblCleanup.Text = "CLEANER SUCCESS!!!";
+            sizeLocal.Visibility = Visibility.Collapsed;
             await Task.Delay(2000);
-            symbolclean.Symbol = Symbol.Emoji2;
+            //symbolclean.Symbol = Symbol.Emoji2;
             this.Frame.Navigate(typeof(MoreSeting));
         }
 
@@ -195,7 +197,9 @@ namespace Unsflash.View
 
             SetTheme.Text = "Set Theme " + item.NameColor + " Success!!!";
             showNotifi.Visibility = Visibility.Visible;
-            await Task.Delay(3000);
+            await Task.Delay(1000);
+            SetTheme.Text = "Please reset application!!!";
+            await Task.Delay(2000);
             showNotifi.Visibility = Visibility.Collapsed;
         }
 
