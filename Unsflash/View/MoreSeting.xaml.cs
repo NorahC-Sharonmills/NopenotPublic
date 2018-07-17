@@ -111,6 +111,21 @@ namespace Unsflash.View
             {
                 await thefiles[i].DeleteAsync(StorageDeleteOption.Default);
             }
+
+            SwitchColor.IsOn = false;
+            GetBoolSave = "0";
+            try
+            {
+                var fileSaveBool = await ApplicationData.Current.LocalFolder.GetFileAsync("UserDefaultBool.txt");
+                await FileIO.WriteTextAsync(fileSaveBool, GetBoolSave);
+            }
+            catch (Exception)
+            {
+                var fileSaveBool = await ApplicationData.Current.LocalFolder.CreateFileAsync("UserDefaultBool.txt");
+                await FileIO.WriteTextAsync(fileSaveBool, GetBoolSave);
+            }
+            StackCollorDemo.Visibility = Visibility.Collapsed;
+
             symbolclean.Symbol = Symbol.Emoji;
             await Task.Delay(2000);
             symbolclean.Symbol = Symbol.Emoji2;
@@ -126,12 +141,12 @@ namespace Unsflash.View
                 try
                 {
                     var fileSaveBool = await ApplicationData.Current.LocalFolder.GetFileAsync("UserDefaultBool.txt");
-                    await FileIO.WriteTextAsync(fileSaveBool, GetBoolSave.ToString());
+                    await FileIO.WriteTextAsync(fileSaveBool, GetBoolSave);
                 }
                 catch (Exception)
                 {
                     var fileSaveBool = await ApplicationData.Current.LocalFolder.CreateFileAsync("UserDefaultBool.txt");
-                    await FileIO.WriteTextAsync(fileSaveBool, GetBoolSave.ToString());
+                    await FileIO.WriteTextAsync(fileSaveBool, GetBoolSave);
                 }
                 StackCollorDemo.Visibility = Visibility.Visible;
             }
