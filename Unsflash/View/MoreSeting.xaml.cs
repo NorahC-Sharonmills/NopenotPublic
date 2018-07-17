@@ -235,5 +235,17 @@ namespace Unsflash.View
             showqs.Visibility = Visibility.Collapsed;
             grtap.Visibility = Visibility.Collapsed;
         }
+
+        private void btShowMe_Click(object sender, RoutedEventArgs e)
+        {
+            int itemNav = 1;
+            this.Frame.Navigate(typeof(ShowDefaults), itemNav);
+        }
+
+        private void btShowInfoApp_Click(object sender, RoutedEventArgs e)
+        {
+            int itemNav = 2;
+            this.Frame.Navigate(typeof(ShowDefaults), itemNav);
+        }
     }
 }

@@ -149,6 +149,9 @@
     <Compile Include="View\MoreSeting.xaml.cs">
       <DependentUpon>MoreSeting.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\ShowDefaults.xaml.cs">
+      <DependentUpon>ShowDefaults.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\ShowSearchPage.xaml.cs">
       <DependentUpon>ShowSearchPage.xaml</DependentUpon>
     </Compile>
@@ -253,6 +256,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\MoreSeting.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ShowDefaults.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

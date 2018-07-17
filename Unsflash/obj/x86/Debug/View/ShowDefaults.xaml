@@ -1,0 +1,100 @@
+﻿<Page
+    x:Class="Unsflash.View.ShowDefaults"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Unsflash.View"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="#bf000000">
+        <Grid x:ConnectionId='2' Name="grInfoApp" Visibility="Collapsed">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="5*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="1" Margin="50">
+                <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left">
+                    <TextBlock Text="Unsplash is an awesome platform that we can just summarize in this way: the passion for photo." FontSize="16" TextWrapping="Wrap" Margin="0,5,0,0"></TextBlock>
+                    <TextBlock Text="Thanks to Unsplash's license you can use the photo to do whatever you want. However, for more infomation just visit:" FontSize="16" TextWrapping="Wrap" Margin="0,5,0,0"></TextBlock>
+                    <HyperlinkButton Content="https://unsplash.com/license" NavigateUri="https://unsplash.com/license" FontSize="16" Margin="0,5,0,0"></HyperlinkButton>
+                    <TextBlock Text="Privacy Policy" FontSize="16" TextWrapping="Wrap" Margin="0,5,0,0"></TextBlock>
+                    <HyperlinkButton Content="https://unsplash.com/privacy" NavigateUri="https://unsplash.com/privacy" FontSize="16" Margin="0,5,0,0"></HyperlinkButton>
+                    <HyperlinkButton NavigateUri="https://www.facebook.com/HihiDeoCoThangNaoCoTenFaceGiongTao" Content="https://www.facebook.com/HihiDeoCoThangNaoCoTenFaceGiongTao" FontSize="16" Margin="0,5,0,0"></HyperlinkButton>
+                </StackPanel>
+                <StackPanel VerticalAlignment="Bottom" HorizontalAlignment="Left">
+                    <TextBlock Margin="0,5,0,0" TextWrapping="Wrap" FontSize="16" FontWeight="Bold" Text="This app and the developer do not represent in any way the Unsplash platform and its owners."></TextBlock>
+                    <TextBlock Margin="0,5,0,0" TextWrapping="Wrap" FontSize="16" FontWeight="Bold" Text="The app use the API kindly provided by Unsplash platform."></TextBlock>
+                    <TextBlock Margin="0,5,0,0" TextWrapping="Wrap" FontSize="16" FontWeight="Bold" Text="The app has an API request limit per hour, and it will be resetted every hour in future."></TextBlock>
+                    <TextBlock Margin="0,5,0,20" TextWrapping="Wrap" FontSize="16" FontWeight="Bold" Text="The app has been developer only for passion, the app doesn't contain ads, in-app purchases and it's free."></TextBlock>
+                </StackPanel>
+            </Grid>
+        </Grid>
+        <Grid x:ConnectionId='3' Name="grMeApp" Visibility="Collapsed">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition Width="450"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="1">
+                <StackPanel VerticalAlignment="Top" HorizontalAlignment="Center">
+                        <Ellipse x:ConnectionId='4' x:Name="Ellipse" 
+                                             Width ="240"
+                                             Height="240"
+                                             VerticalAlignment="Center"
+                                             HorizontalAlignment="Center"
+                                             Margin="4,4,20,4">
+                            <Ellipse.Fill>
+                            <ImageBrush Stretch="Uniform" ImageSource="https://78.media.tumblr.com/44b06635c7ed63fc9a8c4bde2d79e50a/tumblr_inline_pc055y6fPN1uc8efl_540.jpg"></ImageBrush>
+                            </Ellipse.Fill>
+                        </Ellipse>
+                        <StackPanel>
+                            <TextBlock Margin="0,5,0,0" FontSize="16" Text="Hi! I'm Duy! I work in informatic world, my first target the soft engineering, but I love the all the informatic's stuff." HorizontalAlignment="Left" TextWrapping="Wrap"/>
+                            <TextBlock Margin="0,5,0,0" FontSize="16" Text="I make app, game, etc." HorizontalAlignment="Left" TextWrapping="Wrap"/>
+                        </StackPanel>
+                    </StackPanel>
+                <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="But I'm also a person the love to travel, spend time with friends and I love also to play videogames." Margin="0,5,0,0" FontSize="16" TextWrapping="Wrap" HorizontalAlignment="Left"/>
+                    <TextBlock Text="I decided to realize this app to make practice with the universal windowns platform and also because I love Unsplash platform (see Unsplash section)." Margin="0,10,0,0" FontSize="16" TextWrapping="Wrap" HorizontalAlignment="Left"></TextBlock>
+                    <TextBlock Text="The control are opensource and you can find on my GitHub (Sharon11112)." Margin="0,10,0,0" FontSize="16" TextWrapping="Wrap" HorizontalAlignment="Left"></TextBlock>
+                </StackPanel>
+                <StackPanel VerticalAlignment="Bottom" Margin="0,0,0,20">
+                    <StackPanel Orientation="Horizontal">
+                        <Grid Margin="0,0,20,0">
+                            <Grid Width="48" Height="48" Visibility="Collapsed" />
+                            <Path Data="M8.6999969,0C12.300003,0 14,1.5999985 16,4.0999985 18,1.5999985 19.699997,0 23.300003,0 23.800003,0 24.199997,0 24.800003,0.099998474 27.899994,0.40000153 31.599991,3.4000015 32,9.1999969L32,11.099998C31.599991,16.599998 27.599991,23.400002 16,32 4.3999939,23.400002 0.3999939,16.599998 0,11.099998L0,9.1999969C0.3999939,3.4000015 4.0999908,0.40000153 7.1999969,0.099998474 7.6999969,0 8.1999969,0 8.6999969,0z" Stretch="Uniform" Fill="#FFFFFFFF" Width="26" Height="26" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5">
+                                <Path.RenderTransform>
+                                    <TransformGroup>
+                                        <TransformGroup.Children>
+                                            <RotateTransform Angle="0" />
+                                            <ScaleTransform ScaleX="1" ScaleY="1" />
+                                        </TransformGroup.Children>
+                                    </TransformGroup>
+                                </Path.RenderTransform>
+                            </Path>
+                        </Grid>
+                        <HyperlinkButton Content="If you wish, rate the app" Margin="0,0,0,0" FontSize="16"></HyperlinkButton>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,20">
+                        <Grid Margin="0,0,20,0">
+                            <Grid Width="48" Height="48" Visibility="Collapsed" />
+                            <Path Data="M30.000001,3.0241641L15.96699,13.76 2,3.029205 2,22 30.000001,22z M3.9438645,2L15.969981,11.239002 28.046658,2z M0,0L32.000001,0 32.000001,24 0,24z" Stretch="Uniform" Fill="#FFFFFFFF" Width="26" Height="26" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5">
+                                <Path.RenderTransform>
+                                    <TransformGroup>
+                                        <TransformGroup.Children>
+                                            <RotateTransform Angle="0" />
+                                            <ScaleTransform ScaleX="1" ScaleY="1" />
+                                        </TransformGroup.Children>
+                                    </TransformGroup>
+                                </Path.RenderTransform>
+                            </Path>
+                        </Grid>
+                        <HyperlinkButton Content="Sharonmills@my.smccd.edu" FontSize="16"></HyperlinkButton>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+        </Grid>
+    </Grid>
+</Page>
+
