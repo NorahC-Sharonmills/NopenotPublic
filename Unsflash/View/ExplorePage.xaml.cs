@@ -45,36 +45,6 @@ namespace Unsflash.View
             showSearchPage.MySearchRes.Clear();
         }
 
-        private async void btbusiness_Click(object sender, RoutedEventArgs e)
-        {
-            ViewModel.RequestParameters.photoSearchUri += "business";
-            listPhotoSearch = await publicAuthorization.SearchPhotoaaa();
-        }
-
-        private async void btcomputer_Click(object sender, RoutedEventArgs e)
-        {
-            ViewModel.RequestParameters.photoSearchUri += "computer";
-            listPhotoSearch = await publicAuthorization.SearchPhotoaaa();
-        }
-
-        private async void btnature_Click(object sender, RoutedEventArgs e)
-        {
-            ViewModel.RequestParameters.photoSearchUri += "nature";
-            listPhotoSearch = await publicAuthorization.SearchPhotoaaa();
-        }
-
-        private async void btlove_Click(object sender, RoutedEventArgs e)
-        {
-            ViewModel.RequestParameters.photoSearchUri += "love";
-            listPhotoSearch = await publicAuthorization.SearchPhotoaaa();
-        }
-
-        private async void bthouse_Click(object sender, RoutedEventArgs e)
-        {
-            ViewModel.RequestParameters.photoSearchUri += "house";
-            listPhotoSearch = await publicAuthorization.SearchPhotoaaa();
-        }
-
         private void Grid_Loaded(object sender, RoutedEventArgs e)
         {
             Uri uri = new Uri("https://source.unsplash.com/random/1920×1080", UriKind.RelativeOrAbsolute);
