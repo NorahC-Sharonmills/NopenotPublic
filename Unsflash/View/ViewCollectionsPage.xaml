@@ -163,7 +163,8 @@
                                     Opacity="0.8"
                                     Height="30"
                                     Width="40">
-                                                <Button Name="btDownColPage" Click="btDownColPage_Click">
+                                                <Grid VerticalAlignment="Center" HorizontalAlignment="Center">
+                                                    <Button Background="#00000000" Height="30" Width="40" Foreground="#00000000" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Content="{x:Bind urls.full}" FontSize="1" Name="buttonDownv2" Click="btDownload_Click"></Button>
                                                     <Path Data="M13.281003,0L18.465999,0 18.465999,24.891006 31.652,15.460007 31.652,20.709 15.874004,32 12.203,29.372009 0,20.637009 0,15.526001 0.094009396,15.460007 13.281003,24.891006z" 
                                       Stretch="Uniform" 
                                       Fill="#FF262626" 
@@ -181,7 +182,7 @@
                                                             </TransformGroup>
                                                         </Path.RenderTransform>
                                                     </Path>
-                                                </Button>
+                                                </Grid>
                                             </Border>
                                         </Grid>
                                     </Grid>
@@ -215,6 +216,16 @@
                                     <Button Name="btNext" IsEnabled="True" Background="#00000000" Click="btNext_Click">
                                         <SymbolIcon Symbol="Forward" Foreground="Black"></SymbolIcon>
                                     </Button>
+                                </StackPanel>
+                            </Grid>
+                        </Border>
+                    </Grid>
+                    <Grid Name="statusDownv2" Visibility="Collapsed" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,30">
+                        <Border Background="White" CornerRadius="8" Margin="4" Opacity="0.8">
+                            <Grid>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Name="downloadingText" Text="Đang tải" FontSize="15" Margin="10,5,5,5" Foreground="Black"></TextBlock>
+                                    <ProgressBar Visibility="Visible" Name="downloadingBar" IsIndeterminate="True" Margin="0,5,10,0"></ProgressBar>
                                 </StackPanel>
                             </Grid>
                         </Border>

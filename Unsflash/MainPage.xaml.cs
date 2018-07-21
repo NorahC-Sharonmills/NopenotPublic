@@ -35,11 +35,19 @@ namespace Unsflash
         {
             new NavLink() { Label = "Search", Symbol = Symbol.Find, PageName = typeof(ExplorePage)},
             new NavLink() { Label = "Home", Symbol = Symbol.Home, PageName = typeof(HomePage)},
-            new NavLink() { Label = "Collections", Symbol = Symbol.Library, PageName = typeof(CollectionsPage) },
+            new NavLink() { Label = "Collections", Symbol = Symbol.Library, PageName = typeof(CollectionsPage) },       
+        };
+        private ObservableCollection<NavLink> __navLinks = new ObservableCollection<NavLink>()
+        {
             new NavLink() { Label = "Setting", Symbol = Symbol.Setting, PageName = typeof(MoreSeting) },
             new NavLink() { Label = "Me", Symbol = Symbol.Contact, PageName = typeof(Unsflash.View.Me)},
-         
+
         };
+
+        public ObservableCollection<NavLink> NavLinks__
+        {
+            get { return __navLinks; }
+        }
 
         public ObservableCollection<NavLink> NavLinks
         {

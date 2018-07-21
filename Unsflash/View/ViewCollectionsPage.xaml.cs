@@ -39,6 +39,7 @@ namespace Unsflash.View
     {
         CollectionRootObject itemaaa;
         GetaCollectionRootObject newItem;
+        Button itemDownv2;
         public static int page = 1;
         public static int temp;
         public static ObservableCollection<GetaCollectionRootObject> aCollection = new ObservableCollection<GetaCollectionRootObject>();
@@ -190,7 +191,7 @@ namespace Unsflash.View
 
         private void btDownload_Click(object sender, RoutedEventArgs e)
         {
-            //if (showinfo.Visibility == Visibility.Visible) showinfo.Visibility = Visibility.Collapsed;
+            itemDownv2 = sender as Button;
             Download();
         }
 
@@ -204,22 +205,17 @@ namespace Unsflash.View
             StorageFolder folder = await folderPicker.PickSingleFolderAsync();
             if (folder != null)
             {
-                Uri uridownload;
-                StorageFile file;
-                if (newItem == null) { uridownload = new Uri(itemaaa.cover_photo.links.download); file = await folder.CreateFileAsync("Unplash-" + itemaaa.cover_photo.user.name + ".jpg", CreationCollisionOption.GenerateUniqueName); }
-                else { uridownload = new Uri(newItem.links.download); file = await folder.CreateFileAsync("Unplash-" + newItem.user.name + ".jpg", CreationCollisionOption.GenerateUniqueName); }
+                StorageFile file = await folder.CreateFileAsync("Unplash-v2-Collection.jpg", CreationCollisionOption.GenerateUniqueName);
 
-                //file = await folder.CreateFileAsync("Unplash-" + rootObject.user.name + ".jpg", CreationCollisionOption.GenerateUniqueName);
-                //Uri durl = new Uri(rootObject.links.download);
-                downloadOperation = backgroundDownloader.CreateDownload(uridownload, file);
+                Uri durl = new Uri(itemDownv2.Content.ToString());
+                downloadOperation = backgroundDownloader.CreateDownload(durl, file);
 
                 Progress<DownloadOperation> progress = new Progress<DownloadOperation>(progressChanged);
                 cancellationToken = new CancellationTokenSource();
 
                 try
                 {
-                    //Statustext.Text = "Initial vizing...";
-                    //ringLoad.IsActive = true;
+                    statusDownv2.Visibility = Visibility.Visible;
                     await downloadOperation.StartAsync().AsTask(cancellationToken.Token, progress);
                 }
                 catch (TaskCanceledException)
@@ -230,7 +226,7 @@ namespace Unsflash.View
                 }
             }
         }
-        private void progressChanged(DownloadOperation downloadOperation)
+        private async void progressChanged(DownloadOperation downloadOperation)
         {
             //sizeLoad.Visibility = Visibility.Visible;
             //ringLoad.IsActive = false;
@@ -277,7 +273,10 @@ namespace Unsflash.View
             if (progress >= 100)
             {
                 downloadOperation = null;
-                //sizeLoad.Visibility = Visibility.Collapsed;
+                downloadingText.Text = "Đã tải";
+                downloadingBar.Visibility = Visibility.Collapsed;
+                await Task.Delay(1500);
+                statusDownv2.Visibility = Visibility.Collapsed;
             }
         }
 
@@ -456,12 +455,6 @@ namespace Unsflash.View
                 gridTop.Visibility = Visibility.Collapsed;
                 griBottom.Visibility = Visibility.Collapsed;
             }
-        }
-
-        private void btDownColPage_Click(object sender, RoutedEventArgs e)
-        {
-            //CollectionRootObject aaa = (CollectionRootObject)e.OriginalSource;
-            int a = 3;
         }
 
         private async void btBack_Click(object sender, RoutedEventArgs e)

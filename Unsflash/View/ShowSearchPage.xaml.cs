@@ -6,12 +6,16 @@ using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading;
 using System.Threading.Tasks;
 using Unsflash.Controls;
 using Unsflash.Model;
 using Unsflash.ViewModel;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Networking.BackgroundTransfer;
+using Windows.Storage;
+using Windows.Storage.Pickers;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -31,8 +35,15 @@ namespace Unsflash.View
     public sealed partial class showSearchPage : Page
     {
         PublicAuthorization publicAuthorization;
+        Button itemDownv2;
         public static SearchPhotoObjects listPhotoSearch = new SearchPhotoObjects();
         public static ObservableCollection<ResultModel> MySearchRes = new ObservableCollection<ResultModel>();
+
+        DownloadOperation downloadOperation;
+        CancellationTokenSource cancellationToken;
+        Windows.Networking.BackgroundTransfer.BackgroundDownloader backgroundDownloader = new Windows.Networking.BackgroundTransfer.BackgroundDownloader();
+
+        public static int pageSearch = 1;
 
         public showSearchPage()
         {
@@ -209,14 +220,96 @@ namespace Unsflash.View
             }
         }
 
-        private void btdownHome_Click(object sender, RoutedEventArgs e)
+        private void buttonDownv2_Click(object sender, RoutedEventArgs e)
         {
-
+            itemDownv2 = sender as Button;
+            Download();
         }
 
-        private void grvSearch_Loaded(object sender, RoutedEventArgs e)
+        public async void Download()
         {
+            FolderPicker folderPicker = new FolderPicker();
+            folderPicker.SuggestedStartLocation = PickerLocationId.Downloads;
+            folderPicker.ViewMode = PickerViewMode.Thumbnail;
+            folderPicker.FileTypeFilter.Add("*");
+            StorageFolder folder = await folderPicker.PickSingleFolderAsync();
+            if (folder != null)
+            {
+                StorageFile file = await folder.CreateFileAsync("Unplash-v2-Search.jpg", CreationCollisionOption.GenerateUniqueName);
+                string a = itemDownv2.Content.ToString();
+                Uri durl = new Uri(a);
 
+                downloadOperation = backgroundDownloader.CreateDownload(durl, file);
+
+                Progress<DownloadOperation> progress = new Progress<DownloadOperation>(progressChanged);
+                cancellationToken = new CancellationTokenSource();
+
+                try
+                {
+                    //Statusring.IsActive = true;
+                    statusDownv2.Visibility = Visibility.Visible;
+                    await downloadOperation.StartAsync().AsTask(cancellationToken.Token, progress);
+                }
+                catch (TaskCanceledException)
+                {
+
+                    downloadOperation.ResultFile.DeleteAsync();
+                    downloadOperation = null;
+                }
+            }
+        }
+        private async void progressChanged(DownloadOperation downloadOperation)
+        {
+            //Statustext.Visibility = Visibility.Visible;
+            //Statusring.IsActive = false;
+            int progress = (int)(100 * ((double)downloadOperation.Progress.BytesReceived / (double)downloadOperation.Progress.TotalBytesToReceive));
+            //Statustext.Text = String.Format("{0} of {1} kb. downloaded - %{2} complete.", downloadOperation.Progress.BytesReceived / 1024, downloadOperation.Progress.TotalBytesToReceive / 1024, progress);
+            //Statustext.Value = progress;
+
+            switch (downloadOperation.Progress.Status)
+            {
+                case BackgroundTransferStatus.Running:
+                    {
+                        break;
+                    }
+                case BackgroundTransferStatus.PausedByApplication:
+                    {
+
+                        break;
+                    }
+                case BackgroundTransferStatus.PausedCostedNetwork:
+                    {
+
+                        break;
+                    }
+                case BackgroundTransferStatus.PausedNoNetwork:
+                    {
+
+                        break;
+                    }
+                case BackgroundTransferStatus.Completed:
+                    {
+                        MessageDialog msg = new MessageDialog("Download Completed");
+                        msg.ShowAsync();
+                        break;
+                    }
+                case BackgroundTransferStatus.Error:
+                    {
+                        //Statustext.Text = "An error occured while downloading.";
+                        MessageDialog msg = new MessageDialog("No internet connection has been found.");
+                        msg.ShowAsync();
+                        break;
+                    }
+            }
+            if (progress >= 100)
+            {
+                downloadOperation = null;
+                downloadingText.Text = "Đã tải";
+                downloadingBar.Visibility = Visibility.Collapsed;
+                await Task.Delay(1500);
+                statusDownv2.Visibility = Visibility.Collapsed;
+                //Statustext.Visibility = Visibility.Collapsed;
+            }
         }
     }
 }

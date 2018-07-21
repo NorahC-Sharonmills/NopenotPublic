@@ -14,38 +14,53 @@
             <PivotItem Header="Me" Style="{ThemeResource PivotTitleContentControlStyle}">
                 <Grid>
                     <Grid Name="Logined" Visibility="Collapsed">
-                        <Grid.ColumnDefinitions>
+                        <!--<Grid.ColumnDefinitions>
                             <ColumnDefinition Width="1*"></ColumnDefinition>
                             <ColumnDefinition Width="3*"></ColumnDefinition>
                             <ColumnDefinition Width="1*"></ColumnDefinition>
-                        </Grid.ColumnDefinitions>
-                        <Grid Grid.Column="1">
-                            <Grid.RowDefinitions>
+                        </Grid.ColumnDefinitions>-->
+                        <Grid>
+                            <!--<Grid.RowDefinitions>
                                 <RowDefinition Height="1*"></RowDefinition>
                                 <RowDefinition Height="4*"></RowDefinition>
-                            </Grid.RowDefinitions>
-                            <Grid Grid.Row="1">
-                                <StackPanel>
-                                    <StackPanel Orientation="Horizontal">
-                                        <Ellipse x:Name="Ellipse" 
+                            </Grid.RowDefinitions>-->
+                            <Grid>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="3*"></RowDefinition>
+                                        <RowDefinition></RowDefinition>
+                                    </Grid.RowDefinitions>
+                                    <Grid Grid.Row="0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"></ColumnDefinition>
+                                            <ColumnDefinition Width="2*"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <Ellipse x:Name="Ellipse" Grid.Column="0"
                                              Width ="140"
                                              Height="140"
                                              VerticalAlignment="Center"
-                                             HorizontalAlignment="Center"
-                                             Margin="4,4,4,4">
+                                             HorizontalAlignment="Right"
+                                             Margin="4,4,4,40">
                                             <Ellipse.Fill>
                                                 <ImageBrush x:Name="imgMe" Stretch="Uniform"></ImageBrush>
                                             </Ellipse.Fill>
                                         </Ellipse>
-                                        <StackPanel Margin="20,10,0,10">
-                                            <TextBlock Name="tblMe" FontSize="35" Margin="0,0,0,5"></TextBlock>
-                                            <TextBlock Name="tblUser" FontSize="14" Margin="0,3,0,3"></TextBlock>
-                                            <TextBlock Name="tblCenter" FontSize="14" Margin="0,5,0,5"></TextBlock>
-                                            <TextBlock Name="tblBio" FontSize="14" Margin="0,5,0,5"></TextBlock>
-                                            <TextBlock Name="tblLocation" FontSize="14" Margin="0,5,0,5"></TextBlock>
-                                        </StackPanel>
-                                    </StackPanel>
-                                </StackPanel>
+                                        <Grid Margin="20,10,10,40" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"></RowDefinition>
+                                                <RowDefinition Height="Auto"></RowDefinition>
+                                                <RowDefinition Height="Auto"></RowDefinition>
+                                                <RowDefinition Height="Auto"></RowDefinition>
+                                                <RowDefinition Height="Auto"></RowDefinition>
+                                            </Grid.RowDefinitions>
+                                            <TextBlock Grid.Row="0" Name="tblMe" TextWrapping="Wrap" FontSize="35" Margin="0,0,0,5"></TextBlock>
+                                            <TextBlock Grid.Row="1" Name="tblUser" TextWrapping="Wrap" FontSize="14" Margin="0,3,0,3"></TextBlock>
+                                            <TextBlock Grid.Row="2" Name="tblCenter" TextWrapping="Wrap" FontSize="14" Margin="0,5,0,5"></TextBlock>
+                                            <TextBlock Grid.Row="3" Name="tblBio" TextWrapping="Wrap" FontSize="14" Margin="0,5,0,5"></TextBlock>
+                                            <TextBlock Grid.Row="4" Name="tblLocation" TextWrapping="Wrap" FontSize="14" Margin="0,5,0,5"></TextBlock>
+                                        </Grid>
+                                    </Grid>
+                                </Grid>
                             </Grid>
                         </Grid>
                     </Grid>

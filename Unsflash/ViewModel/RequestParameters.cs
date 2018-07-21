@@ -26,7 +26,8 @@ namespace Unsflash.ViewModel
             + "client_id=" + client_id
             + "&redirect_uri=" + redirect_uri
             + "&response_type=code"
-            + "&scope=public+read_user";
+            //+ "&scope=public+read_user"; // cmt nó lại luôn.
+            + "&scope=public+read_user+write_user+read_photos+write_photos+write_likes+write_followers+read_collections+write_collections";
 
         public static string token_uri = "https://unsplash.com/oauth/token?"
                 + "client_id=" + client_id
@@ -43,7 +44,7 @@ namespace Unsflash.ViewModel
         public static string curatedCollectionUri = "https://api.unsplash.com/collections/curated?client_id=" + client_id + "&page=1&per_page=30";
 
         //Search
-        public static string photoSearchUri = "https://api.unsplash.com/search/photos/?client_id=" + client_id + "&page=" + 1 + "&per_page=30&query=";
+        public static string photoSearchUri = "https://api.unsplash.com/search/photos/?client_id=" + client_id + "&page=" + showSearchPage.pageSearch + "&per_page=30&query=";
         public static string collectionSearchUri = "https://api.unsplash.com/search/collections/?client_id=" + client_id + "&per_page=30&query=";
 
         //Get a collection

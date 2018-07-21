@@ -285,13 +285,20 @@
                         <RowDefinition></RowDefinition>
                     </Grid.RowDefinitions>
                     <Grid Grid.Row="1">
-                        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Stretch">
-                            <TextBlock Text="Unplash" FontSize="35"></TextBlock>
-                            <TextBlock Text="" Height="10"></TextBlock>
-                            <TextBlock Text="Beautiful, free photos." FontSize="14"></TextBlock>
-                            <TextBlock Height="3"></TextBlock>
-                            <TextBlock Text="Gifted by the world's most generous community of photographers. 🎁" FontSize="16"></TextBlock>
-                        </StackPanel>
+                        <Grid VerticalAlignment="Center" HorizontalAlignment="Stretch">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <TextBlock Grid.Row="0" Text="Unplash" FontSize="35"></TextBlock>
+                            <TextBlock Grid.Row="1" Text="" Height="10"></TextBlock>
+                            <TextBlock Grid.Row="2" Text="Beautiful, free photos." FontSize="14"></TextBlock>
+                            <TextBlock Grid.Row="3" Height="3"></TextBlock>
+                            <TextBlock Grid.Row="4" TextWrapping="Wrap" Text="Gifted by the world's most generous community of photographers. 🎁" FontSize="16"></TextBlock>
+                        </Grid>
                     </Grid>
                     <Grid Grid.Row="2">
                         <StackPanel>

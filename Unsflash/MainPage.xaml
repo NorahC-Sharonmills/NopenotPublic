@@ -78,8 +78,18 @@
                               ItemsSource="{x:Bind NavLinks}"
                               ItemTemplate="{StaticResource NavLinkItemTemplate}">
                         </ListView>
+                        <ListView VerticalAlignment="Bottom"
+                                  x:Name="NavMe"
+                                  Margin="0,0,0,12"
+                                  Grid.Row="1"
+                                  IsItemClickEnabled="True"
+                                  SelectionMode="None"
+                                  ItemTemplate="{StaticResource NavLinkItemTemplate}"
+                                  ItemsSource="{x:Bind NavLinks__}"
+                                  ItemClick="NavLinksList_ItemClick">
+
+                        </ListView>
                     </Grid>
-                    
                 </SplitView.Pane>
                 <SplitView.Content>
                     <Frame Name="MainFrame"></Frame>

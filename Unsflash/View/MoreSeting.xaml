@@ -16,6 +16,8 @@
                 <ColumnDefinition Width="3*"></ColumnDefinition>
                 <ColumnDefinition Width="1*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0" Name="grColum0" Visibility="Visible"></Grid>
+            <Grid Grid.Column="1" Name="grColum1" Visibility="Visible"></Grid>
             <Grid Grid.Column="1">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="20"></RowDefinition>
@@ -25,7 +27,7 @@
                     <StackPanel>
                         <TextBlock Text="PERSIONALIZATION" FontSize="20" Foreground="DarkSeaGreen" FontWeight="Bold" Margin="10,0,0,10"></TextBlock>
                         <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
-                            <TextBlock VerticalAlignment="Center" FontSize="16" Text="Auto-change wallpaper in background in everyday"></TextBlock>
+                            <TextBlock TextWrapping="Wrap" VerticalAlignment="Center" FontSize="16" Text="Auto-change wallpaper in background in everyday"></TextBlock>
                             <TextBlock Margin="15,0,4,0" TextLineBounds="TrimToCapHeight"></TextBlock>
                             <Button Background="#00000000" Name="qs1" Click="qs1_Click">
                                 <Grid>

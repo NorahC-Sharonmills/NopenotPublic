@@ -1,8 +1,14 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
+using System.Threading;
 using System.Threading.Tasks;
 using Unsflash.Controls;
 using Unsflash.Model;
 using Unsflash.ViewModel;
+using Windows.Networking.BackgroundTransfer;
+using Windows.Storage;
+using Windows.Storage.Pickers;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
@@ -15,12 +21,18 @@ namespace Unsflash.View
     public sealed partial class HomePage : Page
     {
         RootObject itemNew;
+        Button itemDownv2;
         public static double grvWidth;
         public static int page = 1;
         public static int pagePopular = 1;
         PublicAuthorization publicAuthorization;
+        public static ObservableCollection<RootObject> aaa = new ObservableCollection<RootObject>();
         public static ObservableCollection<RootObject> listNewImage = new ObservableCollection<RootObject>();
         public static ObservableCollection<RootObject> listPopularImage = new ObservableCollection<RootObject>();
+
+        DownloadOperation downloadOperation;
+        CancellationTokenSource cancellationToken;
+        Windows.Networking.BackgroundTransfer.BackgroundDownloader backgroundDownloader = new Windows.Networking.BackgroundTransfer.BackgroundDownloader();
 
         public HomePage()
         {
@@ -32,6 +44,7 @@ namespace Unsflash.View
 
         private async void Grid_Loaded(object sender, RoutedEventArgs e)
         {           
+
             publicAuthorization = new PublicAuthorization();
 
             page = 1;
@@ -189,11 +202,6 @@ namespace Unsflash.View
             itemNew = (RootObject)e.ClickedItem;
 
             Frame.Navigate(typeof(ViewPhotoPage), itemNew);
-        }
-
-        private void btdownHome_Click(object sender, RoutedEventArgs e)
-        {
-            
         }
 
         private async void btNext_Click(object sender, RoutedEventArgs e)
@@ -422,6 +430,102 @@ namespace Unsflash.View
 
             grvPopular.ItemsSource = ViewModel.PopularImages;
             RequestParameters.publicPopularUri = "";
+        }
+
+        private void buttonDownv2_Click(object sender, RoutedEventArgs e)
+        {
+            itemDownv2 = sender as Button;
+            Download();
+        }
+
+        public async void Download()
+        {
+            FolderPicker folderPicker = new FolderPicker();
+            folderPicker.SuggestedStartLocation = PickerLocationId.Downloads;
+            folderPicker.ViewMode = PickerViewMode.Thumbnail;
+            folderPicker.FileTypeFilter.Add("*");
+            StorageFolder folder = await folderPicker.PickSingleFolderAsync();
+            if (folder != null)
+            {
+                StorageFile file = await folder.CreateFileAsync("Unplash-v2.jpg", CreationCollisionOption.GenerateUniqueName);
+                string a = itemDownv2.Content.ToString();
+                Uri durl = new Uri(a);
+
+                downloadOperation = backgroundDownloader.CreateDownload(durl, file);
+
+                Progress<DownloadOperation> progress = new Progress<DownloadOperation>(progressChanged);
+                cancellationToken = new CancellationTokenSource();
+
+                try
+                {
+                    //Statusring.IsActive = true;
+                    statusDownv2.Visibility = Visibility.Visible;
+                    statusDownv2fe.Visibility = Visibility.Visible;
+                    await downloadOperation.StartAsync().AsTask(cancellationToken.Token, progress);
+                }
+                catch (TaskCanceledException)
+                {
+
+                    downloadOperation.ResultFile.DeleteAsync();
+                    downloadOperation = null;
+                }
+            }
+        }
+        private async void progressChanged(DownloadOperation downloadOperation)
+        {
+            //Statustext.Visibility = Visibility.Visible;
+            //Statusring.IsActive = false;
+            int progress = (int)(100 * ((double)downloadOperation.Progress.BytesReceived / (double)downloadOperation.Progress.TotalBytesToReceive));
+            //Statustext.Text = String.Format("{0} of {1} kb. downloaded - %{2} complete.", downloadOperation.Progress.BytesReceived / 1024, downloadOperation.Progress.TotalBytesToReceive / 1024, progress);
+            //Statustext.Value = progress;
+
+            switch (downloadOperation.Progress.Status)
+            {
+                case BackgroundTransferStatus.Running:
+                    {
+                        break;
+                    }
+                case BackgroundTransferStatus.PausedByApplication:
+                    {
+
+                        break;
+                    }
+                case BackgroundTransferStatus.PausedCostedNetwork:
+                    {
+
+                        break;
+                    }
+                case BackgroundTransferStatus.PausedNoNetwork:
+                    {
+
+                        break;
+                    }
+                case BackgroundTransferStatus.Completed:
+                    {
+                        MessageDialog msg = new MessageDialog("Download Completed");
+                        msg.ShowAsync();
+                        break;
+                    }
+                case BackgroundTransferStatus.Error:
+                    {
+                        //Statustext.Text = "An error occured while downloading.";
+                        MessageDialog msg = new MessageDialog("No internet connection has been found.");
+                        msg.ShowAsync();
+                        break;
+                    }
+            }
+            if (progress >= 100)
+            {
+                downloadOperation = null;
+                downloadingText.Text = "Đã tải";
+                downloadingTextfe.Text = "Đã tải";
+                downloadingBar.Visibility = Visibility.Collapsed;
+                downloadingBarfe.Visibility = Visibility.Collapsed;
+                await Task.Delay(1500);
+                statusDownv2.Visibility = Visibility.Collapsed;
+                statusDownv2fe.Visibility = Visibility.Collapsed;
+                //Statustext.Visibility = Visibility.Collapsed;
+            }
         }
     }
 }

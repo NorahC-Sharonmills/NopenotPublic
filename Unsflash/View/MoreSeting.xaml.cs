@@ -7,7 +7,9 @@ using System.Threading.Tasks;
 using Unsflash.Model;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Graphics.Display;
 using Windows.Storage;
+using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -78,6 +80,15 @@ namespace Unsflash.View
                     break;
             }
 
+            var bounds = ApplicationView.GetForCurrentView().VisibleBounds;
+            var scaleFactor = DisplayInformation.GetForCurrentView().RawPixelsPerViewPixel;
+            var size = new Size(bounds.Width * scaleFactor, bounds.Height * scaleFactor);
+            double sizeScaleScreen = 800;
+            if(size.Width < sizeScaleScreen)
+            {
+                grColum0.Width = 0;
+                grColum1.Width = 0;
+            }
         }
 
         private void cbboxAutochange_SelectionChanged(object sender, SelectionChangedEventArgs e)
