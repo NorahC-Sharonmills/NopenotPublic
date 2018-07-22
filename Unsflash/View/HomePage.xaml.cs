@@ -49,12 +49,29 @@ namespace Unsflash.View
 
             page = 1;
             RequestParameters.publicAuUri = RequestParameters.defaulUri + "?client_id=" + RequestParameters.client_id + "&page=" + page + "&per_page=30";
-            listNewImage = await publicAuthorization.Authorization();
+            try
+            {
+                listNewImage = await publicAuthorization.Authorization();
+            }
+            catch (Exception)
+            {
+                NewConnected.Visibility = Visibility.Visible;
+                griNewLoading.Visibility = Visibility.Collapsed;
+            }
+
 
             while (listNewImage.Count == 0)
             {
                 await Task.Delay(10);
-                listNewImage = await publicAuthorization.Authorization();
+                try
+                {
+                    listNewImage = await publicAuthorization.Authorization();
+
+                }
+                catch (Exception)
+                {
+
+                }
             }
 
 
@@ -138,12 +155,28 @@ namespace Unsflash.View
                 if(listPopularImage.Count == 0)
                 {
                     publicAuthorization = new PublicAuthorization();
-                    listPopularImage = await publicAuthorization.GetPopularImages();
+                    try
+                    {
+                        listPopularImage = await publicAuthorization.GetPopularImages();
+                    }
+                    catch (Exception)
+                    {
+                        NewConnectedPop.Visibility = Visibility.Visible;
+                        griPopularLoading.Visibility = Visibility.Collapsed;
+                    }
+
 
                     while (listNewImage.Count == 0)
                     {
                         await Task.Delay(10);
-                        listPopularImage = await publicAuthorization.GetPopularImages();
+                        try
+                        {
+                            listPopularImage = await publicAuthorization.GetPopularImages();
+                        }
+                        catch (Exception)
+                        {
+                            //NewConnectedPop.Visibility = Visibility.Visible;
+                        }
                     }
 
                     double totalWidth = 0;
@@ -526,6 +559,11 @@ namespace Unsflash.View
                 statusDownv2fe.Visibility = Visibility.Collapsed;
                 //Statustext.Visibility = Visibility.Collapsed;
             }
+        }
+
+        private void btLikes_Click(object sender, RoutedEventArgs e)
+        {
+            Button bt = sender as Button;
         }
     }
 }

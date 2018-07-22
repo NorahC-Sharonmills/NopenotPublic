@@ -98,7 +98,7 @@
                             <Button IsEnabled="True" Name="btNoreult">
                                 <StackPanel Orientation="Horizontal">
                                     <SymbolIcon Symbol="Emoji" Foreground="Black" Margin="0,0,10,0"></SymbolIcon>
-                                    <TextBlock Foreground="Black" FontSize="16" Text="NO RESULTS WERE FOUND"></TextBlock>
+                                    <TextBlock Name="TextNoreult" Foreground="Black" FontSize="16" Text="NO RESULTS WERE FOUND"></TextBlock>
                                 </StackPanel>
                             </Button>
                         </Border>
@@ -127,7 +127,7 @@
                             <Button IsEnabled="True" Name="btLoginLike" Click="btLoginLike_Click">
                                 <StackPanel Orientation="Horizontal">
                                     <SymbolIcon Symbol="Emoji" Foreground="Black" Margin="0,0,10,0"></SymbolIcon>
-                                    <TextBlock Foreground="Black" FontSize="16" Text="YOU ARE NOT SINGNED IN THE APP"></TextBlock>
+                                    <TextBlock Name="tblLikesLogin" Foreground="Black" FontSize="16" Text="YOU ARE NOT SINGNED IN THE APP"></TextBlock>
                                 </StackPanel>
                             </Button>
                         </Border>

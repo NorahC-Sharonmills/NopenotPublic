@@ -53,8 +53,9 @@
                                                 CornerRadius="8"
                                                 Margin="0,0,4,0"
                                                 Opacity="0.8">
-                                            <StackPanel Orientation="Horizontal">
-                                                <Path Data="M8.5319849,0C11.560988,7.3866431E-08 14.464015,1.6680007 15.99997,4.5209999 18.139016,0.55099538 22.921994,-1.1230173 27.008008,0.7949839 31.297024,2.8069787 33.185032,8.0069957 31.22604,12.411997 29.27303,16.804 15.998994,30.380001 15.998994,30.380001 15.915985,30.327022 2.7269701,16.804 0.77395964,12.411997 -1.1850933,8.0069957 0.70291448,2.8069787 4.9929701,0.7949839 6.1419612,0.25497467 7.3469826,7.3866431E-08 8.5319849,0z" 
+                                            <Button Name="btLikes" Click="btLikes_Click" DataContext="{x:Bind likes}" Foreground="White" FontSize="1">
+                                                <StackPanel Orientation="Horizontal">
+                                                    <Path Data="M8.5319849,0C11.560988,7.3866431E-08 14.464015,1.6680007 15.99997,4.5209999 18.139016,0.55099538 22.921994,-1.1230173 27.008008,0.7949839 31.297024,2.8069787 33.185032,8.0069957 31.22604,12.411997 29.27303,16.804 15.998994,30.380001 15.998994,30.380001 15.915985,30.327022 2.7269701,16.804 0.77395964,12.411997 -1.1850933,8.0069957 0.70291448,2.8069787 4.9929701,0.7949839 6.1419612,0.25497467 7.3469826,7.3866431E-08 8.5319849,0z" 
                                           Stretch="Uniform" 
                                           Fill="Red" 
                                           Width="16" 
@@ -62,21 +63,22 @@
                                           Margin="4" 
                                           RenderTransformOrigin="0.5,0.5"
                                           VerticalAlignment="Center">
-                                                    <Path.RenderTransform>
-                                                        <TransformGroup>
-                                                            <TransformGroup.Children>
-                                                                <RotateTransform Angle="0" />
-                                                                <ScaleTransform ScaleX="1" ScaleY="1" />
-                                                            </TransformGroup.Children>
-                                                        </TransformGroup>
-                                                    </Path.RenderTransform>
-                                                </Path>
-                                                <TextBlock Text="{x:Bind likes}"
+                                                        <Path.RenderTransform>
+                                                            <TransformGroup>
+                                                                <TransformGroup.Children>
+                                                                    <RotateTransform Angle="0" />
+                                                                    <ScaleTransform ScaleX="1" ScaleY="1" />
+                                                                </TransformGroup.Children>
+                                                            </TransformGroup>
+                                                        </Path.RenderTransform>
+                                                    </Path>
+                                                    <TextBlock x:Name="tblLikes" Text="{x:Bind likes}"
                                                Foreground="Black"
                                                FontSize="16"
                                                VerticalAlignment="Center"
                                                Margin="4"></TextBlock>
-                                            </StackPanel>
+                                                </StackPanel>
+                                            </Button>
                                         </Border>
                                         <Border Name="bdCollect"
                                                 Grid.Column="1"
@@ -201,6 +203,16 @@
                                     </Button>
                                 </StackPanel>
                             </Grid>
+                        </Border>
+                    </Grid>
+                    <Grid Name="NewConnected" Visibility="Collapsed" VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <Border Background="White" CornerRadius="8" Margin="4" Opacity="0.8">
+                            <Button>
+                                <StackPanel Orientation="Horizontal">
+                                    <SymbolIcon Symbol="Emoji" Foreground="Black" Margin="0,0,10,0"></SymbolIcon>
+                                    <TextBlock FontSize="16" Foreground="Black" Text="NO RESULTS WERE FOUND"></TextBlock>
+                                </StackPanel>
+                            </Button>
                         </Border>
                     </Grid>
                     <Grid Name="statusDownv2" Visibility="Collapsed" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,30">
@@ -404,6 +416,16 @@
                                     </Button>
                                 </StackPanel>
                             </Grid>
+                        </Border>
+                    </Grid>
+                    <Grid Name="NewConnectedPop" Visibility="Collapsed" VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <Border Background="White" CornerRadius="8" Margin="4" Opacity="0.8">
+                            <Button>
+                                <StackPanel Orientation="Horizontal">
+                                    <SymbolIcon Symbol="Emoji" Foreground="Black" Margin="0,0,10,0"></SymbolIcon>
+                                    <TextBlock Foreground="Black" FontSize="16" Text="NO RESULTS WERE FOUND"></TextBlock>
+                                </StackPanel>
+                            </Button>
                         </Border>
                     </Grid>
                     <Grid Name="statusDownv2fe" Visibility="Collapsed" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,30">

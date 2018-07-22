@@ -86,20 +86,29 @@ namespace Unsflash.View
                 if (meRootObjects.id == null)
                 {
                     RequestParameters.AuthorizationUri += access_token;
-                    meRootObjects = await publicAuthorization.GetInfoUserMe();
+                    try
+                    {
+                        meRootObjects = await publicAuthorization.GetInfoUserMe();
+
+                        BitmapImage bitmapImage = new BitmapImage();
+                        bitmapImage.UriSource = new Uri(meRootObjects.profile_image.large);
+                        imgMe.ImageSource = bitmapImage;
+
+                        tblMe.Text = meRootObjects.name;
+                        tblCenter.Text = "Download free, beautiful high-quality photos curated by " + meRootObjects.first_name + " .";
+                        if (meRootObjects.bio == null) tblBio.Text = "";
+                        else tblBio.Text = meRootObjects.bio;
+                        if (meRootObjects.location == null) tblLocation.Text = "";
+                        else tblLocation.Text = meRootObjects.location;
+                        tblUser.Text = meRootObjects.username;
+                    }
+                    catch (Exception)
+                    {
+                        Noreult.Visibility = Visibility.Visible;
+                        TextNoreult.Text = "CONNECTED FAIL";
+                    }
+
                     //RequestParameters.AuthorizationUri = "https://api.unsplash.com/me?access_token=";
-
-                    BitmapImage bitmapImage = new BitmapImage();
-                    bitmapImage.UriSource = new Uri(meRootObjects.profile_image.large);
-                    imgMe.ImageSource = bitmapImage;
-
-                    tblMe.Text = meRootObjects.name;
-                    tblCenter.Text = "Download free, beautiful high-quality photos curated by " + meRootObjects.first_name + " .";
-                    if (meRootObjects.bio == null) tblBio.Text = "";
-                    else tblBio.Text = meRootObjects.bio;
-                    if (meRootObjects.location == null) tblLocation.Text = "";
-                    else tblLocation.Text = meRootObjects.location;
-                    tblUser.Text = meRootObjects.username;
                 }
                 else
                 {
@@ -151,7 +160,8 @@ namespace Unsflash.View
                     }
                     catch (Exception ex)
                     {
-                        LoadFail();
+                        LoginingLike.Visibility = Visibility.Visible;
+                        tblLikesLogin.Text = "CONNECTED FAIL";
                     }
 
                     RequestParameters.LikedUser = "https://api.unsplash.com/users/";
@@ -159,7 +169,15 @@ namespace Unsflash.View
                     while (likedRootObjects.Count == 0)
                     {
                         await Task.Delay(10);
-                        likedRootObjects = await publicAuthorization.GetLiked();
+                        try
+                        {
+                            likedRootObjects = await publicAuthorization.GetLiked();
+                        }
+                        catch (Exception)
+                        {
+
+                        }
+
                     }
 
                     this.LikedPhotoModel = new LikedViewModel();
@@ -214,14 +232,22 @@ namespace Unsflash.View
                         catch (Exception)
                         {
                             LoginingCollection.Visibility = Visibility.Visible;
-                            tbloginCollection.Text = "NO RESULTS";
+                            tbloginCollection.Text = "CONNECTED FAIL";
                         }
 
 
                         while (CollectionsViewModel.listMeCollection.Count == 0)
                         {
                             await Task.Delay(10);
-                            CollectionsViewModel.listMeCollection = await publicAuthorization.GetCurated();
+                            try
+                            {
+                                CollectionsViewModel.listMeCollection = await publicAuthorization.GetCurated();
+                            }
+                            catch (Exception)
+                            {
+
+                            }
+
                         }
 
                         this.ViewModel = new CollectionsViewModel();

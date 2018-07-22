@@ -44,6 +44,8 @@ namespace Unsflash.View
             catch (Exception)
             {
                 Noreult.Visibility = Visibility.Visible;
+                griCuratedLoading.Visibility = Visibility.Collapsed;
+                griFeaturedLoading.Visibility = Visibility.Collapsed;
             }
 
 
@@ -56,7 +58,8 @@ namespace Unsflash.View
                 }
                 catch (Exception)
                 {
-                    
+                    griCuratedLoading.Visibility = Visibility.Collapsed;
+                    griFeaturedLoading.Visibility = Visibility.Collapsed;
                 }
             }
 
@@ -81,6 +84,8 @@ namespace Unsflash.View
                     catch (Exception)
                     {
                         Noreult.Visibility = Visibility.Visible;
+                        griCuratedLoading.Visibility = Visibility.Collapsed;
+                        griFeaturedLoading.Visibility = Visibility.Collapsed;
                     }
 
                     while (CollectionsViewModel.listCuratedCollection.Count == 0)
@@ -93,6 +98,8 @@ namespace Unsflash.View
                         catch (Exception)
                         {
                             Noreult.Visibility = Visibility.Visible;
+                            griCuratedLoading.Visibility = Visibility.Collapsed;
+                            griFeaturedLoading.Visibility = Visibility.Collapsed;
                         }
                     }
 
