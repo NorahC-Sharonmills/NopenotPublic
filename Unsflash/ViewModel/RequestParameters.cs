@@ -12,14 +12,14 @@ namespace Unsflash.ViewModel
     class RequestParameters
     {
         //Thầy
-        //public static string redirect_uri = "https://www.facebook.com/nasa1992";
-        //public static string client_id = "3d2984268b6ddb60817f538fd89760421fd522048de87620e456c00cf867a260";
-        //public static string client_secret = "dd616a0006659294d84d723dfcaa6d0fd8f3dbced6e4e23da7a2290b4cb5c774";
+        public static string redirect_uri = "https://www.facebook.com/nasa1992";
+        public static string client_id = "3d2984268b6ddb60817f538fd89760421fd522048de87620e456c00cf867a260";
+        public static string client_secret = "dd616a0006659294d84d723dfcaa6d0fd8f3dbced6e4e23da7a2290b4cb5c774";
 
         //Me
-        public static string redirect_uri = "https://www.facebook.com/HihiDeoCoThangNaoCoTenFaceGiongTao";
-        public static string client_id = "4bf10666cc7335b28f4b4aefe77b7dd88f7fbece2a7e4965c99ece81087f2259";
-        public static string client_secret = "403217edce9fe46ed0ca41ae434abd35bf1e88961f19ddcb4efa19e5687cb8c9";
+        //public static string redirect_uri = "https://www.facebook.com/HihiDeoCoThangNaoCoTenFaceGiongTao";
+        //public static string client_id = "4bf10666cc7335b28f4b4aefe77b7dd88f7fbece2a7e4965c99ece81087f2259";
+        //public static string client_secret = "403217edce9fe46ed0ca41ae434abd35bf1e88961f19ddcb4efa19e5687cb8c9";
 
         public static string code = "";
         public static string api_url = "https://unsplash.com/oauth/authorize?"
