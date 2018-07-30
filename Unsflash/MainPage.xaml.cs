@@ -40,7 +40,7 @@ namespace Unsflash
         private ObservableCollection<NavLink> __navLinks = new ObservableCollection<NavLink>()
         {
             new NavLink() { Label = "Setting", Symbol = Symbol.Setting, PageName = typeof(MoreSeting) },
-            new NavLink() { Label = "Me", Symbol = Symbol.Contact, PageName = typeof(Unsflash.View.Me)},
+            new NavLink() { Label = "My Account", Symbol = Symbol.Contact, PageName = typeof(Unsflash.View.Me)},
 
         };
 
@@ -144,6 +144,24 @@ namespace Unsflash
             var getfileSaveBool = await ApplicationData.Current.LocalFolder.GetFileAsync("UserDefaultBool.txt");
             MoreSeting.GetBoolSave = await FileIO.ReadTextAsync(getfileSaveBool);
 
+            try
+            {
+                var fileSaveBoolDown = await ApplicationData.Current.LocalFolder.GetFileAsync("UserDefaultBoolDown.txt");
+            }
+            catch (Exception)
+            {
+                try
+                {
+                    var fileSaveBoolDown = await ApplicationData.Current.LocalFolder.CreateFileAsync("UserDefaultBoolDown.txt");
+                }
+                catch (Exception)
+                {
+
+                }
+            }
+            var getfileSaveBoolDown = await ApplicationData.Current.LocalFolder.GetFileAsync("UserDefaultBoolDown.txt");
+            MoreSeting.GetBoolSaveDown = await FileIO.ReadTextAsync(getfileSaveBoolDown);
+
             BitmapImage bitmapImage = new BitmapImage();
             if(MoreSeting.GetBoolSave == "1" && MoreSeting.GetColorTrendSave != "")
             {
@@ -165,10 +183,15 @@ namespace Unsflash
             tblTitle.Text = item.Label;
             NavigationPane.IsPaneOpen = false;
         }
-        public void freshMe()
-        {
-            MainFrame.Navigate(typeof(Unsflash.View.Me));
-            tblTitle.Text = "Me";
-        }
+        //public void freshMe()
+        //{
+        //    MainFrame.Navigate(typeof(Unsflash.View.Me));
+        //    tblTitle.Text = "My Account";
+        //}
+        //public void freshSearch()
+        //{
+        //    MainFrame.Navigate(typeof(Unsflash.View.ExplorePage));
+        //    tblTitle.Text = "Search";
+        //}
     }
 }

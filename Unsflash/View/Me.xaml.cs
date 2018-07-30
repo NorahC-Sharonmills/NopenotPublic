@@ -43,6 +43,8 @@ namespace Unsflash.View
         public string scope = UsingGlobal.meRoot.scope;
         public int created_at = UsingGlobal.meRoot.created_at;
 
+        public static string UserText;
+
         public static string TokenInFileUserDefault;
 
         public Me()
@@ -100,6 +102,10 @@ namespace Unsflash.View
                     else tblLocation.Text = meRootObjects.location;
                     tblUser.Text = meRootObjects.username;
 
+                    PivotMe.Header = "@" + meRootObjects.username;
+
+                    UserText = meRootObjects.username;
+
                     //RequestParameters.AuthorizationUri = "https://api.unsplash.com/me?access_token=";
                 }
                 else
@@ -115,6 +121,10 @@ namespace Unsflash.View
                     if (meRootObjects.location == null) tblLocation.Text = "";
                     else tblLocation.Text = meRootObjects.location;
                     tblUser.Text = meRootObjects.username;
+
+                    PivotMe.Header = "@" + meRootObjects.username;
+
+                    UserText = meRootObjects.username;
                 }
 
                 Logined.Visibility = Visibility.Visible;

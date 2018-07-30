@@ -40,7 +40,18 @@
                 </Grid>
             </Grid>
             <Grid Grid.Row="1">
-                <model:MyGridViewSearch x:Name="grvSearch" IsItemClickEnabled="True" ItemClick="grvSearch_ItemClick" ItemsSource="{x:Bind ListPhotoSearchModel.ListImageRes}">
+                <Grid Name="griNewLoading"
+                          HorizontalAlignment="Center"
+                          VerticalAlignment="Center">
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text="Loading"
+                                       FontSize="20"></TextBlock>
+                        <ProgressBar IsIndeterminate="True"
+                                         ShowPaused="False"
+                                         ShowError="False"></ProgressBar>
+                    </StackPanel>
+                </Grid>
+                <model:MyGridViewSearch x:Name="grvSearch" SizeChanged="grvSearch_SizeChanged" IsItemClickEnabled="True" ItemClick="grvSearch_ItemClick" ItemsSource="{x:Bind ListPhotoSearchModel.ListImageRes}">
                     <GridView.ItemTemplate>
                         <DataTemplate x:DataType="model:ResultModel">
                             <Grid BorderThickness="1"

@@ -18,8 +18,8 @@ namespace Unsflash.ViewModel
 
         //Me
         //public static string redirect_uri = "https://www.facebook.com/HihiDeoCoThangNaoCoTenFaceGiongTao";
-        //public static string client_id = "4bf10666cc7335b28f4b4aefe77b7dd88f7fbece2a7e4965c99ece81087f2259";
-        //public static string client_secret = "403217edce9fe46ed0ca41ae434abd35bf1e88961f19ddcb4efa19e5687cb8c9";
+        //public static string client_id = "a9915884c0c516e6a40ce75859c96a2d5e6e1e3f18401faf3ad4c99772ca6744";
+        //public static string client_secret = "325a343141fc5529205801fb477bc283ed4cbc63a35ffbc9edb6e39d6930a344";
 
         public static string code = "";
         public static string api_url = "https://unsplash.com/oauth/authorize?"

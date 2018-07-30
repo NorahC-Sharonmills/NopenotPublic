@@ -30,6 +30,7 @@ namespace Unsflash.View
         IReadOnlyList<StorageFile> thefiles;
         public static string GetColorTrendSave;
         public static string GetBoolSave;
+        public static string GetBoolSaveDown;
 
         public MoreSeting()
         {
@@ -77,6 +78,18 @@ namespace Unsflash.View
                     break;
                 default:
                     SwitchColor.IsOn = false;
+                    break;
+            }
+            switch (GetBoolSaveDown)
+            {
+                case "0":
+                    SwitchQuatily.IsOn = false;
+                    break;
+                case "1":
+                    SwitchQuatily.IsOn = true;
+                    break;
+                default:
+                    SwitchQuatily.IsOn = false;
                     break;
             }
 
@@ -257,6 +270,45 @@ namespace Unsflash.View
         {
             int itemNav = 2;
             this.Frame.Navigate(typeof(ShowDefaults), itemNav);
+        }
+
+        private async void SwitchQuatily_Toggled(object sender, RoutedEventArgs e)
+        {
+            if (SwitchQuatily.IsOn == true)
+            {
+                GetBoolSaveDown = "1";
+                try
+                {
+                    var fileSaveBool = await ApplicationData.Current.LocalFolder.GetFileAsync("UserDefaultBoolDown.txt");
+                    await FileIO.WriteTextAsync(fileSaveBool, GetBoolSaveDown);
+                }
+                catch (Exception)
+                {
+                    var fileSaveBool = await ApplicationData.Current.LocalFolder.CreateFileAsync("UserDefaultBoolDown.txt");
+                    await FileIO.WriteTextAsync(fileSaveBool, GetBoolSaveDown);
+                }
+            }
+            else
+            {
+                GetBoolSaveDown = "0";
+                try
+                {
+                    var fileSaveBool = await ApplicationData.Current.LocalFolder.GetFileAsync("UserDefaultBoolDown.txt");
+                    await FileIO.WriteTextAsync(fileSaveBool, GetBoolSaveDown);
+                }
+                catch (Exception)
+                {
+                    var fileSaveBool = await ApplicationData.Current.LocalFolder.CreateFileAsync("UserDefaultBoolDown.txt");
+                    await FileIO.WriteTextAsync(fileSaveBool, GetBoolSaveDown);
+                }
+            }
+        }
+
+        private void qs4_Click(object sender, RoutedEventArgs e)
+        {
+            showqs.Visibility = Visibility.Visible;
+            grtap.Visibility = Visibility.Visible;
+            textgotitqs.Text = "You can download each image a different quality by opening this function ♥";
         }
     }
 }

@@ -5,6 +5,7 @@
     xmlns:local="using:Unsflash.View"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:model="using:Unsflash.Model"
     mc:Ignorable="d">
 
     <Grid Background="#bf000000">
@@ -106,7 +107,7 @@
                         CornerRadius="8"
                         Margin="4,0,4,0"
                         Opacity="0.8">
-                        <Button Name="btCollection" Visibility="Visible">
+                        <Button Name="btCollection" Visibility="Visible" Click="btCollection_Click">
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Height="28" Margin="0,0,0,0">
                                 <Path Data="M15.000003,0L17.000002,0 17.000002,15.000029 32,15.000029 32,17.000029 17.000002,17.000029 17.000002,32 15.000003,32 15.000003,17.000029 0,17.000029 0,15.000029 15.000003,15.000029z" 
                               Stretch="Uniform" 
@@ -141,7 +142,100 @@
                 <!--<Canvas Name="canvasImg">
             <Image Name="imgShow" PointerWheelChanged="imgShow_PointerWheelChanged" DoubleTapped="imgShow_DoubleTapped" IsDoubleTapEnabled="True" Width="{Binding Path=ActualWidth, ElementName=canvasImg}" Height="{Binding Path=ActualHeight, ElementName=canvasImg}" Stretch="Uniform" VerticalAlignment="Center" HorizontalAlignment="Center"></Image>
             </Canvas>-->
+                <Grid Name="griNewLoading"
+                          HorizontalAlignment="Center"
+                          VerticalAlignment="Center">
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text="Loading"
+                                       FontSize="20"></TextBlock>
+                        <ProgressBar IsIndeterminate="True"
+                                         ShowPaused="False"
+                                         ShowError="False"></ProgressBar>
+                    </StackPanel>
+                </Grid>
                 <Image Name="imgShow" VerticalAlignment="Center" HorizontalAlignment="Center" Stretch="Uniform"></Image>
+                <Border VerticalAlignment="Bottom" HorizontalAlignment="Center"
+                        Background="White"
+                        Name="showSetWall"
+                        Visibility="Collapsed"
+                        Grid.Column="2"
+                        CornerRadius="8"
+                        Margin="4,0,4,10"
+                        Opacity="0.8">
+                    <StackPanel Margin="5" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Height="28">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Height="28">
+                            <Path Data="M11.299979,24.800003C10.700004,24.800003 10.100029,25.100006 9.7000046,25.699997 9.10003,26.600006 9.4000168,27.800003 10.200005,28.300003 11.100028,28.900009 12.299978,28.600006 12.799978,27.800003 13.400014,26.900009 13.100026,25.699997 12.299978,25.199997 12.100027,24.900009 11.700003,24.800003 11.299979,24.800003z M11.200004,21.5L11.600028,23.100006 11.600028,23.199997C11.900015,23.199997,12.200003,23.300003,12.49999,23.400009L13.49999,22.100006 14.999989,23.100006 14.200001,24.5C14.400013,24.699997,14.600025,25,14.700001,25.199997L14.799976,25.199997 16.400012,25 16.7,26.699997 14.999989,27C14.999989,27.300003,14.900013,27.600006,14.799976,27.900009L16.100024,28.900009 15.100025,30.400009 13.700002,29.600006C13.49999,29.800003,13.200002,30,12.99999,30.100006L12.99999,30.199997 13.200002,31.800003 11.499991,32 10.999991,30.5C10.700004,30.5,10.400016,30.400009,10.100029,30.300003L9.10003,31.600006 7.6000309,30.600006 8.4000178,29.199997C8.2000056,29,7.9999933,28.699997,7.9000182,28.5L7.7999816,28.5 6.2000075,28.699997 5.9000197,27 7.4999943,26.600006 7.6000309,26.600006C7.6000309,26.300003,7.700006,26,7.7999816,25.699997L7.700006,25.699997 6.4000192,24.699997 7.4000187,23.199997 8.7999811,24C8.9999933,23.800003,9.2999802,23.600006,9.4999924,23.5L9.4999924,23.400009 9.2999802,21.800003z M24.199994,16.5C23.199994,16.5 22.29997,17.100006 21.900008,18 21.400008,19.199997 21.999984,20.699997 23.199994,21.199997 24.400006,21.699997 25.900004,21.100006 26.400004,19.900009 26.900004,18.699997 26.299968,17.199997 25.100017,16.699997 24.799968,16.600006 24.499982,16.5 24.199994,16.5z M22.79997,12.300003L23.699994,14.199997 23.699994,14.300003 24.799968,14.300003 24.799968,14.199997 25.799968,12.400009 27.900003,13.300003 27.19999,15.199997 27.19999,15.300003C27.499978,15.5,27.799966,15.800003,27.999978,16.100006L28.100015,16.100006 30.100013,15.400009 30.900001,17.5 29.100015,18.400009 28.999978,18.400009 28.999978,19.5 29.100015,19.5 30.900001,20.400009 29.999976,22.5 27.999978,21.900009 27.900003,21.900009C27.69999,22.199997,27.400003,22.5,27.100015,22.699997L27.100015,22.800003 27.799966,24.800003 25.699992,25.600006 24.799968,23.800003 24.799968,23.699997 23.699994,23.699997 23.699994,23.800003 22.79997,25.600006 20.699996,24.699997 21.299972,22.699997 21.299972,22.600006C20.999984,22.400009,20.699996,22.100006,20.499984,21.800003L20.400008,21.800003 18.40001,22.400009 17.600022,20.300003 19.499986,19.400009 19.600022,19.400009 19.600022,18.300003 19.499986,18.300003 17.699998,17.300003 18.600022,15.199997 20.499984,15.900009 20.60002,15.900009C20.799972,15.600006,21.10002,15.300003,21.400008,15.100006L21.400008,15 20.799972,13z M9.10003,5.6999969C7.2999821,5.6999969 5.799983,7.1999969 5.799983,9 5.799983,10.800003 7.2999821,12.300003 9.10003,12.300003 10.900016,12.300003 12.400015,10.800003 12.400015,9 12.400015,7.1999969 10.900016,5.6999969 9.10003,5.6999969z M7.6000309,0L10.700004,0 10.900016,2.8000031 10.900016,2.9000092C11.400016,3,11.900015,3.1999969,12.299978,3.5L12.400015,3.4000092 14.499989,1.5 16.7,3.6999969 14.900013,5.9000092 14.799976,6C15.100025,6.4000092,15.299976,6.9000092,15.400012,7.4000092L15.499988,7.4000092 18.299974,7.6000061 18.299974,10.699997 15.499988,10.900009 15.400012,10.900009C15.299976,11.400009,15.100025,11.900009,14.799976,12.300003L14.900013,12.400009 16.799975,14.5 14.600025,16.699997 12.400015,14.900009 12.299978,14.800003C11.900015,15.100006,11.400016,15.199997,10.900016,15.400009L10.900016,15.5 10.700004,18.300003 7.6000309,18.300003 7.4000187,15.5 7.4000187,15.400009C6.9000192,15.300003,6.4000192,15.100006,5.9999953,14.800003L5.9000197,14.900009 3.799985,16.699997 1.6000352,14.5 3.4999972,12.400009 3.6000338,12.300003C3.2999852,11.900009,3.2000096,11.400009,2.9999976,10.900009L2.7999859,10.900009 0,10.600006 0,7.5 2.7999859,7.3000031 2.9000221,7.3000031C2.9999976,6.8000031,3.2000096,6.3000031,3.4999972,5.9000092L3.4000221,5.9000092 1.6000352,3.6999969 3.799985,1.5 5.9000197,3.4000092 5.9999953,3.5C6.4000192,3.1999969,6.7999826,3,7.2999821,2.9000092L7.2999821,2.8000031z" Stretch="Uniform" Fill="#FF262626" Width="26" Height="26" Margin="0,0,5,0" RenderTransformOrigin="0.5,0.5">
+                                <Path.RenderTransform>
+                                    <TransformGroup>
+                                        <TransformGroup.Children>
+                                            <RotateTransform Angle="0" />
+                                            <ScaleTransform ScaleX="1" ScaleY="1" />
+                                        </TransformGroup.Children>
+                                    </TransformGroup>
+                                </Path.RenderTransform>
+                            </Path>
+                            <TextBlock Text="Đang cài đặt"
+                               Foreground="Black"
+                               FontSize="16"
+                                       Name="tblSetWall"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Center" Height="24"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+                <StackPanel Name="ChooseQuatilyDownload" Visibility="Collapsed" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,4,0">
+                    <Border VerticalAlignment="Bottom" HorizontalAlignment="Right"
+                        Background="White"
+                        Grid.Column="3"
+                        CornerRadius="8"
+                        Margin="4,4,0,0"
+                        Opacity="0.8">
+                        <Button Name="btDownNomal" Click="btDownNomal_Click">
+                            <StackPanel Orientation="Horizontal">
+                                <SymbolIcon Foreground="Black" Margin="0,0,4,0" Symbol="Download"></SymbolIcon>
+                                <TextBlock Text="Download Nomal"
+                               Foreground="Black"
+                               FontSize="16"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Center" Height="26" Margin="0,0,0,0"/>
+                            </StackPanel>
+                        </Button>
+                    </Border>
+                    <Border VerticalAlignment="Bottom" HorizontalAlignment="Right"
+                        Background="White"
+                        Grid.Column="3"
+                        CornerRadius="8"
+                        Margin="4,4,0,0"
+                        Opacity="0.8">
+                        <Button Name="btDownHight" Click="btDownHight_Click">
+                            <StackPanel Orientation="Horizontal">
+                                <SymbolIcon Foreground="Black" Margin="0,0,4,0" Symbol="Download"></SymbolIcon>
+                                <TextBlock Text="Download Hight"
+                               Foreground="Black"
+                               FontSize="16"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Center" Height="26" Margin="0,0,0,0"/>
+                            </StackPanel>
+                        </Button>
+                    </Border>
+                    <Border VerticalAlignment="Bottom" HorizontalAlignment="Right"
+                        Background="White"
+                        Grid.Column="3"
+                        CornerRadius="8"
+                        Margin="4,4,0,0"
+                        Opacity="0.8">
+                        <Button Name="btDownRaw" Click="btDownRaw_Click">
+                            <StackPanel Orientation="Horizontal">
+                                <SymbolIcon Foreground="Black" Margin="0,0,4,0" Symbol="Download"></SymbolIcon>
+                                <TextBlock Text="Download Raw"
+                               Foreground="Black"
+                               FontSize="16"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Center" Height="26" Margin="0,0,0,0"/>
+                            </StackPanel>
+                        </Button>
+                    </Border>
+                </StackPanel>
                 <!--<Grid VerticalAlignment="Center" HorizontalAlignment="Center"  Name="azar">
                 <ScrollViewer Visibility="Visible"
                               Width="Auto"
@@ -298,6 +392,59 @@
             </Grid>
         </Grid>
         <Grid Background="#bf000000" Visibility="Collapsed" Name="grtap" Tapped="grtap_Tapped"></Grid>
+        <Grid VerticalAlignment="Center" HorizontalAlignment="Center" Height="500" Width="650" Name="gridShowCollection" Visibility="Collapsed">
+            <Border Background="White"
+                        Grid.Column="3"
+                        CornerRadius="8"
+                        Margin="4,0,4,0"
+                        Opacity="0.8">
+                <ListView SelectionMode="Single" SelectionChanged="lvAddCollection_SelectionChanged" VerticalAlignment="Center" HorizontalAlignment="Center" Name="lvAddCollection" ItemsSource="{x:Bind ViewModel.MeCollectionss}">
+                    <ListView.ItemTemplate >
+                        <DataTemplate x:DataType="model:CollectionRootObject">
+                            <Grid Height="150" Margin="0,0,0,10" CornerRadius="8">
+                                <Image Source="{x:Bind preview_photos_link_0}" Stretch="UniformToFill"></Image>
+                                <StackPanel VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="10">
+                                    <TextBlock Foreground="Black" FontSize="26" VerticalAlignment="Center" HorizontalAlignment="Left" Text="{x:Bind title}"></TextBlock>
+                                    <TextBlock Foreground="Black" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Left">
+                                        <Run Text="{x:Bind total_photos}"></Run>
+                                        <Run Text="Photos"></Run>
+                                    </TextBlock>
+                                </StackPanel>
+                            </Grid>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Border>
+        </Grid>
+        <Border VerticalAlignment="Bottom" HorizontalAlignment="Center"
+                        Background="White"
+                        Grid.Column="3"
+                        CornerRadius="8"
+                        Margin="4,0,4,30"
+                        Opacity="0.8"
+                Name="TextShowAdded"
+                Visibility="Collapsed">
+            <StackPanel Orientation="Horizontal" Margin="5">
+                <Grid Margin="0,0,5,0">
+                    <Grid Name="backgroundGrid" Width="48" Height="48" Visibility="Collapsed" />
+                    <Path Data="M19.674867,22.465988C20.563487,22.464241 21.099986,22.645996 21.099986,23.380005 21.099986,24.847992 18.815988,26.039001 15.999031,26.039001 13.180975,26.039001 10.898015,24.847992 10.898015,23.380005 10.898015,22.645996 11.502997,22.463989 12.461004,22.466003 13.417975,22.46701 14.727973,22.652985 16.137031,22.652985 17.54551,22.652985 18.786248,22.467735 19.674867,22.465988z M23.729316,16.273705C23.533431,16.278875 23.326484,16.295574 23.107982,16.325012 21.26002,16.572998 20.377999,18.576996 16.232001,18.394989 12.085028,18.576996 11.010991,16.572998 9.1640054,16.325012 8.9459878,16.295013 8.7390176,16.278992 8.5429727,16.273987 5.6060206,16.196014 5.1560083,18.713013 5.5289942,19.747986 7.8599888,26.210999 12.788031,27.071991 16.135993,27.071991 19.484994,27.071991 24.409984,26.210999 26.742993,19.747986 27.117044,18.713011 26.667602,16.196169 23.729316,16.273705z M23.185985,9.2850037L20.612987,10.834991 20.612987,11.720001 21.700999,11.720001 21.700999,12.415009 24.497998,12.415009 24.497998,11.751007 22.419994,11.751007 22.419994,11.488007 22.419994,10.730011 23.357005,10.071991 25.148999,10.071991 25.148999,9.2850037z M6.3399688,9.2850037L6.3399688,10.071991 8.1329995,10.071991 9.0689736,10.730011 9.0689736,11.488007 9.0689736,11.751007 6.9920078,11.751007 6.9920078,12.415009 9.7880298,12.415009 9.7880298,11.720001 10.875981,11.720001 10.875981,10.834991 8.30402,9.2850037z M15.999031,0C24.835034,0 31.998,7.1640015 31.998,16 31.998,24.835999 24.835034,32 15.999031,32 7.1630283,32 -1.0621443E-07,24.835999 0,16 -1.0621443E-07,7.1640015 7.1630283,0 15.999031,0z" Stretch="Uniform" Fill="#FF000000" Width="26" Height="26" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5">
+                        <Path.RenderTransform>
+                            <TransformGroup>
+                                <TransformGroup.Children>
+                                    <RotateTransform Angle="0" />
+                                    <ScaleTransform ScaleX="1" ScaleY="1" />
+                                </TransformGroup.Children>
+                            </TransformGroup>
+                        </Path.RenderTransform>
+                    </Path>
+                </Grid>
+                <TextBlock Text="Đã Thêm Vào Collection"
+                               Foreground="Black"
+                               FontSize="16"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Center" Height="26" Margin="0,0,0,0"/>
+            </StackPanel>
+        </Border>
         <Grid Width="360">
             <Grid.RowDefinitions>
                 <RowDefinition Height="60"></RowDefinition>

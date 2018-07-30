@@ -114,38 +114,48 @@ namespace Unsflash.View
 
         private void griItem_PointerEntered(object sender, PointerRoutedEventArgs e)
         {
-            if (UsingGlobal.meRoot.access_token == null && Me.TokenInFileUserDefault == "")
-            {
-                Grid testGrid = sender as Grid;
-                Grid griBottom = (Grid)GetChildControl.GetChildren(testGrid).Find(x => x.Name == "griBottom");
-                griBottom.Visibility = Visibility.Visible;
-            }
-            else
-            {
-                Grid testGrid = sender as Grid;
-                Grid gridTop = (Grid)GetChildControl.GetChildren(testGrid).Find(x => x.Name == "gridTop");
-                Grid griBottom = (Grid)GetChildControl.GetChildren(testGrid).Find(x => x.Name == "griBottom");
-                gridTop.Visibility = Visibility.Visible;
-                griBottom.Visibility = Visibility.Visible;
-            }
+            //if (UsingGlobal.meRoot.access_token == null && Me.TokenInFileUserDefault == "")
+            //{
+            //    Grid testGrid = sender as Grid;
+            //    Grid griBottom = (Grid)GetChildControl.GetChildren(testGrid).Find(x => x.Name == "griBottom");
+            //    griBottom.Visibility = Visibility.Visible;
+            //}
+            //else
+            //{
+            //    Grid testGrid = sender as Grid;
+            //    Grid gridTop = (Grid)GetChildControl.GetChildren(testGrid).Find(x => x.Name == "gridTop");
+            //    Grid griBottom = (Grid)GetChildControl.GetChildren(testGrid).Find(x => x.Name == "griBottom");
+            //    gridTop.Visibility = Visibility.Visible;
+            //    griBottom.Visibility = Visibility.Visible;
+            //}
+            Grid testGrid = sender as Grid;
+            Grid gridTop = (Grid)GetChildControl.GetChildren(testGrid).Find(x => x.Name == "gridTop");
+            Grid griBottom = (Grid)GetChildControl.GetChildren(testGrid).Find(x => x.Name == "griBottom");
+            gridTop.Visibility = Visibility.Visible;
+            griBottom.Visibility = Visibility.Visible;
         }
 
         private void griItem_PointerExited(object sender, PointerRoutedEventArgs e)
         {
-            if (UsingGlobal.meRoot.access_token == null && Me.TokenInFileUserDefault == "")
-            {
-                Grid testGrid = sender as Grid;
-                Grid griBottom = (Grid)GetChildControl.GetChildren(testGrid).Find(x => x.Name == "griBottom");
-                griBottom.Visibility = Visibility.Collapsed;
-            }
-            else
-            {
-                Grid testGrid = sender as Grid;
-                Grid gridTop = (Grid)GetChildControl.GetChildren(testGrid).Find(x => x.Name == "gridTop");
-                Grid griBottom = (Grid)GetChildControl.GetChildren(testGrid).Find(x => x.Name == "griBottom");
-                gridTop.Visibility = Visibility.Collapsed;
-                griBottom.Visibility = Visibility.Collapsed;
-            }
+            //if (UsingGlobal.meRoot.access_token == null && Me.TokenInFileUserDefault == "")
+            //{
+            //    Grid testGrid = sender as Grid;
+            //    Grid griBottom = (Grid)GetChildControl.GetChildren(testGrid).Find(x => x.Name == "griBottom");
+            //    griBottom.Visibility = Visibility.Collapsed;
+            //}
+            //else
+            //{
+            //    Grid testGrid = sender as Grid;
+            //    Grid gridTop = (Grid)GetChildControl.GetChildren(testGrid).Find(x => x.Name == "gridTop");
+            //    Grid griBottom = (Grid)GetChildControl.GetChildren(testGrid).Find(x => x.Name == "griBottom");
+            //    gridTop.Visibility = Visibility.Collapsed;
+            //    griBottom.Visibility = Visibility.Collapsed;
+            //}
+            Grid testGrid = sender as Grid;
+            Grid gridTop = (Grid)GetChildControl.GetChildren(testGrid).Find(x => x.Name == "gridTop");
+            Grid griBottom = (Grid)GetChildControl.GetChildren(testGrid).Find(x => x.Name == "griBottom");
+            gridTop.Visibility = Visibility.Collapsed;
+            griBottom.Visibility = Visibility.Collapsed;
         }
 
         private async void pvHome_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -564,6 +574,129 @@ namespace Unsflash.View
         private void btLikes_Click(object sender, RoutedEventArgs e)
         {
             Button bt = sender as Button;
+        }
+
+        private async void grvStart_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            griNewLoading.Visibility = Visibility.Visible;
+            grvStart.Visibility = Visibility.Collapsed;
+            RequestParameters.publicAuUri = RequestParameters.defaulUri + "?client_id=" + RequestParameters.client_id + "&page=" + page + "&per_page=30";
+
+            try
+            {
+                listNewImage = await publicAuthorization.Authorization();
+            }
+            catch (Exception)
+            {
+
+            }
+
+            while (listNewImage.Count == 0)
+            {
+                await Task.Delay(10);
+                listNewImage = await publicAuthorization.Authorization();
+            }
+
+
+            double totalWidth = 0;
+            int start = 0;
+
+            this.ViewModel = new MainPanePhotoViewModel();
+
+            while (grvStart.ActualWidth == 0)
+            {
+                await Task.Delay(10);
+            }
+
+            for (int i = 0; i < ViewModel.NewImages.Count; i++)
+            {
+                var width = ViewModel.NewImages[i].width * 310 / ViewModel.NewImages[i].height;
+                totalWidth += width;
+
+                if (totalWidth > grvStart.ActualWidth)
+                {
+                    for (int j = start; j < i; j++)
+                    {
+                        ViewModel.NewImages[j].Scale = grvStart.ActualWidth / (totalWidth - width);
+                    }
+                    start = i;
+                    totalWidth = width;
+                }
+            }
+
+            for (int j = start; j < ViewModel.NewImages.Count; j++)
+            {
+                ViewModel.NewImages[j].Scale = grvStart.ActualWidth / (totalWidth);
+            }
+
+
+            grvStart.ItemsSource = ViewModel.NewImages;
+            RequestParameters.publicAuUri = "";
+            await Task.Delay(200);
+            griNewLoading.Visibility = Visibility.Collapsed;
+            grvStart.Visibility = Visibility.Visible;
+        }
+
+        private async void grvPopular_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            grvPopular.Visibility = Visibility.Collapsed;
+            griPopularLoading.Visibility = Visibility.Visible;
+
+            publicAuthorization = new PublicAuthorization();
+            RequestParameters.publicPopularUri = "https://api.unsplash.com/photos/?client_id=" + RequestParameters.client_id + "&page=" + pagePopular + "&per_page=30&order_by=popular";
+            try
+            {
+                listPopularImage = await publicAuthorization.GetPopularImages();
+            }
+            catch (Exception)
+            {
+
+            }
+
+            while (listNewImage.Count == 0)
+            {
+                await Task.Delay(10);
+                listPopularImage = await publicAuthorization.GetPopularImages();
+            }
+
+            double totalWidth = 0;
+            int start = 0;
+
+            this.ViewModel = new MainPanePhotoViewModel();
+
+            while (grvPopular.ActualWidth == 0)
+            {
+                await Task.Delay(10);
+            }
+
+            for (int i = 0; i < ViewModel.PopularImages.Count; i++)
+            {
+                var width = ViewModel.PopularImages[i].width * 310 / ViewModel.PopularImages[i].height;
+                totalWidth += width;
+
+                if (totalWidth > grvPopular.ActualWidth)
+                {
+                    for (int j = start; j < i; j++)
+                    {
+                        ViewModel.PopularImages[j].Scale = grvPopular.ActualWidth / (totalWidth - width);
+                    }
+                    start = i;
+                    totalWidth = width;
+                }
+            }
+
+            for (int j = start; j < ViewModel.PopularImages.Count; j++)
+            {
+                ViewModel.PopularImages[j].Scale = grvPopular.ActualWidth / (totalWidth);
+            }
+
+
+            grvPopular.ItemsSource = ViewModel.PopularImages;
+            RequestParameters.publicPopularUri = "";
+
+            await Task.Delay(300);
+            griPopularLoading.Visibility = Visibility.Collapsed;
+            grvPopular.Visibility = Visibility.Visible;
         }
     }
 }

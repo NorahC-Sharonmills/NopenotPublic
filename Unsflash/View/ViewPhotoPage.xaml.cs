@@ -42,6 +42,7 @@ namespace Unsflash.View
     public sealed partial class ViewPhotoPage : Page
     {
         public DetailPhotoModel.RootObject rootObject;
+        public CollectionsViewModel ViewModel { get; set; }
         public bool IsLiked = false;
         
         RootObject item;
@@ -60,8 +61,10 @@ namespace Unsflash.View
         {
             if (UsingGlobal.meRoot.access_token == null && Me.TokenInFileUserDefault == "")
             {
-                bdLikes.Visibility = Visibility.Collapsed;
-                bdCollect.Visibility = Visibility.Collapsed;
+                //bdLikes.Visibility = Visibility.Collapsed;
+                //bdCollect.Visibility = Visibility.Collapsed;
+                bdLikes.Visibility = Visibility.Visible;
+                bdCollect.Visibility = Visibility.Visible;
             }
             else
             {
@@ -99,6 +102,9 @@ namespace Unsflash.View
                 Noreult.Visibility = Visibility.Visible;
                 TrueReult.Visibility = Visibility.Collapsed;
             }
+
+            await Task.Delay(500);
+            griNewLoading.Visibility = Visibility.Collapsed;
         }
 
         private void btInfo_Click(object sender, RoutedEventArgs e)
@@ -143,7 +149,15 @@ namespace Unsflash.View
         private async void btDownload_Click(object sender, RoutedEventArgs e)
         {
             if (showinfo.Visibility == Visibility.Visible) showinfo.Visibility = Visibility.Collapsed;
-            Download();             
+            if (MoreSeting.GetBoolSaveDown == "1")
+            {
+                if (ChooseQuatilyDownload.Visibility == Visibility.Visible) ChooseQuatilyDownload.Visibility = Visibility.Collapsed;
+                else ChooseQuatilyDownload.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                Download();
+            }
         }
         public async void Download()
         {
@@ -245,8 +259,13 @@ namespace Unsflash.View
         {
             if (showinfo.Visibility == Visibility.Visible) showinfo.Visibility = Visibility.Collapsed;
             Statusring.IsActive = true;
+            showSetWall.Visibility = Visibility.Visible;
             await ChangeBackground();
             Statusring.IsActive = false;
+            tblSetWall.Text = "Đã Cài Đặt";
+            await Task.Delay(2000);
+            showSetWall.Visibility = Visibility.Collapsed;
+
         }
 
         private async Task ChangeBackground()
@@ -360,38 +379,61 @@ namespace Unsflash.View
 
         private async void btCollection_Click(object sender, RoutedEventArgs e)
         {
+            PublicAuthorization publicAuthorization = new PublicAuthorization();
+
             if (showinfo.Visibility == Visibility.Visible) showinfo.Visibility = Visibility.Collapsed;
-            //SaveCol.saveCollection.Add(new SaveColModel
-            //{
-            //    id = item.id,
-            //    width = item.width,
-            //    height = item.height,
-            //    urlsMedium = item.urls.small,
-            //    urlsFull = item.urls.full
-            //});
-            //// serialize JSON to a string
-            //string json = JsonConvert.SerializeObject(SaveCol.saveCollection);
+            if (gridShowCollection.Visibility == Visibility.Visible) gridShowCollection.Visibility = Visibility.Collapsed;
+            else
+            {
+                gridShowCollection.Visibility = Visibility.Visible;
+                grtap.Visibility = Visibility.Visible;
+            }
+            if (Me.TokenInFileUserDefault != null)
+            {
+                if (CollectionsViewModel.listMeCollection.Count == 0)
+                {
+                    //RequestParameters.MeCollection = RequestParameters.MeCollection + Me.meRootObjects.username + "/collections?access_token=" + Me.TokenInFileUserDefault;
+                    RequestParameters.MeCollection = RequestParameters.MeCollection + "lismover/collections?access_token=" + Me.TokenInFileUserDefault;
+                    try
+                    {
+                        CollectionsViewModel.listMeCollection = await publicAuthorization.GetMeCollection();
+                    }
+                    catch (Exception)
+                    {
+                        //LoginingCollection.Visibility = Visibility.Visible;
+                        //tbloginCollection.Text = "CONNECTED FAIL";
+                    }
 
-            //var file = await ApplicationData.Current.LocalFolder.GetFileAsync("myconfig.json");
 
-            //// read string to a file
-            //string aaz = await FileIO.ReadTextAsync(file);
-            //ObservableCollection<SaveColModel> GetJsonaaaz = JsonConvert.DeserializeObject<ObservableCollection<SaveColModel>>(aaz, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
-            //if (aaz != null)
-            //{
-            //    for (int i = 0; i < GetJsonaaaz.Count; i++)
-            //    {
-            //        if(item.id == GetJsonaaaz[i].id)
-            //        {
+                    while (CollectionsViewModel.listMeCollection.Count == 0)
+                    {
+                        await Task.Delay(10);
+                        try
+                        {
+                            CollectionsViewModel.listMeCollection = await publicAuthorization.GetMeCollection();
+                        }
+                        catch (Exception)
+                        {
 
-            //        }
-            //        else
-            //        {
-            //            // write string to a file
-            //            await FileIO.WriteTextAsync(file, json);
-            //        }
-            //    }
-            //}
+                        }
+
+                    }
+
+                    this.ViewModel = new CollectionsViewModel();
+
+                    lvAddCollection.ItemsSource = CollectionsViewModel.listMeCollection;
+                }
+                else
+                {
+                    lvAddCollection.ItemsSource = CollectionsViewModel.listMeCollection;
+                }
+                //grvCol.Visibility = Visibility.Collapsed;
+                //grvCollectionMe.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                this.Frame.Navigate(typeof(Me));
+            }
 
         }
 
@@ -418,6 +460,118 @@ namespace Unsflash.View
         {
             grtap.Visibility = Visibility.Collapsed;
             showinfo.Visibility = Visibility.Collapsed;
+            gridShowCollection.Visibility = Visibility.Collapsed;
+        }
+
+        private async void btDownHight_Click(object sender, RoutedEventArgs e)
+        {
+            FolderPicker folderPicker = new FolderPicker();
+            folderPicker.SuggestedStartLocation = PickerLocationId.Downloads;
+            folderPicker.ViewMode = PickerViewMode.Thumbnail;
+            folderPicker.FileTypeFilter.Add("*");
+            StorageFolder folder = await folderPicker.PickSingleFolderAsync();
+            if (folder != null)
+            {
+                StorageFile file = await folder.CreateFileAsync("Unplash-" + rootObject.user.name + "-Hight.jpg", CreationCollisionOption.GenerateUniqueName);
+                //Uri durl = new Uri(rootObject.links.download);
+                //downloadOperation = backgroundDownloader.CreateDownload(durl, file);
+
+                Uri durl = new Uri(rootObject.urls.full);
+                downloadOperation = backgroundDownloader.CreateDownload(durl, file);
+
+                Progress<DownloadOperation> progress = new Progress<DownloadOperation>(progressChanged);
+                cancellationToken = new CancellationTokenSource();
+
+                try
+                {
+                    //Statustext.Text = "Initial vizing...";
+                    Statusring.IsActive = true;
+                    await downloadOperation.StartAsync().AsTask(cancellationToken.Token, progress);
+                }
+                catch (TaskCanceledException)
+                {
+
+                    downloadOperation.ResultFile.DeleteAsync();
+                    downloadOperation = null;
+                }
+            }
+        }
+
+        private async void btDownNomal_Click(object sender, RoutedEventArgs e)
+        {
+            FolderPicker folderPicker = new FolderPicker();
+            folderPicker.SuggestedStartLocation = PickerLocationId.Downloads;
+            folderPicker.ViewMode = PickerViewMode.Thumbnail;
+            folderPicker.FileTypeFilter.Add("*");
+            StorageFolder folder = await folderPicker.PickSingleFolderAsync();
+            if (folder != null)
+            {
+                StorageFile file = await folder.CreateFileAsync("Unplash-" + rootObject.user.name + "-Nomal.jpg", CreationCollisionOption.GenerateUniqueName);
+                //Uri durl = new Uri(rootObject.links.download);
+                //downloadOperation = backgroundDownloader.CreateDownload(durl, file);
+
+                Uri durl = new Uri(rootObject.urls.small);
+                downloadOperation = backgroundDownloader.CreateDownload(durl, file);
+
+                Progress<DownloadOperation> progress = new Progress<DownloadOperation>(progressChanged);
+                cancellationToken = new CancellationTokenSource();
+
+                try
+                {
+                    //Statustext.Text = "Initial vizing...";
+                    Statusring.IsActive = true;
+                    await downloadOperation.StartAsync().AsTask(cancellationToken.Token, progress);
+                }
+                catch (TaskCanceledException)
+                {
+
+                    downloadOperation.ResultFile.DeleteAsync();
+                    downloadOperation = null;
+                }
+            }
+        }
+
+        private async void btDownRaw_Click(object sender, RoutedEventArgs e)
+        {
+            FolderPicker folderPicker = new FolderPicker();
+            folderPicker.SuggestedStartLocation = PickerLocationId.Downloads;
+            folderPicker.ViewMode = PickerViewMode.Thumbnail;
+            folderPicker.FileTypeFilter.Add("*");
+            StorageFolder folder = await folderPicker.PickSingleFolderAsync();
+            if (folder != null)
+            {
+                StorageFile file = await folder.CreateFileAsync("Unplash-" + rootObject.user.name + "-Raw.jpg", CreationCollisionOption.GenerateUniqueName);
+                //Uri durl = new Uri(rootObject.links.download);
+                //downloadOperation = backgroundDownloader.CreateDownload(durl, file);
+
+                Uri durl = new Uri(rootObject.urls.raw);
+                downloadOperation = backgroundDownloader.CreateDownload(durl, file);
+
+                Progress<DownloadOperation> progress = new Progress<DownloadOperation>(progressChanged);
+                cancellationToken = new CancellationTokenSource();
+
+                try
+                {
+                    //Statustext.Text = "Initial vizing...";
+                    Statusring.IsActive = true;
+                    await downloadOperation.StartAsync().AsTask(cancellationToken.Token, progress);
+                }
+                catch (TaskCanceledException)
+                {
+
+                    downloadOperation.ResultFile.DeleteAsync();
+                    downloadOperation = null;
+                }
+            }
+        }
+
+        private async void lvAddCollection_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            gridShowCollection.Visibility = Visibility.Collapsed;
+            grtap.Visibility = Visibility.Collapsed;
+            TextShowAdded.Visibility = Visibility.Visible;
+            await Task.Delay(2000);
+            TextShowAdded.Visibility = Visibility.Collapsed;
         }
     }
 }

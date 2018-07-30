@@ -45,6 +45,7 @@
                       IsItemClickEnabled="True"
                       IsSwipeEnabled="True"
                       CanDragItems="False"
+                                          SizeChanged="grvCol_SizeChanged"
                       SelectionMode="Extended"
                       ItemClick="grvCol_ItemClick" SelectionChanged="grvCol_SelectionChanged">
                         <GridView.ItemTemplate>
@@ -203,6 +204,19 @@
                             </ItemsPanelTemplate>
                         </GridView.ItemsPanel>
                     </model:MyGridViewaCol>
+                    <Grid Name="griLoading"
+                          HorizontalAlignment="Center"
+                          VerticalAlignment="Center"
+                          Visibility="Collapsed">
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Text="Loading"
+                                       FontSize="20"></TextBlock>
+                            <ProgressBar IsIndeterminate="True"
+                                         ShowPaused="False"
+                                         ShowError="False"></ProgressBar>
+                        </StackPanel>
+
+                    </Grid>
                     <Grid Name="gridnextback" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,40,30">
                         <Border Background="White"
                             CornerRadius="8"

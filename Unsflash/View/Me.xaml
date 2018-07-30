@@ -11,7 +11,7 @@
 
     <Grid Background="#3f000000">
         <Pivot Name="pvMePage" SelectionChanged="pvMePage_SelectionChanged">
-            <PivotItem Header="Me" Style="{ThemeResource PivotTitleContentControlStyle}">
+            <PivotItem x:Name="PivotMe" Header="Me" Style="{ThemeResource PivotTitleContentControlStyle}">
                 <Grid>
                     <Grid Name="Logined" Visibility="Collapsed">
                         <!--<Grid.ColumnDefinitions>

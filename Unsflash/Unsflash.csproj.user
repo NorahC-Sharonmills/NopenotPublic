@@ -6,14 +6,14 @@
   </PropertyGroup>
   <PropertyGroup>
     <ProjectView>ShowAllFiles</ProjectView>
-    <Source>C:\Users\God\Documents\GitHub\NopenotPublic\Unsflash\Assets\icons8-screenshot-500.png</Source>
-    <SmallTileSource>C:\Users\God\Documents\GitHub\NopenotPublic\Unsflash\Assets\icons8-screenshot-500.png</SmallTileSource>
-    <MediumTileSource>C:\Users\God\Documents\GitHub\NopenotPublic\Unsflash\Assets\icons8-screenshot-500.png</MediumTileSource>
-    <WideTileSource>C:\Users\God\Documents\GitHub\NopenotPublic\Unsflash\Assets\icons8-screenshot-500.png</WideTileSource>
-    <LargeTileSource>C:\Users\God\Documents\GitHub\NopenotPublic\Unsflash\Assets\icons8-screenshot-500.png</LargeTileSource>
-    <AppIconSource>C:\Users\God\Documents\GitHub\NopenotPublic\Unsflash\Assets\icons8-screenshot-500.png</AppIconSource>
-    <SplashScreenSource>C:\Users\God\Documents\GitHub\NopenotPublic\Unsflash\Assets\icons8-screenshot-500.png</SplashScreenSource>
-    <PackageLogoSource>C:\Users\God\Documents\GitHub\NopenotPublic\Unsflash\Assets\icons8-screenshot-500.png</PackageLogoSource>
+    <Source>C:\Users\God\Documents\GitHub\NopenotPublic\Unsflash\Assets\logo.png</Source>
+    <SmallTileSource>C:\Users\God\Documents\GitHub\NopenotPublic\Unsflash\Assets\logo.png</SmallTileSource>
+    <MediumTileSource>C:\Users\God\Documents\GitHub\NopenotPublic\Unsflash\Assets\logo.png</MediumTileSource>
+    <WideTileSource>C:\Users\God\Documents\GitHub\NopenotPublic\Unsflash\Assets\logo.png</WideTileSource>
+    <LargeTileSource>C:\Users\God\Documents\GitHub\NopenotPublic\Unsflash\Assets\logo.png</LargeTileSource>
+    <AppIconSource>C:\Users\God\Documents\GitHub\NopenotPublic\Unsflash\Assets\logo.png</AppIconSource>
+    <SplashScreenSource>C:\Users\God\Documents\GitHub\NopenotPublic\Unsflash\Assets\Untitled.png</SplashScreenSource>
+    <PackageLogoSource>C:\Users\God\Documents\GitHub\NopenotPublic\Unsflash\Assets\logo.png</PackageLogoSource>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
     <RemoteDebugEnabled>false</RemoteDebugEnabled>

@@ -61,8 +61,6 @@ namespace Unsflash.View
 
                 ViewModel.RequestParameters.photoSearchUri += AutosgBoxitem.Text;
 
-                //RequestParameters.collectionSearchUri += AutosgBoxitem.Text;
-
                 tbNameSearch.Text = AutosgBoxitem.Text;
             }
             catch (Exception)
@@ -70,8 +68,6 @@ namespace Unsflash.View
                 TrendSourch Trenditem = (TrendSourch)e.Parameter;
 
                 ViewModel.RequestParameters.photoSearchUri += Trenditem.Title;
-
-                //RequestParameters.collectionSearchUri += AutosgBoxitem.Text;
 
                 tbNameSearch.Text = Trenditem.Title;
 
@@ -172,6 +168,8 @@ namespace Unsflash.View
 
             grvSearch.ItemsSource = ListPhotoSearchModel.ListImageRes;
 
+            griNewLoading.Visibility = Visibility.Collapsed;
+
             ViewModel.RequestParameters.photoSearchUri = "https://api.unsplash.com/search/photos/?client_id=" + RequestParameters.client_id + "&per_page=30&query=";
 
             RequestParameters.collectionSearchUri = "https://api.unsplash.com/search/collections/?client_id=" + RequestParameters.client_id + "&per_page=30&query=";
@@ -186,38 +184,48 @@ namespace Unsflash.View
 
         private void Grid_PointerEntered(object sender, PointerRoutedEventArgs e)
         {
-            if (UsingGlobal.meRoot.access_token == null && Me.TokenInFileUserDefault == "")
-            {
-                Grid testGrid = sender as Grid;
-                Grid griBottom = (Grid)GetChildControl.GetChildren(testGrid).Find(x => x.Name == "griBottom");
-                griBottom.Visibility = Visibility.Visible;
-            }
-            else
-            {
-                Grid testGrid = sender as Grid;
-                Grid gridTop = (Grid)GetChildControl.GetChildren(testGrid).Find(x => x.Name == "gridTop");
-                Grid griBottom = (Grid)GetChildControl.GetChildren(testGrid).Find(x => x.Name == "griBottom");
-                gridTop.Visibility = Visibility.Visible;
-                griBottom.Visibility = Visibility.Visible;
-            }
+            //if (UsingGlobal.meRoot.access_token == null && Me.TokenInFileUserDefault == "")
+            //{
+            //    Grid testGrid = sender as Grid;
+            //    Grid griBottom = (Grid)GetChildControl.GetChildren(testGrid).Find(x => x.Name == "griBottom");
+            //    griBottom.Visibility = Visibility.Visible;
+            //}
+            //else
+            //{
+            //    Grid testGrid = sender as Grid;
+            //    Grid gridTop = (Grid)GetChildControl.GetChildren(testGrid).Find(x => x.Name == "gridTop");
+            //    Grid griBottom = (Grid)GetChildControl.GetChildren(testGrid).Find(x => x.Name == "griBottom");
+            //    gridTop.Visibility = Visibility.Visible;
+            //    griBottom.Visibility = Visibility.Visible;
+            //}
+            Grid testGrid = sender as Grid;
+            Grid gridTop = (Grid)GetChildControl.GetChildren(testGrid).Find(x => x.Name == "gridTop");
+            Grid griBottom = (Grid)GetChildControl.GetChildren(testGrid).Find(x => x.Name == "griBottom");
+            gridTop.Visibility = Visibility.Visible;
+            griBottom.Visibility = Visibility.Visible;
         }
 
         private void Grid_PointerExited(object sender, PointerRoutedEventArgs e)
         {
-            if (UsingGlobal.meRoot.access_token == null && Me.TokenInFileUserDefault == "")
-            {
-                Grid testGrid = sender as Grid;
-                Grid griBottom = (Grid)GetChildControl.GetChildren(testGrid).Find(x => x.Name == "griBottom");
-                griBottom.Visibility = Visibility.Collapsed;
-            }
-            else
-            {
-                Grid testGrid = sender as Grid;
-                Grid gridTop = (Grid)GetChildControl.GetChildren(testGrid).Find(x => x.Name == "gridTop");
-                Grid griBottom = (Grid)GetChildControl.GetChildren(testGrid).Find(x => x.Name == "griBottom");
-                gridTop.Visibility = Visibility.Collapsed;
-                griBottom.Visibility = Visibility.Collapsed;
-            }
+            //if (UsingGlobal.meRoot.access_token == null && Me.TokenInFileUserDefault == "")
+            //{
+            //    Grid testGrid = sender as Grid;
+            //    Grid griBottom = (Grid)GetChildControl.GetChildren(testGrid).Find(x => x.Name == "griBottom");
+            //    griBottom.Visibility = Visibility.Collapsed;
+            //}
+            //else
+            //{
+            //    Grid testGrid = sender as Grid;
+            //    Grid gridTop = (Grid)GetChildControl.GetChildren(testGrid).Find(x => x.Name == "gridTop");
+            //    Grid griBottom = (Grid)GetChildControl.GetChildren(testGrid).Find(x => x.Name == "griBottom");
+            //    gridTop.Visibility = Visibility.Collapsed;
+            //    griBottom.Visibility = Visibility.Collapsed;
+            //}
+            Grid testGrid = sender as Grid;
+            Grid gridTop = (Grid)GetChildControl.GetChildren(testGrid).Find(x => x.Name == "gridTop");
+            Grid griBottom = (Grid)GetChildControl.GetChildren(testGrid).Find(x => x.Name == "griBottom");
+            gridTop.Visibility = Visibility.Collapsed;
+            griBottom.Visibility = Visibility.Collapsed;
         }
 
         private void buttonDownv2_Click(object sender, RoutedEventArgs e)
@@ -310,6 +318,11 @@ namespace Unsflash.View
                 statusDownv2.Visibility = Visibility.Collapsed;
                 //Statustext.Visibility = Visibility.Collapsed;
             }
+        }
+
+        private async void grvSearch_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+
         }
     }
 }

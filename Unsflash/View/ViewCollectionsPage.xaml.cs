@@ -60,6 +60,8 @@ namespace Unsflash.View
 
         protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
+            //grvCol.Visibility = Visibility.Collapsed;
+            //griLoading.Visibility = Visibility.Visible;
             publicAuthorization = new PublicAuthorization();
 
             itemaaa = (CollectionRootObject)e.Parameter;
@@ -175,6 +177,8 @@ namespace Unsflash.View
                 }
 
             tbNameCollection.Text = itemaaa.title;
+            //griLoading.Visibility = Visibility.Collapsed;
+            //grvCol.Visibility = Visibility.Visible;
         }
 
         private void grvCol_ItemClick(object sender, ItemClickEventArgs e)
@@ -423,38 +427,48 @@ namespace Unsflash.View
 
         private void griBottom_PointerEntered(object sender, PointerRoutedEventArgs e)
         {
-            if (UsingGlobal.meRoot.access_token == null && Me.TokenInFileUserDefault == "")
-            {
-                Grid testGrid = sender as Grid;
-                Grid griBottom = (Grid)GetChildControl.GetChildren(testGrid).Find(x => x.Name == "griBottom");
-                griBottom.Visibility = Visibility.Visible;
-            }
-            else
-            {
-                Grid testGrid = sender as Grid;
-                Grid gridTop = (Grid)GetChildControl.GetChildren(testGrid).Find(x => x.Name == "gridTop");
-                Grid griBottom = (Grid)GetChildControl.GetChildren(testGrid).Find(x => x.Name == "griBottom");
-                gridTop.Visibility = Visibility.Visible;
-                griBottom.Visibility = Visibility.Visible;
-            }
+            //if (UsingGlobal.meRoot.access_token == null && Me.TokenInFileUserDefault == "")
+            //{
+            //    Grid testGrid = sender as Grid;
+            //    Grid griBottom = (Grid)GetChildControl.GetChildren(testGrid).Find(x => x.Name == "griBottom");
+            //    griBottom.Visibility = Visibility.Visible;
+            //}
+            //else
+            //{
+            //    Grid testGrid = sender as Grid;
+            //    Grid gridTop = (Grid)GetChildControl.GetChildren(testGrid).Find(x => x.Name == "gridTop");
+            //    Grid griBottom = (Grid)GetChildControl.GetChildren(testGrid).Find(x => x.Name == "griBottom");
+            //    gridTop.Visibility = Visibility.Visible;
+            //    griBottom.Visibility = Visibility.Visible;
+            //}
+            Grid testGrid = sender as Grid;
+            Grid gridTop = (Grid)GetChildControl.GetChildren(testGrid).Find(x => x.Name == "gridTop");
+            Grid griBottom = (Grid)GetChildControl.GetChildren(testGrid).Find(x => x.Name == "griBottom");
+            gridTop.Visibility = Visibility.Visible;
+            griBottom.Visibility = Visibility.Visible;
         }
 
         private void griBottom_PointerExited(object sender, PointerRoutedEventArgs e)
         {
-            if (UsingGlobal.meRoot.access_token == null && Me.TokenInFileUserDefault == "")
-            {
-                Grid testGrid = sender as Grid;
-                Grid griBottom = (Grid)GetChildControl.GetChildren(testGrid).Find(x => x.Name == "griBottom");
-                griBottom.Visibility = Visibility.Collapsed;
-            }
-            else
-            {
-                Grid testGrid = sender as Grid;
-                Grid gridTop = (Grid)GetChildControl.GetChildren(testGrid).Find(x => x.Name == "gridTop");
-                Grid griBottom = (Grid)GetChildControl.GetChildren(testGrid).Find(x => x.Name == "griBottom");
-                gridTop.Visibility = Visibility.Collapsed;
-                griBottom.Visibility = Visibility.Collapsed;
-            }
+            //if (UsingGlobal.meRoot.access_token == null && Me.TokenInFileUserDefault == "")
+            //{
+            //    Grid testGrid = sender as Grid;
+            //    Grid griBottom = (Grid)GetChildControl.GetChildren(testGrid).Find(x => x.Name == "griBottom");
+            //    griBottom.Visibility = Visibility.Collapsed;
+            //}
+            //else
+            //{
+            //    Grid testGrid = sender as Grid;
+            //    Grid gridTop = (Grid)GetChildControl.GetChildren(testGrid).Find(x => x.Name == "gridTop");
+            //    Grid griBottom = (Grid)GetChildControl.GetChildren(testGrid).Find(x => x.Name == "griBottom");
+            //    gridTop.Visibility = Visibility.Collapsed;
+            //    griBottom.Visibility = Visibility.Collapsed;
+            //}
+            Grid testGrid = sender as Grid;
+            Grid gridTop = (Grid)GetChildControl.GetChildren(testGrid).Find(x => x.Name == "gridTop");
+            Grid griBottom = (Grid)GetChildControl.GetChildren(testGrid).Find(x => x.Name == "griBottom");
+            gridTop.Visibility = Visibility.Collapsed;
+            griBottom.Visibility = Visibility.Collapsed;
         }
 
         private async void btBack_Click(object sender, RoutedEventArgs e)
@@ -578,6 +592,111 @@ namespace Unsflash.View
 
             grvCol.ItemsSource = CollectionView.aCollectionPhoto;
             ViewModel.RequestParameters.feCollectionIDUri = "https://api.unsplash.com/collections/";
+        }
+
+        private async void grvCol_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            grvCol.Visibility = Visibility.Collapsed;
+            griLoading.Visibility = Visibility.Visible;
+            double totalWidth = 0;
+            int start = 0;
+
+            if (itemaaa.curated == false)
+            {
+                ViewModel.RequestParameters.feCollectionIDUri = RequestParameters.feCollectionIDUri + itemaaa.id + "/photos?client_id=" + RequestParameters.client_id + "&page=1&per_page=30";
+                this.CollectionView = new aCollectionViewModel();
+                try
+                {
+                    aCollection = await publicAuthorization.GetaCollectionaaa();
+                }
+                catch (Exception ex)
+                {
+                    Noreult.Visibility = Visibility.Visible;
+                    Truereult.Visibility = Visibility.Collapsed;
+                }
+
+
+                while (grvCol.ActualWidth == 0)
+                {
+                    await Task.Delay(10);
+                }
+
+                for (int i = 0; i < CollectionView.aCollectionPhoto.Count; i++)
+                {
+                    var width = CollectionView.aCollectionPhoto[i].width * 310 / CollectionView.aCollectionPhoto[i].height;
+                    totalWidth += width;
+
+                    if (totalWidth > grvCol.ActualWidth)
+                    {
+                        for (int j = start; j < i; j++)
+                        {
+                            CollectionView.aCollectionPhoto[j].Scale = grvCol.ActualWidth / (totalWidth - width);
+                        }
+                        start = i;
+                        totalWidth = width;
+                    }
+                }
+
+                for (int j = start; j < CollectionView.aCollectionPhoto.Count; j++)
+                {
+                    CollectionView.aCollectionPhoto[j].Scale = grvCol.ActualWidth / (totalWidth);
+                }
+
+                grvCol.ItemsSource = CollectionView.aCollectionPhoto;
+                ViewModel.RequestParameters.feCollectionIDUri = "https://api.unsplash.com/collections/";/* + itemaaa.id + "/photos?client_id=" + RequestParameters.client_id + "&page=1&per_page=30";*/
+            }
+            else
+            {
+                this.CollectionView = new aCollectionViewModel();
+                try
+                {
+                    RequestParameters.curCollectionIDUri = RequestParameters.curCollectionIDUri + itemaaa.id + "/photos?client_id=" + RequestParameters.client_id + "&page=1&per_page=10";
+                    aaCollection = await publicAuthorization.GetaCollectionaaaa();
+                }
+                catch (Exception ex)
+                {
+                    MessageDialog ms = new MessageDialog("Error: " + ex);
+                    ms.ShowAsync();
+                }
+
+
+                while (aaCollection.Count == 0)
+                {
+                    await Task.Delay(10);
+                }
+
+                while (grvCol.ActualWidth == 0)
+                {
+                    await Task.Delay(10);
+                }
+
+                for (int i = 0; i < CollectionView.aaCollectionPhoto.Count; i++)
+                {
+                    var width = CollectionView.aaCollectionPhoto[i].width * 310 / CollectionView.aaCollectionPhoto[i].height;
+                    totalWidth += width;
+
+                    if (totalWidth > grvCol.ActualWidth)
+                    {
+                        for (int j = start; j < i; j++)
+                        {
+                            CollectionView.aaCollectionPhoto[j].Scale = grvCol.ActualWidth / (totalWidth - width);
+                        }
+                        start = i;
+                        totalWidth = width;
+                    }
+                }
+
+                for (int j = start; j < CollectionView.aaCollectionPhoto.Count; j++)
+                {
+                    CollectionView.aaCollectionPhoto[j].Scale = grvCol.ActualWidth / (totalWidth);
+                }
+
+                grvCol.ItemsSource = CollectionView.aaCollectionPhoto;
+                ViewModel.RequestParameters.curCollectionIDUri = "https://api.unsplash.com/collections/curated/";/* + itemaaa.id + "/photos?client_id=" + RequestParameters.client_id + "&page=1&per_page=30";*/
+            }
+            await Task.Delay(300);
+            grvCol.Visibility = Visibility.Visible;
+            griLoading.Visibility = Visibility.Collapsed;
         }
     }
 }

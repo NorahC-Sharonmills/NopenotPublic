@@ -12,7 +12,7 @@
     <Grid Loaded="Grid_Loaded" Background="#7f000000">
         <Pivot Name="pvHome"
                SelectionChanged="pvHome_SelectionChanged">
-            <PivotItem Header="New" 
+            <PivotItem Header="New"
                        Style="{ThemeResource PivotTitleContentControlStyle}">
                 <Grid>
                     <Grid Name="griNewLoading"
@@ -27,6 +27,7 @@
                         </StackPanel>
                     </Grid>
                     <model:MyGridView x:Name="grvStart"
+                                      SizeChanged="grvStart_SizeChanged"
                                       ItemsSource="{x:Bind ViewModel.NewImages}"
                                       IsItemClickEnabled="True"
                                       ItemClick="grvStart_ItemClick">
@@ -242,6 +243,7 @@
 
                     </Grid>
                     <model:MyGridView x:Name="grvPopular"
+                                      SizeChanged="grvPopular_SizeChanged"
                                       ItemsSource="{x:Bind ViewModel.NewImages}"
                                       IsItemClickEnabled="True"
                                       ItemClick="grvPopular_ItemClick">
