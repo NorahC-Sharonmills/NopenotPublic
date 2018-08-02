@@ -99,7 +99,7 @@
                             <ToggleSwitch Name="SwitchQuatily" HorizontalAlignment="Right" Toggled="SwitchQuatily_Toggled"></ToggleSwitch>
                         </Grid>
                         <StackPanel Grid.Row="4" Orientation="Horizontal" Margin="0,5,0,5">
-                            <TextBlock VerticalAlignment="Center" FontSize="16" Text="Save quatily"></TextBlock>
+                            <TextBlock VerticalAlignment="Center" FontSize="16" Text="Save quatily default"></TextBlock>
                             <TextBlock Margin="15,0,4,0" TextLineBounds="TrimToCapHeight"></TextBlock>
                             <Button Background="#00000000" Name="qs2" Click="qs2_Click">
                                 <Grid>
@@ -204,9 +204,9 @@
                                 </StackPanel>
                             </Border>
                         </Grid>
-                        <Grid Grid.Row="16" Height="30" BorderBrush="Gray" BorderThickness="0,0,0,0.5"></Grid>
-                        <Grid Grid.Row="17" Height="30" BorderBrush="Gray" BorderThickness="0,0.5,0,0"></Grid>
-                        <Grid Grid.Row="18" HorizontalAlignment="Center">
+                        <Grid Grid.Row="16" Height="30" BorderBrush="Gray" BorderThickness="0,0,0,1"></Grid>
+                        <Grid Grid.Row="17" Height="30" BorderBrush="Gray" BorderThickness="0,0,0,0"></Grid>
+                        <Grid Grid.Row="18" HorizontalAlignment="Center" Margin="0,15,0,0">
                             <StackPanel Orientation="Horizontal">
                                 <Grid Margin="0,0,10,0">
                                     <Grid Width="48" Height="48" Visibility="Collapsed" />

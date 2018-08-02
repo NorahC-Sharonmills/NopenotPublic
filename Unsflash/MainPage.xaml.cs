@@ -40,7 +40,7 @@ namespace Unsflash
         private ObservableCollection<NavLink> __navLinks = new ObservableCollection<NavLink>()
         {
             new NavLink() { Label = "Setting", Symbol = Symbol.Setting, PageName = typeof(MoreSeting) },
-            new NavLink() { Label = "My Account", Symbol = Symbol.Contact, PageName = typeof(Unsflash.View.Me)},
+            new NavLink() { Label = "User", Symbol = Symbol.Contact, PageName = typeof(Unsflash.View.Me)},
 
         };
 

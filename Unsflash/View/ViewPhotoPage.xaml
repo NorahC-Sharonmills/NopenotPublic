@@ -153,35 +153,6 @@
                    VerticalAlignment="Center"
                    HorizontalAlignment="Center"
                    Tapped="imgShow_Tapped"></Image>
-                <Border VerticalAlignment="Bottom" HorizontalAlignment="Center"
-                        Background="White"
-                        Name="showSetWall"
-                        Visibility="Collapsed"
-                        Grid.Column="2"
-                        CornerRadius="8"
-                        Margin="4,0,4,10"
-                        Opacity="0.8">
-                    <StackPanel Margin="5" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Height="28">
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Height="28">
-                            <Path Data="M11.299979,24.800003C10.700004,24.800003 10.100029,25.100006 9.7000046,25.699997 9.10003,26.600006 9.4000168,27.800003 10.200005,28.300003 11.100028,28.900009 12.299978,28.600006 12.799978,27.800003 13.400014,26.900009 13.100026,25.699997 12.299978,25.199997 12.100027,24.900009 11.700003,24.800003 11.299979,24.800003z M11.200004,21.5L11.600028,23.100006 11.600028,23.199997C11.900015,23.199997,12.200003,23.300003,12.49999,23.400009L13.49999,22.100006 14.999989,23.100006 14.200001,24.5C14.400013,24.699997,14.600025,25,14.700001,25.199997L14.799976,25.199997 16.400012,25 16.7,26.699997 14.999989,27C14.999989,27.300003,14.900013,27.600006,14.799976,27.900009L16.100024,28.900009 15.100025,30.400009 13.700002,29.600006C13.49999,29.800003,13.200002,30,12.99999,30.100006L12.99999,30.199997 13.200002,31.800003 11.499991,32 10.999991,30.5C10.700004,30.5,10.400016,30.400009,10.100029,30.300003L9.10003,31.600006 7.6000309,30.600006 8.4000178,29.199997C8.2000056,29,7.9999933,28.699997,7.9000182,28.5L7.7999816,28.5 6.2000075,28.699997 5.9000197,27 7.4999943,26.600006 7.6000309,26.600006C7.6000309,26.300003,7.700006,26,7.7999816,25.699997L7.700006,25.699997 6.4000192,24.699997 7.4000187,23.199997 8.7999811,24C8.9999933,23.800003,9.2999802,23.600006,9.4999924,23.5L9.4999924,23.400009 9.2999802,21.800003z M24.199994,16.5C23.199994,16.5 22.29997,17.100006 21.900008,18 21.400008,19.199997 21.999984,20.699997 23.199994,21.199997 24.400006,21.699997 25.900004,21.100006 26.400004,19.900009 26.900004,18.699997 26.299968,17.199997 25.100017,16.699997 24.799968,16.600006 24.499982,16.5 24.199994,16.5z M22.79997,12.300003L23.699994,14.199997 23.699994,14.300003 24.799968,14.300003 24.799968,14.199997 25.799968,12.400009 27.900003,13.300003 27.19999,15.199997 27.19999,15.300003C27.499978,15.5,27.799966,15.800003,27.999978,16.100006L28.100015,16.100006 30.100013,15.400009 30.900001,17.5 29.100015,18.400009 28.999978,18.400009 28.999978,19.5 29.100015,19.5 30.900001,20.400009 29.999976,22.5 27.999978,21.900009 27.900003,21.900009C27.69999,22.199997,27.400003,22.5,27.100015,22.699997L27.100015,22.800003 27.799966,24.800003 25.699992,25.600006 24.799968,23.800003 24.799968,23.699997 23.699994,23.699997 23.699994,23.800003 22.79997,25.600006 20.699996,24.699997 21.299972,22.699997 21.299972,22.600006C20.999984,22.400009,20.699996,22.100006,20.499984,21.800003L20.400008,21.800003 18.40001,22.400009 17.600022,20.300003 19.499986,19.400009 19.600022,19.400009 19.600022,18.300003 19.499986,18.300003 17.699998,17.300003 18.600022,15.199997 20.499984,15.900009 20.60002,15.900009C20.799972,15.600006,21.10002,15.300003,21.400008,15.100006L21.400008,15 20.799972,13z M9.10003,5.6999969C7.2999821,5.6999969 5.799983,7.1999969 5.799983,9 5.799983,10.800003 7.2999821,12.300003 9.10003,12.300003 10.900016,12.300003 12.400015,10.800003 12.400015,9 12.400015,7.1999969 10.900016,5.6999969 9.10003,5.6999969z M7.6000309,0L10.700004,0 10.900016,2.8000031 10.900016,2.9000092C11.400016,3,11.900015,3.1999969,12.299978,3.5L12.400015,3.4000092 14.499989,1.5 16.7,3.6999969 14.900013,5.9000092 14.799976,6C15.100025,6.4000092,15.299976,6.9000092,15.400012,7.4000092L15.499988,7.4000092 18.299974,7.6000061 18.299974,10.699997 15.499988,10.900009 15.400012,10.900009C15.299976,11.400009,15.100025,11.900009,14.799976,12.300003L14.900013,12.400009 16.799975,14.5 14.600025,16.699997 12.400015,14.900009 12.299978,14.800003C11.900015,15.100006,11.400016,15.199997,10.900016,15.400009L10.900016,15.5 10.700004,18.300003 7.6000309,18.300003 7.4000187,15.5 7.4000187,15.400009C6.9000192,15.300003,6.4000192,15.100006,5.9999953,14.800003L5.9000197,14.900009 3.799985,16.699997 1.6000352,14.5 3.4999972,12.400009 3.6000338,12.300003C3.2999852,11.900009,3.2000096,11.400009,2.9999976,10.900009L2.7999859,10.900009 0,10.600006 0,7.5 2.7999859,7.3000031 2.9000221,7.3000031C2.9999976,6.8000031,3.2000096,6.3000031,3.4999972,5.9000092L3.4000221,5.9000092 1.6000352,3.6999969 3.799985,1.5 5.9000197,3.4000092 5.9999953,3.5C6.4000192,3.1999969,6.7999826,3,7.2999821,2.9000092L7.2999821,2.8000031z" Stretch="Uniform" Fill="#FF262626" Width="26" Height="26" Margin="0,0,5,0" RenderTransformOrigin="0.5,0.5">
-                                <Path.RenderTransform>
-                                    <TransformGroup>
-                                        <TransformGroup.Children>
-                                            <RotateTransform Angle="0" />
-                                            <ScaleTransform ScaleX="1" ScaleY="1" />
-                                        </TransformGroup.Children>
-                                    </TransformGroup>
-                                </Path.RenderTransform>
-                            </Path>
-                            <TextBlock Text="Đang cài đặt"
-                               Foreground="Black"
-                               FontSize="16"
-                                       Name="tblSetWall"
-                               VerticalAlignment="Center"
-                               HorizontalAlignment="Center" Height="24"/>
-                        </StackPanel>
-                    </StackPanel>
-                </Border>
                 <StackPanel Name="ChooseQuatilyDownload" Visibility="Collapsed" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,4,0">
                     <Border VerticalAlignment="Bottom" HorizontalAlignment="Right"
                         Background="White"
@@ -387,7 +358,7 @@
                     <ListView.ItemTemplate >
                         <DataTemplate x:DataType="model:CollectionRootObject">
                             <Grid Height="150" Margin="0,0,0,10" CornerRadius="8">
-                                <Image Source="{x:Bind preview_photos_link_0}" Stretch="UniformToFill"></Image>
+                                <Image Source="{x:Bind preview_photos_link_1}" Stretch="UniformToFill"></Image>
                                 <StackPanel VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="10">
                                     <TextBlock Foreground="Black" FontSize="26" VerticalAlignment="Center" HorizontalAlignment="Left" Text="{x:Bind title}"></TextBlock>
                                     <TextBlock Foreground="Black" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Left">
@@ -430,105 +401,173 @@
                                HorizontalAlignment="Center" Height="26" Margin="0,0,0,0"/>
             </StackPanel>
         </Border>
-        <Grid Width="360">
+        <Grid Width="800" Height="600">
             <Grid.RowDefinitions>
                 <RowDefinition Height="60"></RowDefinition>
                 <RowDefinition></RowDefinition>
                 <RowDefinition Height="60"></RowDefinition>
             </Grid.RowDefinitions>
             <Grid x:Name="showinfo" Visibility="Collapsed" Grid.Row="1">
-                <Grid BorderBrush="Gray" Background="WhiteSmoke" Opacity="0.85"
+                <Grid BorderBrush="Gray" Background="White" Opacity="0.85"
                         CornerRadius="8"
                         Margin="4,0,4,0"
-                        VerticalAlignment="Stretch" HorizontalAlignment="Center" Width="350" Visibility="Visible">
-                    <Grid.RowDefinitions>
-                        <RowDefinition></RowDefinition>
-                        <RowDefinition Height="40"></RowDefinition>
-                    </Grid.RowDefinitions>
+                        VerticalAlignment="Stretch" HorizontalAlignment="Center" Width="600" Height="Auto" Visibility="Visible">
                     <Grid Grid.Row="0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="5"></ColumnDefinition>
                             <ColumnDefinition></ColumnDefinition>
                             <ColumnDefinition Width="5"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
-                        <Grid Grid.Column="1">
+                        <Grid Grid.Column="1" VerticalAlignment="Center">
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="80"></RowDefinition>
+                                <RowDefinition Height="100"></RowDefinition>
                                 <RowDefinition></RowDefinition>
                             </Grid.RowDefinitions>
-                            <Grid Grid.Row="0" BorderBrush="Gray" BorderThickness="0,0,0,0.5">
-                                <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
-                                    <TextBlock Foreground="LightSeaGreen" Text="Info Picture" FontSize="25"></TextBlock>
-                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
-                                        <TextBlock Foreground="Black" Text="View: " FontSize="13"></TextBlock>
-                                        <TextBlock Foreground="Black" x:Name="Infotext" FontSize="13"></TextBlock>
-                                    </StackPanel>
+                            <Grid Grid.Row="0" Margin="20,0,0,0">
+                                <StackPanel>
+                                    <TextBlock Foreground="Black" Text="Info" FontSize="25"></TextBlock>
+                                    <TextBlock Foreground="Black" FontSize="16" Name="datePublisher"></TextBlock>
                                 </StackPanel>
                             </Grid>
                             <Grid Grid.Row="1">
-                                <ListView VerticalAlignment="Stretch" HorizontalAlignment="Stretch" IsEnabled="True" IsItemClickEnabled="False" IsTapEnabled="False" IsDoubleTapEnabled="False">
-                                    <TextBlock Foreground="Black" Text="User" FontSize="20"></TextBlock>
-                                    <StackPanel Orientation="Horizontal">
-                                        <TextBlock Foreground="Black" Text="User: " FontSize="13"></TextBlock>
-                                        <TextBlock Foreground="Black" Name="nameuser" FontSize="13"></TextBlock>
-                                    </StackPanel>
-                                    <Grid>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="Auto"></ColumnDefinition>
-                                            <ColumnDefinition></ColumnDefinition>
-                                        </Grid.ColumnDefinitions>
-                                        <TextBlock Grid.Column="0" Foreground="Black" Text="Bio: " FontSize="13"></TextBlock>
-                                        <TextBlock Grid.Column="1" Foreground="Black" Name="biouser" TextWrapping="Wrap" FontSize="13"></TextBlock>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"></RowDefinition>
+                                    <RowDefinition Height="Auto"></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <Grid Grid.Row="0" Margin="10">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition></ColumnDefinition>
+                                        <ColumnDefinition></ColumnDefinition>
+                                        <ColumnDefinition></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"></RowDefinition>
+                                            <RowDefinition Height="Auto"></RowDefinition>
+                                            <RowDefinition Height="Auto"></RowDefinition>
+                                        </Grid.RowDefinitions>
+                                        <StackPanel Grid.Row="0" Orientation="Horizontal">
+                                            <Grid>
+                                                <Grid Width="48" Height="48" Visibility="Collapsed" />
+                                                <Path Data="M15.998887,5.0159597C13.78589,5.0159597 11.985854,6.816005 11.985854,9.0289521 11.985854,11.24196 13.78589,13.041944 15.998887,13.041944 18.211884,13.041944 20.011798,11.24196 20.011798,9.0289521 20.011798,6.816005 18.211884,5.0159597 15.998887,5.0159597z M15.998887,3.0099825C19.317833,3.0099826 22.017887,5.7099891 22.017887,9.0289521 22.017887,12.347976 19.317833,15.047983 15.998887,15.047983 12.679941,15.047983 9.9798871,12.347976 9.9798872,9.0289521 9.9798871,5.7099891 12.679941,3.0099826 15.998887,3.0099825z M15.999,2.0060019C10.193,2.0060018 4.8829999,4.7460043 2.2969999,9.0290084 4.8829999,13.312012 10.193,16.052015 15.999,16.052015 21.805,16.052015 27.115001,13.312012 29.702001,9.0290084 27.115001,4.7460043 21.805,2.0060018 15.999,2.0060019z M15.999,0C22.743,0,28.922,3.3570031,31.740001,8.5510077L31.999999,9.0290084 31.740001,9.5070086C28.922,14.701013 22.743,18.058016 15.999,18.058016 9.2539999,18.058016 3.0759997,14.701013 0.25899982,9.5070086L0,9.0290084 0.25899982,8.5510077C3.0759997,3.3570031,9.2539999,0,15.999,0z" Stretch="Uniform" Fill="#FF000000" Width="26" Height="26" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5">
+                                                    <Path.RenderTransform>
+                                                        <TransformGroup>
+                                                            <TransformGroup.Children>
+                                                                <RotateTransform Angle="0" />
+                                                                <ScaleTransform ScaleX="1" ScaleY="1" />
+                                                            </TransformGroup.Children>
+                                                        </TransformGroup>
+                                                    </Path.RenderTransform>
+                                                </Path>
+                                            </Grid>
+                                            <TextBlock Margin="10,0,0,0" Foreground="Black" FontSize="16" Text="View"></TextBlock>
+                                        </StackPanel>
+                                        <TextBlock Grid.Row="1" Margin="0,10,0,0" FontSize="18" Foreground="Black" x:Name="Infotext"></TextBlock>
+                                        <TextBlock Grid.Row="2" Margin="0,5,0,0" FontSize="12" Text="0 sine last month" Foreground="Black"></TextBlock>
                                     </Grid>
-                                    <TextBlock Foreground="Black" Text="Location"  FontSize="20"></TextBlock>
-                                    <StackPanel Orientation="Horizontal">
-                                        <TextBlock Foreground="Black" Text="Location: " FontSize="13"></TextBlock>
-                                        <TextBlock Foreground="Black" Name="locationpic" TextWrapping="WrapWholeWords" FontSize="13"></TextBlock>
-                                    </StackPanel>
-                                    <TextBlock Foreground="Black" Text="Time" FontSize="20"></TextBlock>
-                                    <StackPanel Orientation="Horizontal">
-                                        <TextBlock Foreground="Black" Text="Creat Time: " FontSize="13"></TextBlock>
-                                        <TextBlock Foreground="Black" Name="createTime" FontSize="13"></TextBlock>
-                                    </StackPanel>
-                                    <StackPanel Orientation="Horizontal">
-                                        <TextBlock Foreground="Black" Text="Update Time: " FontSize="13"></TextBlock>
-                                        <TextBlock Foreground="Black" Name="updateTime" FontSize="13"></TextBlock>
-                                    </StackPanel>
-                                    <TextBlock Foreground="Black" Text="Camera" FontSize="20"></TextBlock>
-                                    <StackPanel Orientation="Horizontal">
-                                        <TextBlock Foreground="Black" Text="Camera Maker: " FontSize="13"></TextBlock>
-                                        <TextBlock Foreground="Black" Name="cameramaker" FontSize="13"></TextBlock>
-                                    </StackPanel>
-                                    <StackPanel Orientation="Horizontal">
-                                        <TextBlock Foreground="Black" Text="Camera Model: " FontSize="13"></TextBlock>
-                                        <TextBlock Foreground="Black" Name="cameramodel" FontSize="13"></TextBlock>
-                                    </StackPanel>
-                                    <StackPanel Orientation="Horizontal">
-                                        <TextBlock Foreground="Black" Text="F-Stop: "  FontSize="13"></TextBlock>
-                                        <TextBlock Foreground="Black" Name="camerafstop" FontSize="13"></TextBlock>
-                                    </StackPanel>
-                                    <StackPanel Orientation="Horizontal">
-                                        <TextBlock Foreground="Black" Text="Exposure Time: " FontSize="13"></TextBlock>
-                                        <TextBlock Foreground="Black" Name="cameraexposuaretime" FontSize="13"></TextBlock>
-                                    </StackPanel>
-                                    <StackPanel Orientation="Horizontal">
-                                        <TextBlock Foreground="Black" Text="ISO: " FontSize="13"></TextBlock>
-                                        <TextBlock Foreground="Black" Name="cameraiso" FontSize="13"></TextBlock>
-                                    </StackPanel>
-                                    <StackPanel Orientation="Horizontal">
-                                        <TextBlock Foreground="Black" Text="Focal Leght: " FontSize="13"></TextBlock>
-                                        <TextBlock Foreground="Black" Name="camerafocalleght" FontSize="13"></TextBlock>
-                                    </StackPanel>
-                                </ListView>
+                                    <Grid Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"></RowDefinition>
+                                            <RowDefinition Height="Auto"></RowDefinition>
+                                            <RowDefinition Height="Auto"></RowDefinition>
+                                        </Grid.RowDefinitions>
+                                        <StackPanel Grid.Row="0" Orientation="Horizontal">
+                                            <Grid>
+                                                <Grid Width="48" Height="48" Visibility="Collapsed" />
+                                                <Path Data="M2.3841858E-06,30L24,30 24,32 2.3841858E-06,32z M11.000002,0L13.000002,0 13.000002,24.443178 22.684996,15.998997 23.999998,17.507006 11.963988,27.999996 0,17.505007 1.3189697,16.001011 11.000002,24.493849z" Stretch="Uniform" Fill="#FF000000" Width="26" Height="26" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5">
+                                                    <Path.RenderTransform>
+                                                        <TransformGroup>
+                                                            <TransformGroup.Children>
+                                                                <RotateTransform Angle="0" />
+                                                                <ScaleTransform ScaleX="1" ScaleY="1" />
+                                                            </TransformGroup.Children>
+                                                        </TransformGroup>
+                                                    </Path.RenderTransform>
+                                                </Path>
+                                            </Grid>
+                                            <TextBlock Margin="10,0,0,0" Foreground="Black" FontSize="16" Text="Download"></TextBlock>
+                                        </StackPanel>
+                                        <TextBlock Grid.Row="1" Margin="0,10,0,0" FontSize="18" Foreground="Black" x:Name="intDownload"></TextBlock>
+                                        <TextBlock Grid.Row="2" Margin="0,5,0,0" FontSize="12" Text="0 sine last month" Foreground="Black"></TextBlock>
+                                    </Grid>
+                                    <Grid Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"></RowDefinition>
+                                            <RowDefinition Height="Auto"></RowDefinition>
+                                            <RowDefinition Height="Auto"></RowDefinition>
+                                        </Grid.RowDefinitions>
+                                        <StackPanel Grid.Row="0" Orientation="Horizontal">
+                                            <Grid>
+                                                <Grid Width="48" Height="48" Visibility="Collapsed" />
+                                                <Grid>
+                                                    <Grid Width="48" Height="48" Visibility="Collapsed" />
+                                                    <Path Data="M23.370204,1.8672515C21.294372,1.9053352,18.976663,2.8856077,16.599092,4.7651081L16.015115,5.2261047 15.432115,4.7651081C13.059161,2.8901167 10.673175,1.9241176 8.5431991,1.9241178 7.446229,1.9241176 6.416244,2.1801283 5.4912381,2.6991081 2.9072883,4.1470995 1.5222969,7.4460959 1.9643076,11.100071 2.7172883,17.337043 13.615153,26.253016 16.02012,28.020984 18.452095,26.261012 29.497936,17.341041 30.063938,11.128086 30.415924,7.2730923 29.013935,4.0011039 26.406974,2.5891233 25.478523,2.0858686 24.457546,1.8473029 23.370204,1.8672515z M23.381185,0.0013699633C24.778831,-0.02325648 26.102981,0.28400741 27.302959,0.93312485 30.582914,2.7111013 32.359897,6.6820917 31.938913,11.299075 31.216907,19.22305 17.355093,29.538983 16.454105,29.984996L16.093116,30.221993 15.972116,30.219003 15.599104,29.995982C14.876123,29.658977 1.0503184,19.237027 0.09433749,11.32709 -0.43867542,6.9110947 1.3183202,2.8801069 4.5712676,1.0571169 7.8332172,-0.77685892 11.97516,-0.11887239 16.015115,2.8441267 18.518211,1.0053749 21.051775,0.042413725 23.381185,0.0013699633z" Stretch="Uniform" Fill="#FF000000" Width="26" Height="26" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5">
+                                                        <Path.RenderTransform>
+                                                            <TransformGroup>
+                                                                <TransformGroup.Children>
+                                                                    <RotateTransform Angle="0" />
+                                                                    <ScaleTransform ScaleX="1" ScaleY="1" />
+                                                                </TransformGroup.Children>
+                                                            </TransformGroup>
+                                                        </Path.RenderTransform>
+                                                    </Path>
+                                                </Grid>
+                                            </Grid>
+                                            <TextBlock Margin="10,0,0,0" Foreground="Black" FontSize="16" Text="Like"></TextBlock>
+                                        </StackPanel>
+                                        <TextBlock Grid.Row="1" Margin="0,10,0,0" FontSize="18" Foreground="Black" x:Name="intLikes"></TextBlock>
+                                        <TextBlock Grid.Row="2" Margin="0,5,0,0" FontSize="12" Text="0 sine last month" Foreground="Black"></TextBlock>
+                                    </Grid>
+                                </Grid>
+                                <Grid Grid.Row="1" Margin="10" BorderBrush="Black" BorderThickness="0,1,0,0" VerticalAlignment="Center">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition></ColumnDefinition>
+                                        <ColumnDefinition></ColumnDefinition>
+                                        <ColumnDefinition></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid Margin="0,20,0,0" Grid.Column="0" HorizontalAlignment="Center">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"></RowDefinition>
+                                            <RowDefinition Height="Auto"></RowDefinition>
+                                            <RowDefinition Height="Auto"></RowDefinition>
+                                            <RowDefinition Height="Auto"></RowDefinition>
+                                            <RowDefinition Height="Auto"></RowDefinition>
+                                            <RowDefinition Height="Auto"></RowDefinition>
+                                        </Grid.RowDefinitions>
+                                        <TextBlock Grid.Row="0" Foreground="Gray" FontSize="12" Text="Camera Make"></TextBlock>
+                                        <TextBlock Grid.Row="1" Foreground="Black" FontSize="16" Name="cameramaker"></TextBlock>
+                                        <TextBlock Grid.Row="2" Foreground="Gray" FontSize="12" Text="Aperture"></TextBlock>
+                                        <TextBlock Grid.Row="3" Foreground="Black" FontSize="16" Name="camerafstop"></TextBlock>
+                                        <TextBlock Grid.Row="4" Foreground="Gray" FontSize="12" Text="Dimensfons"></TextBlock>
+                                        <TextBlock Grid.Row="5" Foreground="Black" FontSize="16" Name="sizeImage"></TextBlock>
+                                    </Grid>
+                                    <Grid Margin="0,20,0,0" Grid.Column="1" HorizontalAlignment="Center">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"></RowDefinition>
+                                            <RowDefinition Height="Auto"></RowDefinition>
+                                            <RowDefinition Height="Auto"></RowDefinition>
+                                            <RowDefinition Height="Auto"></RowDefinition>
+                                        </Grid.RowDefinitions>
+                                        <TextBlock Grid.Row="0" Foreground="Gray" FontSize="12" Text="Camera Model"></TextBlock>
+                                        <TextBlock Grid.Row="1" Foreground="Black" FontSize="16" Name="cameramodel"></TextBlock>
+                                        <TextBlock Grid.Row="2" Foreground="Gray" FontSize="12" Text="Shutter Speed"></TextBlock>
+                                        <TextBlock Grid.Row="3" Foreground="Black" FontSize="16" Name="cameraexposuaretime"></TextBlock>
+                                    </Grid>
+                                    <Grid Margin="0,20,0,0" Grid.Column="2" HorizontalAlignment="Center">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"></RowDefinition>
+                                            <RowDefinition Height="Auto"></RowDefinition>
+                                            <RowDefinition Height="Auto"></RowDefinition>
+                                            <RowDefinition Height="Auto"></RowDefinition>
+                                        </Grid.RowDefinitions>
+                                        <TextBlock Grid.Row="0" Foreground="Gray" FontSize="12" Text="Focal Length"></TextBlock>
+                                        <TextBlock Grid.Row="1" Foreground="Black" FontSize="16" Name="camerafocalleght"></TextBlock>
+                                        <TextBlock Grid.Row="2" Foreground="Gray" FontSize="12" Text="ISO"></TextBlock>
+                                        <TextBlock Grid.Row="3" Foreground="Black" FontSize="16" Name="cameraiso"></TextBlock>
+                                    </Grid>
+                                </Grid>
                             </Grid>
                         </Grid>
-                    </Grid>
-                    <Grid Grid.Row="1" BorderBrush="Gray" BorderThickness="0,1,0,0">
-                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
-                            <SymbolIcon Symbol="Setting" Foreground="LightSeaGreen"></SymbolIcon>
-                            <TextBlock Margin="4,0,4,0"></TextBlock>
-                            <TextBlock Foreground="LightSeaGreen" Text="More picture" FontSize="13"></TextBlock>
-                        </StackPanel>
                     </Grid>
                 </Grid>
             </Grid>

@@ -95,6 +95,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="BackgroundToast\ToastHelper.cs" />
     <Compile Include="Controls\SaveCol.cs" />
     <Compile Include="Controls\SaveColModel.cs" />
     <Compile Include="Controls\UsingGlobal.cs" />

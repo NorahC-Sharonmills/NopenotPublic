@@ -36,8 +36,8 @@
                                             <ColumnDefinition Width="2*"></ColumnDefinition>
                                         </Grid.ColumnDefinitions>
                                         <Ellipse x:Name="Ellipse" Grid.Column="0"
-                                             Width ="140"
-                                             Height="140"
+                                             Width ="240"
+                                             Height="240"
                                              VerticalAlignment="Center"
                                              HorizontalAlignment="Right"
                                              Margin="4,4,4,40">

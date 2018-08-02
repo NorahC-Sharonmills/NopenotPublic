@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -9,6 +10,7 @@ using System.Net.Http;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading;
 using System.Threading.Tasks;
+using Unsflash.BackgroundToast;
 using Unsflash.Controls;
 using Unsflash.Model;
 using Unsflash.ViewModel;
@@ -22,6 +24,7 @@ using Windows.Storage.Pickers;
 using Windows.Storage.Streams;
 using Windows.System.UserProfile;
 using Windows.UI;
+using Windows.UI.Notifications;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -113,28 +116,27 @@ namespace Unsflash.View
 
             if (showinfo.Visibility == Visibility.Visible) showinfo.Visibility = Visibility.Collapsed;
             else showinfo.Visibility = Visibility.Visible;
-            if (rootObject.user.name == null) nameuser.Text = " ";
-            else nameuser.Text = " " + rootObject.user.name;
-            if (rootObject.user.bio == null) biouser.Text = " ";
-            else biouser.Text = " " + rootObject.user.bio;
-            if (rootObject.location == null) locationpic.Text = " ";
-            else locationpic.Text = " " + rootObject.location.title;
-            if (rootObject.created_at.Date.ToString() == null) createTime.Text = " ";
-            else createTime.Text = rootObject.created_at.Date.ToString();
-            if (rootObject.updated_at.Date.ToString() == null) updateTime.Text = " ";
-            else updateTime.Text = rootObject.updated_at.Date.ToString();
-            if (rootObject.exif.make == null) cameramaker.Text = " ";
-            else cameramaker.Text = " " + rootObject.exif.make;
-            if (rootObject.exif.model == null) cameramodel.Text = " ";
-            else cameramodel.Text = " " + rootObject.exif.model;
-            if (rootObject.exif.iso.ToString() == null) cameraiso.Text = " ";
-            else cameraiso.Text = " " + rootObject.exif.iso.ToString();
-            if (rootObject.exif.aperture == null) camerafstop.Text = " ";
-            else camerafstop.Text = " " + rootObject.exif.aperture;
-            if (rootObject.exif.focal_length == null) camerafocalleght.Text = " ";
-            else camerafocalleght.Text = " " + rootObject.exif.focal_length;
+            DateTimeFormatInfo mfi = new DateTimeFormatInfo();
+            string strMonthName = mfi.GetMonthName(rootObject.updated_at.Month).ToString();
 
+            datePublisher.Text = "Publisher on " + strMonthName + " " + rootObject.updated_at.Day + ", " + rootObject.updated_at.Year;
             Infotext.Text = rootObject.views.ToString();
+            intDownload.Text = rootObject.downloads.ToString();
+            intLikes.Text = rootObject.likes.ToString();
+            sizeImage.Text = rootObject.width.ToString() + " x " + rootObject.height.ToString();
+
+            if (rootObject.exif.make == null) cameramaker.Text = "--";
+            else cameramaker.Text = " " + rootObject.exif.make;
+            if (rootObject.exif.model == null) cameramodel.Text = "--";
+            else cameramodel.Text = " " + rootObject.exif.model;
+            if (rootObject.exif.iso.ToString() == null) cameraiso.Text = "--";
+            else cameraiso.Text = " " + rootObject.exif.iso.ToString();
+            if (rootObject.exif.aperture == null) camerafstop.Text = "--";
+            else camerafstop.Text = " ƒ/" + rootObject.exif.aperture;
+            if (rootObject.exif.focal_length == null) camerafocalleght.Text = "--";
+            else camerafocalleght.Text = " " + rootObject.exif.focal_length + "mm";
+            if (rootObject.exif.exposure_time == null) cameraexposuaretime.Text = "--";
+            else cameraexposuaretime.Text = " " + rootObject.exif.exposure_time + "s";
 
         }
 
@@ -252,6 +254,9 @@ namespace Unsflash.View
             {
                 downloadOperation = null;
                 Statustext.Visibility = Visibility.Collapsed;
+                Windows.UI.Notifications.ToastNotificationManager.History.Clear();
+
+                BackgroundToast.ToastHelper.PopToast("Download:", "Complete", "Replace", "Toast1");
             }
         }
 
@@ -259,13 +264,15 @@ namespace Unsflash.View
         {
             if (showinfo.Visibility == Visibility.Visible) showinfo.Visibility = Visibility.Collapsed;
             Statusring.IsActive = true;
-            showSetWall.Visibility = Visibility.Visible;
+            //showSetWall.Visibility = Visibility.Visible;
             await ChangeBackground();
             Statusring.IsActive = false;
-            tblSetWall.Text = "Đã Cài Đặt";
-            await Task.Delay(2000);
-            showSetWall.Visibility = Visibility.Collapsed;
+            //tblSetWall.Text = "Đã Cài Đặt";
+            //await Task.Delay(2000);
+            //showSetWall.Visibility = Visibility.Collapsed;
+            Windows.UI.Notifications.ToastNotificationManager.History.Clear();
 
+            BackgroundToast.ToastHelper.PopToast("Set image is Wallpaper:", "Complete", "Replace", "Toast1");
         }
 
         private async Task ChangeBackground()
@@ -569,9 +576,9 @@ namespace Unsflash.View
         {
             gridShowCollection.Visibility = Visibility.Collapsed;
             grtap.Visibility = Visibility.Collapsed;
-            TextShowAdded.Visibility = Visibility.Visible;
-            await Task.Delay(2000);
-            TextShowAdded.Visibility = Visibility.Collapsed;
+            ToastNotificationManager.History.Clear();
+
+            ToastHelper.PopToast("Add the Collection:", "Complete", "Replace", "Toast1");
         }
     }
 }
